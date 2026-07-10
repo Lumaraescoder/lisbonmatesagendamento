@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "subtitle": "Descubre las mejores visitas y experiencias en Lisboa",
+    "title": "Lisbon Mates",
+    "button": "Reservar ahora"
+  },
+  "section": {
+    "featuredTours": "Tours destacados"
+  },
+  "subscribe": {
+    "title": "Únete a nuestro boletín 🎉",
+    "description": "Lee y comparte nuevas perspectivas sobre casi cualquier tema. Todos son bienvenidos.",
+    "benefit1": "Obtén más descuento",
+    "benefit2": "Recibe revistas premium",
+    "placeholder": "Introduce tu email",
+    "button": "Suscribirse"
+  }
+}

@@ -1,5 +1,7 @@
 import React from "react";
 import SectionSubscribe2 from "@/components/SectionSubscribe2";
+import { t, defaultLocale } from "@/i18n";
+import { cookies, headers } from "next/headers";
 import BackgroundSection from "@/components/BackgroundSection";
 import BgGlassmorphism from "@/components/BgGlassmorphism";
 import { TaxonomyType } from "@/data/types";
@@ -17,38 +19,68 @@ import comida from "@/images/guides/diferente/comida.jpeg";
 import SectionGridFeaturePlaces from "@/components/SectionGridFeaturePlaces";
 import SectionClientSay from "@/components/SectionClientSay";
 
-const DEMO_CATS_2: TaxonomyType[] = [
-  {
-    id: "1",
-    href: "/listing-stay",
-    name: "Tuk-Tuk Scenic Tours",
-    taxonomy: "category",
-    thumbnail: panteao_alfama,
-  },
-  {
-    id: "2",
-    href: "/listing-stay",
-    name: "Fado & Cultural Experiences",
-    taxonomy: "category",
-    thumbnail: fado,
-  },
-  {
-    id: "3",
-    href: "/listing-stay",
-    name: "Historical & Religious Sites",
-    taxonomy: "category",
-    thumbnail: igrejaDiferente,
-  },
-  {
-    id: "4",
-    href: "/listing-stay",
-    name: "Food Experiences",
-    taxonomy: "category",
-    thumbnail: comida,
-  },
-];
+// determine locale on server from cookie, then Accept-Language header, else default
+function pickLocaleFromAccept(acceptLangHeader?: string) {
+  if (!acceptLangHeader) return undefined;
+  const parts = acceptLangHeader.split(',').map(p => p.trim());
+  for (const p of parts) {
+    const code = p.split(';')[0].toLowerCase();
+    if (code.startsWith('pt')) return 'pt';
+    if (code.startsWith('it')) return 'it';
+    if (code.startsWith('de')) return 'de';
+    if (code.startsWith('fr')) return 'fr';
+    if (code.startsWith('es')) return 'es';
+    if (code.startsWith('en')) return 'en';
+  }
+  return undefined;
+}
 
-function PageHome3() {
+export default async function PageHome3() {
+  // determine locale on server from cookie, Accept-Language header, else default
+  const cookieStore = await cookies();
+  const cookieLocale = cookieStore.get('locale')?.value as any;
+  const headersStore = await headers();
+  const acceptLang = headersStore.get('accept-language') || undefined;
+  const headerLocale = pickLocaleFromAccept(acceptLang) as any;
+  const serverLocale = cookieLocale || headerLocale || defaultLocale;
+
+  const L = {
+    section: t(serverLocale, 'section'),
+    subscribe: t(serverLocale, 'subscribe'),
+    categories: t(serverLocale, 'categories'),
+  } as any;
+
+  const DEMO_CATS_2: TaxonomyType[] = [
+    {
+      id: "1",
+      href: "/listing-stay",
+      name: L.categories.scenic,
+      taxonomy: "category",
+      thumbnail: panteao_alfama,
+    },
+    {
+      id: "2",
+      href: "/listing-stay",
+      name: L.categories.fado,
+      taxonomy: "category",
+      thumbnail: fado,
+    },
+    {
+      id: "3",
+      href: "/listing-stay",
+      name: L.categories.historical,
+      taxonomy: "category",
+      thumbnail: igrejaDiferente,
+    },
+    {
+      id: "4",
+      href: "/listing-stay",
+      name: L.categories.food,
+      taxonomy: "category",
+      thumbnail: comida,
+    },
+  ];
+
   return (
     <main className="nc-PageHome3 relative overflow-hidden">
       {/* GLASSMOPHIN */}
@@ -103,4 +135,3 @@ function PageHome3() {
   );
 }
 
-export default PageHome3;

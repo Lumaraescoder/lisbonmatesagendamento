@@ -1,0 +1,54 @@
+{
+  "section": {
+    "featuredTours": "Passeios em destaque"
+  },
+  "subscribe": {
+    "title": "Participe da nossa newsletter 🎉",
+    "description": "Leia e compartilhe novas perspectivas sobre praticamente qualquer assunto. Todos são bem-vindos.",
+    "benefit1": "Obtenha mais desconto",
+    "benefit2": "Receba revistas premium",
+    "placeholder": "Digite seu e-mail",
+    "button": "Inscrever-se"
+  },
+  "categories": {
+    "scenic": "Passeios panorâmicos de Tuk-Tuk",
+    "fado": "Fado e experiências culturais",
+    "historical": "Locais históricos e religiosos",
+    "food": "Experiências gastronômicas"
+  },
+  "hero": {
+    "subtitle": "Descubra os melhores passeios e experiências em Lisboa",
+    "title": "Lisbon Mates",
+    "button": "Reservar agora"
+  },
+  "experiences": {
+    "specificTour": "Passeio específico",
+    "showAllPhotos": "Ver todas as fotos",
+    "experiencesDescriptions": "Descrição da experiência",
+    "include": "Inclui",
+    "includedInPrice": "Incluído no preço",
+    "reviews": "Avaliações",
+    "sharePlaceholder": "Compartilhe seus pensamentos ...",
+    "viewMoreReviews": "Ver mais {count} avaliações",
+    "hostedBy": "Organizado por",
+    "hoursLabel": "horas",
+    "upToLabel": "Até {count} pessoas",
+    "languagesLabel": "Idiomas",
+    "location": "Localização",
+    "thingsToKnow": "Coisas a saber",
+    "cancellationPolicy": "Política de cancelamento",
+    "cancellationPolicyDesc": "Qualquer experiência pode ser cancelada e totalmente reembolsada dentro de 24 horas após a compra, ou pelo menos 7 dias antes do início da experiência.",
+    "personRequirements": "Requisitos de pessoas",
+    "personRequirementsDesc": "Até 10 pessoas com 4 anos ou mais podem participar. Pais também podem trazer crianças menores de 2 anos.",
+    "whatToBring": "O que levar",
+    "whatToBringList": [
+      "Roupa apropriada para visitar locais religiosos",
+      "Esteja pronto antes das 7:30",
+      "Transporte e almoço conforme indicado"
+    ],
+    "tourTitle": "Passeio pelo Centro Antigo — Alfama",
+    "locationSample": "Lisboa, Portugal",
+    "longDescription": "TOUR PRIVADO DE TUK-TUK — adaptado a você.\n\n07:30 – Nosso guia encontrará você no ponto de encontro combinado e começará o passeio em um tuk-tuk 100% elétrico. O percurso inclui santuários, mirantes costeiros e ruas medievais — paradas e horários adaptados ao seu ritmo e interesses.\n\nAlmoço e pequenas pausas estão incluídos onde indicado. Ao final do dia retornamos ao ponto de encontro original.\n\nEste é um passeio de dia inteiro; os horários são indicativos e podem ser ajustados mediante pedido.",
+    "reserve": "Reservar"
+  }
+}

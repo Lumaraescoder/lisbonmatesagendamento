@@ -4,16 +4,17 @@ import {
   GlobeAltIcon,
   ChevronDownIcon,
 } from "@heroicons/react/24/outline";
-import { FC, Fragment } from "react";
+import { FC, Fragment, useEffect, useState } from "react";
 import { headerCurrency } from "./CurrencyDropdown";
+import { detectLocale, setLocale } from "@/i18n";
 
 export const headerLanguage = [
-  { id: "English", name: "English", description: "English", href: "##", active: true },
-  { id: "Português", name: "Português", description: "Português", href: "##" },
-  { id: "Español", name: "Español", description: "Español", href: "##" },
-  { id: "Français", name: "Français", description: "Français", href: "##" },
-  { id: "Deutsch", name: "Deutsch", description: "Deutsch", href: "##" },
-  { id: "Italiano", name: "Italiano", description: "Italiano", href: "##" },
+  { id: "pt", name: "Português", description: "Português", href: "#" },
+  { id: "it", name: "Italiano", description: "Italiano", href: "#" },
+  { id: "de", name: "Deutsch", description: "Deutsch", href: "#" },
+  { id: "fr", name: "Français", description: "Français", href: "#" },
+  { id: "es", name: "Español", description: "Español", href: "#" },
+  { id: "en", name: "English", description: "English", href: "#" },
 ];
 
 interface LangDropdownProps {
@@ -29,6 +30,11 @@ const LangDropdown: FC<LangDropdownProps> = ({
   panelClassName = "top-full right-0 max-w-sm w-96",
   className = "hidden md:flex",
 }) => {
+  const [current, setCurrent] = useState<string>('pt');
+  useEffect(() => {
+    setCurrent(detectLocale());
+  }, []);
+
   const renderLang = (close: () => void) => {
     return (
       <div className="grid gap-8 lg:grid-cols-2">
@@ -36,8 +42,13 @@ const LangDropdown: FC<LangDropdownProps> = ({
           <a
             key={index}
             href={item.href}
-            onClick={() => close()}
-            className={`flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 ${item.active ? "bg-gray-100 dark:bg-gray-700" : "opacity-80"
+            onClick={(e) => {
+              e.preventDefault();
+              // persist and reload
+              setLocale(item.id as any);
+              close();
+            }}
+            className={`flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 ${current === item.id ? "bg-gray-100 dark:bg-gray-700" : "opacity-80"
               }`}
           >
             <div className="">

@@ -2,6 +2,7 @@
 
 import React, { FC, useState } from "react";
 import { ArrowRightIcon, Squares2X2Icon } from "@heroicons/react/24/outline";
+import { t } from '@/i18n';
 import CommentListing from "@/components/CommentListing";
 import FiveStartIconForRate from "@/components/FiveStartIconForRate";
 import Avatar from "@/shared/Avatar";
@@ -37,13 +38,13 @@ const ListingExperiencesDetailPage: FC<
       <div className="listingSection__wrap !space-y-6">
         {/* 1 */}
         <div className="flex justify-between items-center">
-          <Badge color="pink" name="Specific Tour" />
+          <Badge color="pink" name={t('experiences.specificTour')} />
           <LikeSaveBtns />
         </div>
 
         {/* 2 */}
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold">
-          Trang An Boat Tour & Mua Cave
+          {t('experiences.tourTitle')}
         </h2>
 
         {/* 3 */}
@@ -52,7 +53,7 @@ const ListingExperiencesDetailPage: FC<
           <span>·</span>
           <span>
             <i className="las la-map-marker-alt"></i>
-            <span className="ml-1"> Tokyo, Jappan</span>
+            <span className="ml-1"> {t('experiences.locationSample')}</span>
           </span>
         </div>
 
@@ -60,7 +61,7 @@ const ListingExperiencesDetailPage: FC<
         <div className="flex items-center">
           <Avatar hasChecked sizeClass="h-10 w-10" radius="rounded-full" />
           <span className="ml-2.5 text-neutral-500 dark:text-neutral-400">
-            Hosted by{" "}
+            {t('experiences.hostedBy')}{" "}
             <span className="text-neutral-900 dark:text-neutral-200 font-medium">
               Kevin Francis
             </span>
@@ -74,15 +75,15 @@ const ListingExperiencesDetailPage: FC<
         <div className="flex items-center justify-between xl:justify-start space-x-8 xl:space-x-12 text-sm text-neutral-700 dark:text-neutral-300">
           <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 text-center sm:text-left sm:space-x-3 ">
             <i className="las la-clock text-2xl"></i>
-            <span className="">3.5 hours</span>
+            <span className="">3.5 {t('experiences.hoursLabel')}</span>
           </div>
           <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 text-center sm:text-left sm:space-x-3 ">
             <i className="las la-user-friends text-2xl"></i>
-            <span className="">Up to 10 people</span>
+            <span className="">{t('experiences.upToLabel').replace('{count}', '10')}</span>
           </div>
           <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 text-center sm:text-left sm:space-x-3 ">
             <i className="las la-language text-2xl"></i>
-            <span className="">English, VietNames</span>
+            <span className="">{t('experiences.languagesLabel')}: English, Vietnamese</span>
           </div>
         </div>
       </div>
@@ -92,26 +93,14 @@ const ListingExperiencesDetailPage: FC<
   const renderSection2 = () => {
     return (
       <div className="listingSection__wrap">
-        <h2 className="text-2xl font-semibold">Experiences descriptions</h2>
+        <h2 className="text-2xl font-semibold">{t('experiences.experiencesDescriptions')}</h2>
         <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
         <div className="text-neutral-6000 dark:text-neutral-300">
-          <p>
-            PRIVATE TUK-TUK TOUR — tailored around you.
-            <br />
-            <br />
-            07:30 – Our guide will meet you at the agreed pickup point and
-            begin the tour in a comfortable, 100% electric tuk-tuk. The route
-            includes the sanctuary, coastal viewpoints and medieval streets —
-            stops and timing are adapted to your pace and interests.
-            <br />
-            <br />
-            Lunch and short breaks are included where indicated. At the end of
-            the day we return to the original pickup point.
-            <br />
-            <br />
-            This is a full-day tour; times are indicative and can be adjusted
-            on request.
-          </p>
+          {String(t('experiences.longDescription')).split('\n\n').map((p, i) => (
+            <p key={i} className={i > 0 ? 'mt-3' : ''}>
+              {p}
+            </p>
+          ))}
         </div>
       </div>
     );
@@ -121,9 +110,9 @@ const ListingExperiencesDetailPage: FC<
     return (
       <div className="listingSection__wrap">
         <div>
-          <h2 className="text-2xl font-semibold">Include </h2>
+          <h2 className="text-2xl font-semibold">{t('experiences.include')}</h2>
           <span className="block mt-2 text-neutral-500 dark:text-neutral-400">
-            Included in the price
+            {t('experiences.includedInPrice')}
           </span>
         </div>
         <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
@@ -148,7 +137,7 @@ const ListingExperiencesDetailPage: FC<
     return (
       <div className="listingSection__wrap">
         {/* HEADING */}
-        <h2 className="text-2xl font-semibold">Reviews (23 reviews)</h2>
+        <h2 className="text-2xl font-semibold">{t('experiences.reviews')} (23)</h2>
         <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
 
         {/* Content */}
@@ -159,7 +148,7 @@ const ListingExperiencesDetailPage: FC<
               fontClass=""
               sizeClass="h-16 px-4 py-3"
               rounded="rounded-3xl"
-              placeholder="Share your thoughts ..."
+              placeholder={t('experiences.sharePlaceholder')}
             />
             <ButtonCircle
               className="absolute right-2 top-1/2 transform -translate-y-1/2"
@@ -176,8 +165,8 @@ const ListingExperiencesDetailPage: FC<
           <CommentListing className="py-8" />
           <CommentListing className="py-8" />
           <CommentListing className="py-8" />
-          <div className="pt-8">
-            <ButtonSecondary>View more 20 reviews</ButtonSecondary>
+            <div className="pt-8">
+            <ButtonSecondary>{t('experiences.viewMoreReviews').replace('{count}','20')}</ButtonSecondary>
           </div>
         </div>
       </div>
@@ -189,7 +178,7 @@ const ListingExperiencesDetailPage: FC<
       <div className="listingSection__wrap">
         {/* HEADING */}
         <div>
-          <h2 className="text-2xl font-semibold">Location</h2>
+          <h2 className="text-2xl font-semibold">{t('experiences.location')}</h2>
           <span className="block mt-2 text-neutral-500 dark:text-neutral-400">
             San Diego, CA, United States of America (SAN-San Diego Intl.)
           </span>
@@ -217,38 +206,35 @@ const ListingExperiencesDetailPage: FC<
     return (
       <div className="listingSection__wrap">
         {/* HEADING */}
-        <h2 className="text-2xl font-semibold">Things to know</h2>
+        <h2 className="text-2xl font-semibold">{t('experiences.thingsToKnow')}</h2>
         <div className="w-14 border-b border-neutral-200 dark:border-neutral-700" />
 
         {/* CONTENT */}
         <div>
-          <h4 className="text-lg font-semibold">Cancellation policy</h4>
+          <h4 className="text-lg font-semibold">{t('experiences.cancellationPolicy')}</h4>
           <span className="block mt-3 text-neutral-500 dark:text-neutral-400">
-            Any experience can be canceled and fully refunded within 24 hours of
-            purchase, or at least 7 days before the experience starts.
+            {t('experiences.cancellationPolicyDesc')}
           </span>
         </div>
         <div className="w-14 border-b border-neutral-200 dark:border-neutral-700" />
 
         {/* CONTENT */}
         <div>
-          <h4 className="text-lg font-semibold">Person requirements</h4>
+          <h4 className="text-lg font-semibold">{t('experiences.personRequirements')}</h4>
           <span className="block mt-3 text-neutral-500 dark:text-neutral-400">
-            Up to 10 persons ages 4 and up can attend. Parents may also bring
-            children under 2 years of age.
+            {t('experiences.personRequirementsDesc')}
           </span>
         </div>
         <div className="w-14 border-b border-neutral-200 dark:border-neutral-700" />
 
         {/* CONTENT */}
         <div>
-          <h4 className="text-lg font-semibold">What to bring</h4>
+          <h4 className="text-lg font-semibold">{t('experiences.whatToBring')}</h4>
           <div className="prose sm:prose">
             <ul className="mt-3 text-neutral-500 dark:text-neutral-400 space-y-2">
-              <li>
-                Formal Wear To Visit Bai Dinh Pagoda Be ready before 7.30 Am.
-              </li>
-              <li>We will pick up from 07.30 to 08.00 AM</li>
+              {(t('experiences.whatToBringList') as string[] || []).map((item, idx) => (
+                <li key={idx}>{item}</li>
+              ))}
             </ul>
           </div>
         </div>
@@ -256,13 +242,23 @@ const ListingExperiencesDetailPage: FC<
     );
   };
 
+  const [adults, setAdults] = React.useState<number>(3);
+  const [children, setChildren] = React.useState<number>(0);
+  const [infants, setInfants] = React.useState<number>(0);
+
+  const pricePerPerson = 19; // USD per adult/child
+  const serviceCharge = 0;
+  const payableGuests = adults + children; // infants free
+  const subtotal = pricePerPerson * payableGuests;
+  const total = subtotal + serviceCharge;
+
   const renderSidebar = () => {
     return (
       <div className="listingSectionSidebar__wrap shadow-xl">
         {/* PRICE */}
         <div className="flex justify-between">
           <span className="text-3xl font-semibold">
-            $19
+            ${pricePerPerson}
             <span className="ml-1 text-base font-normal text-neutral-500 dark:text-neutral-400">
               /person
             </span>
@@ -271,32 +267,41 @@ const ListingExperiencesDetailPage: FC<
         </div>
 
         {/* FORM */}
-        {/* FORM */}
         <form className="flex flex-col border border-neutral-200 dark:border-neutral-700 rounded-3xl ">
           <StayDatesRangeInput className="flex-1 z-[11]" />
           <div className="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
-          <GuestsInput className="flex-1" />
+          <GuestsInput
+            className="flex-1"
+            adults={adults}
+            children={children}
+            infants={infants}
+            onChange={(v) => {
+              setAdults(v.guestAdults);
+              setChildren(v.guestChildren);
+              setInfants(v.guestInfants);
+            }}
+          />
         </form>
 
         {/* SUM */}
         <div className="flex flex-col space-y-4">
           <div className="flex justify-between text-neutral-6000 dark:text-neutral-300">
-            <span>$19 x 3 adults</span>
-            <span>$57</span>
+            <span>${pricePerPerson} x {payableGuests} persons</span>
+            <span>${subtotal}</span>
           </div>
           <div className="flex justify-between text-neutral-6000 dark:text-neutral-300">
             <span>Service charge</span>
-            <span>$0</span>
+            <span>${serviceCharge}</span>
           </div>
           <div className="border-b border-neutral-200 dark:border-neutral-700"></div>
           <div className="flex justify-between font-semibold">
             <span>Total</span>
-            <span>$199</span>
+            <span>${total}</span>
           </div>
         </div>
 
         {/* SUBMIT */}
-        <ButtonPrimary href={"/checkout"}>Reserve</ButtonPrimary>
+        <ButtonPrimary href={'/checkout'}>Reserve</ButtonPrimary>
       </div>
     );
   };

@@ -49,6 +49,20 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
   }
 
   const gallery = item.gallery || [];
+  const [adults, setAdults] = React.useState<number>(1);
+  const [children, setChildren] = React.useState<number>(0);
+  const [infants, setInfants] = React.useState<number>(0);
+
+  // parse numeric price from item.price string like "From€30" or "Fixed Price€320"
+  const rawPrice = (item.price || '').toString();
+  const priceNum = parseFloat((rawPrice.match(/[0-9]+(\.[0-9]+)?/) || ['0'])[0]) || 0;
+  const currencyMatch = rawPrice.match(/[$€£¥]/);
+  const currency = currencyMatch ? currencyMatch[0] : '$';
+  const isFixed = /fixed/i.test(rawPrice);
+  const payableGuests = adults + children; // infants free
+  const subtotal = isFixed ? priceNum : priceNum * payableGuests;
+  const serviceCharge = 0;
+  const total = subtotal + serviceCharge;
 
   return (
     <div className={` nc-ListingExperiencesDetailPage `}>
@@ -156,18 +170,28 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
               <form className="flex flex-col border border-neutral-200 dark:border-neutral-700 rounded-3xl ">
                 <StayDatesRangeInput className="flex-1 z-[11]" />
                 <div className="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
-                <GuestsInput className="flex-1" />
+                <GuestsInput
+                  className="flex-1"
+                  adults={adults}
+                  children={children}
+                  infants={infants}
+                  onChange={(v) => {
+                    setAdults(v.guestAdults);
+                    setChildren(v.guestChildren);
+                    setInfants(v.guestInfants);
+                  }}
+                />
               </form>
 
               <div className="flex flex-col space-y-4">
                 <div className="flex justify-between text-neutral-6000 dark:text-neutral-300">
-                  <span>{item.price} x 3 adults</span>
-                  <span>$57</span>
+                  <span>{rawPrice} x {isFixed ? '—' : `${payableGuests} persons`}</span>
+                  <span>{currency}{isFixed ? priceNum : (priceNum * payableGuests)}</span>
                 </div>
                 <div className="border-b border-neutral-200 dark:border-neutral-700"></div>
                 <div className="flex justify-between font-semibold">
                   <span>Total</span>
-                  <span>$199</span>
+                  <span>{currency}{total}</span>
                 </div>
               </div>
 

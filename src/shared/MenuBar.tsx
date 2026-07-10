@@ -2,6 +2,7 @@ import React, { useState, Fragment, useEffect, useRef } from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { setLocale, detectLocale } from "@/i18n";
 
 export interface MenuBarProps {
   className?: string;
@@ -45,13 +46,29 @@ const MenuBar: React.FC<MenuBarProps> = ({
         <nav className="p-3">
           <ul className="space-y-2">
             <li>
-              <Link href="/" className="block px-3 py-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700">Home</Link>
+              <Link href="/#hero" className="block px-3 py-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700">Home</Link>
             </li>
             <li>
-              <Link href="/listing-experiences" className="block px-3 py-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700">Tours</Link>
+              <Link href="/#tours" className="block px-3 py-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700">Tours</Link>
             </li>
             <li>
-              <Link href="/contact" className="block px-3 py-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700">Contact</Link>
+              <Link href="/#contact" className="block px-3 py-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700">Contact</Link>
+            </li>
+            <li className="pt-2 border-t border-neutral-100 dark:border-neutral-700">
+              <div className="px-3 py-2">
+                <div className="text-xs font-semibold mb-2">Language</div>
+                <div className="flex flex-wrap gap-2">
+                  {['pt','it','de','fr','es','en'].map((code) => (
+                    <button
+                      key={code}
+                      onClick={() => setLocale(code as any)}
+                      className="px-2 py-1 text-sm rounded bg-neutral-100 dark:bg-neutral-700 hover:opacity-90"
+                    >
+                      {code.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </li>
           </ul>
         </nav>

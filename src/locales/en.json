@@ -1,0 +1,56 @@
+{
+  "section": {
+    "featuredTours": "Featured tours"
+  },
+  "subscribe": {
+    "title": "Join our newsletter 🎉",
+    "description": "Read and share new perspectives on just about any topic. Everyone’s welcome.",
+    "benefit1": "Get more discount",
+    "benefit2": "Get premium magazines",
+    "placeholder": "Enter your email",
+    "button": "Subscribe"
+  },
+  "categories": {
+    "scenic": "Tuk-Tuk Scenic Tours",
+    "fado": "Fado & Cultural Experiences",
+    "historical": "Historical & Religious Sites",
+    "food": "Food Experiences"
+  },
+  "hero": {
+    "subtitle": "Discover the best tours and experiences in Lisbon",
+    "title": "Lisbon Mates",
+    "button": "Book now"
+  },
+  "experiences": {
+    "specificTour": "Specific Tour",
+    "showAllPhotos": "Show all photos",
+    "experiencesDescriptions": "Experiences descriptions",
+    "include": "Include",
+    "includedInPrice": "Included in the price",
+    "reviews": "Reviews",
+    "sharePlaceholder": "Share your thoughts ...",
+    "viewMoreReviews": "View more {count} reviews",
+    "hostedBy": "Hosted by",
+    "hoursLabel": "hours",
+    "upToLabel": "Up to {count} people",
+    "languagesLabel": "Languages",
+    "location": "Location",
+    "thingsToKnow": "Things to know",
+    "cancellationPolicy": "Cancellation policy",
+    "cancellationPolicyDesc": "Any experience can be canceled and fully refunded within 24 hours of purchase, or at least 7 days before the experience starts.",
+    "personRequirements": "Person requirements",
+    "personRequirementsDesc": "Up to 10 persons ages 4 and up can attend. Parents may also bring children under 2 years of age.",
+    "whatToBring": "What to bring",
+    "whatToBringList": [
+      "Appropriate clothing for religious sites",
+      "Be ready before 7:30 AM",
+      "Transport and lunch as indicated"
+    ],
+    "tourTitle": "The Old Town Tour — Alfama",
+    "locationSample": "Lisbon, Portugal",
+    "longDescription": "PRIVATE TUK-TUK TOUR — tailored around you.\n\n07:30 – Our guide will meet you at the agreed pickup point and begin the tour in a comfortable, 100% electric tuk-tuk. The route includes the sanctuary, coastal viewpoints and medieval streets — stops and timing are adapted to your pace and interests.\n\nLunch and short breaks are included where indicated. At the end of the day we return to the original pickup point.\n\nThis is a full-day tour; times are indicative and can be adjusted on request.",
+    "reserve": "Reserve"
+  }
+}
+
+
