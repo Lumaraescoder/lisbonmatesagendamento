@@ -1,5 +1,4 @@
 import React from "react";
-import SectionSubscribe2 from "@/components/SectionSubscribe2";
 import { t, defaultLocale } from "@/i18n";
 import { cookies, headers } from "next/headers";
 import BackgroundSection from "@/components/BackgroundSection";
@@ -127,7 +126,6 @@ export default async function PageHome3() {
         {/* Contact / Subscribe section as anchor target */}
         <div id="contact" className="relative py-16">
           <div className="container">
-            <SectionSubscribe2 />
           </div>
         </div>
       </div>

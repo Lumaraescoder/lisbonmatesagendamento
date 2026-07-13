@@ -22,7 +22,7 @@ const SectionHero3: FC<SectionHero3Props> = ({
       className={`nc-SectionHero3 relative ${className}`}
       data-nc-id="SectionHero3"
     >
-      <div className="absolute z-10 inset-x-0 top-[20%] sm:top-[25%] text-center flex flex-col items-center max-w-2xl mx-auto space-y-4 lg:space-y-5 xl:space-y-8">
+      <div className="absolute z-10 inset-x-0 top-[20%] sm:top-[25%] text-center flex flex-col items-center max-w-2xl mx-auto space-y-4 lg:space-y-6">
         <span className="text-lg sm:text-xl md:text-2xl font-semibold text-primary-6000">
           {subtitle}
         </span>
