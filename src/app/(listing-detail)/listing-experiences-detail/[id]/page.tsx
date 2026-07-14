@@ -20,6 +20,8 @@ import StayDatesRangeInput from "../StayDatesRangeInput";
 import GuestsInput from "../GuestsInput";
 // SectionDateRange removed for experiences detail
 import { DEMO_EXPERIENCES_LISTINGS, DEMO_STAY_LISTINGS } from "@/data/listings";
+import { ITINERARIES } from "@/data/itineraries";
+import TourItinerary from "@/components/TourItinerary";
 
 const ListingExperiencesDetailPageDynamic: FC = () => {
   const params = useParams();
@@ -47,6 +49,8 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
   if (!item) {
     return <div className="container py-20">Listing not found: {id}</div>;
   }
+
+  const shortId = typeof id === "string" ? id.split("-")[0] : "";
 
   const gallery = item.gallery || [];
   const [adults, setAdults] = React.useState<number>(1);
@@ -152,6 +156,10 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
           {/* Availability removed for experiences detail */}
 
           {/* Host Information removed as requested */}
+
+          {ITINERARIES[shortId] && (
+            <TourItinerary stops={ITINERARIES[shortId].stops} />
+          )}
 
           <SectionClientSay />
         </div>
