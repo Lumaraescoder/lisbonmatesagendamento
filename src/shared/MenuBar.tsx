@@ -58,7 +58,7 @@ const MenuBar: React.FC<MenuBarProps> = ({
               <div className="px-3 py-2">
                 <div className="text-xs font-semibold mb-2">Language</div>
                 <div className="flex flex-wrap gap-2">
-                  {['pt','it','de','fr','es','en'].map((code) => (
+                  {['pt', 'it', 'de', 'fr', 'es', 'en'].map((code) => (
                     <button
                       key={code}
                       onClick={() => setLocale(code as any)}

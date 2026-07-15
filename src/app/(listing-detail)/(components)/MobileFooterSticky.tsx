@@ -8,7 +8,6 @@ const MobileFooterSticky = () => {
   const [startDate, setStartDate] = useState<Date | null>(
     new Date("2023/02/06")
   );
-  const [endDate, setEndDate] = useState<Date | null>(new Date("2023/02/23"));
 
   return (
     <div className="block lg:hidden fixed bottom-0 inset-x-0 py-2 sm:py-3 bg-white dark:bg-neutral-800 border-t border-neutral-200 dark:border-neutral-6000 z-40">
@@ -21,12 +20,14 @@ const MobileFooterSticky = () => {
             </span>
           </span>
           <ModalSelectDate
+            single
+            onSave={(d) => setStartDate(d)}
             renderChildren={({ openModal }) => (
               <span
                 onClick={openModal}
                 className="block text-sm underline font-medium"
               >
-                {converSelectedDateToString([startDate, endDate])}
+                {converSelectedDateToString(startDate)}
               </span>
             )}
           />

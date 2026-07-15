@@ -165,8 +165,8 @@ const ListingExperiencesDetailPage: FC<
           <CommentListing className="py-8" />
           <CommentListing className="py-8" />
           <CommentListing className="py-8" />
-            <div className="pt-8">
-            <ButtonSecondary>{t('experiences.viewMoreReviews').replace('{count}','20')}</ButtonSecondary>
+          <div className="pt-8">
+            <ButtonSecondary>{t('experiences.viewMoreReviews').replace('{count}', '20')}</ButtonSecondary>
           </div>
         </div>
       </div>
