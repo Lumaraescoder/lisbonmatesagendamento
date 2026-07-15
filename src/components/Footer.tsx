@@ -13,26 +13,24 @@ const HEADER_LINKS: CustomLink[] = [
 ];
 
 const Footer: React.FC = () => {
-
   return (
-    <>
-      <div className="nc-Footer relative py-24 lg:py-28 border-t border-neutral-200 dark:border-neutral-700">
-        <div className="container grid grid-cols-2 gap-y-10 gap-x-5 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-10 ">
-          <div className="grid grid-cols-4 gap-5 col-span-2 md:col-span-4 lg:md:col-span-1 lg:flex lg:flex-col">
-            <div className="col-span-2 md:col-span-1">
-              <Logo className="w-40" imgClassName="max-h-28" />
-            </div>
-            <div className="col-span-2 flex items-center md:col-span-3">
-              <SocialsList1 className="flex items-center space-x-3 lg:space-x-0 lg:flex-col lg:space-y-2.5 lg:items-start" />
-            </div>
-          </div>
-          <div className="text-sm">
+    <div className="nc-Footer relative py-24 lg:py-28 border-t border-neutral-200 dark:border-neutral-700">
+      <div className="container grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-5 sm:gap-x-8 items-center">
+        {/* Coluna 1: Logo e Redes Sociais */}
+        <div className="col-span-1 flex flex-col space-y-6 md:items-start items-center">
+          <Logo className="w-40" imgClassName="max-h-28" />
+          <SocialsList1 className="flex items-center space-x-4" />
+        </div>
+
+        {/* Coluna 2: Links */}
+        <div className="col-span-1 flex flex-col md:items-end items-center text-base md:pr-10">
+          <div className="flex flex-col md:items-start items-center">
             <h2 className="font-semibold text-neutral-700 dark:text-neutral-200">Links</h2>
-            <ul className="mt-5 space-y-4">
+            <ul className="mt-5 space-y-4 text-center md:text-left">
               {HEADER_LINKS.map((item, index) => (
                 <li key={index}>
                   <a
-                    className="text-neutral-6000 dark:text-neutral-300 hover:text-black dark:hover:text-white"
+                    className="text-neutral-6000 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors"
                     href={item.href}
                   >
                     {item.label}
@@ -43,7 +41,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
