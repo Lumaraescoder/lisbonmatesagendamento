@@ -161,8 +161,54 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
           {ITINERARIES[shortId] && (
             <TourItinerary stops={ITINERARIES[shortId].stops} />
           )}
-
           <SectionClientSay />
+
+          {/* Mobile: show full reserve sidebar after content */}
+          <div className="block lg:hidden mt-8">
+            <div className="listingSectionSidebar__wrap shadow-xl">
+              <div className="flex justify-between">
+                <span className="text-3xl font-semibold">
+                  {item.price || "$0"}
+                  <span className="ml-1 text-base font-normal text-neutral-500 dark:text-neutral-400">/person</span>
+                </span>
+                <StartRating />
+              </div>
+
+              <form className="flex flex-col border border-neutral-200 dark:border-neutral-700 rounded-3xl mt-4">
+                <StayDatesRangeInput className="flex-1 z-[11]" single />
+                <div className="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
+                <GuestsInput
+                  className="flex-1"
+                  adults={adults}
+                  children={children}
+                  infants={infants}
+                  onChange={(v) => {
+                    setAdults(v.guestAdults);
+                    setChildren(v.guestChildren);
+                    setInfants(v.guestInfants);
+                  }}
+                />
+              </form>
+
+              <div className="flex flex-col space-y-4 mt-4">
+                <div className="flex justify-between text-neutral-6000 dark:text-neutral-300">
+                  <span>{rawPrice} x {isFixed ? '—' : `${payableGuests} persons`}</span>
+                  <span>{currency}{isFixed ? priceNum : (priceNum * payableGuests)}</span>
+                </div>
+                <div className="border-b border-neutral-200 dark:border-neutral-700"></div>
+                <div className="flex justify-between font-semibold">
+                  <span>Total</span>
+                  <span>{currency}{total}</span>
+                </div>
+              </div>
+
+              <div className="mt-4">
+                <ButtonPrimary href={`/checkout?listingId=${encodeURIComponent(item.id || '')}&adults=${adults}&children=${children}&infants=${infants}`}>
+                  Reserve
+                </ButtonPrimary>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="hidden lg:block flex-grow mt-14 lg:mt-0">
@@ -177,7 +223,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
               </div>
 
               <form className="flex flex-col border border-neutral-200 dark:border-neutral-700 rounded-3xl ">
-                <StayDatesRangeInput className="flex-1 z-[11]" />
+                <StayDatesRangeInput className="flex-1 z-[11]" single />
                 <div className="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
                 <GuestsInput
                   className="flex-1"
@@ -204,7 +250,9 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
                 </div>
               </div>
 
-              <ButtonPrimary href={"/checkout"}>Reserve</ButtonPrimary>
+              <ButtonPrimary href={`/checkout?listingId=${encodeURIComponent(item.id || '')}&adults=${adults}&children=${children}&infants=${infants}`}>
+                Reserve
+              </ButtonPrimary>
             </div>
           </div>
         </div>

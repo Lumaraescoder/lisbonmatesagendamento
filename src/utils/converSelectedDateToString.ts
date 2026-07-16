@@ -14,7 +14,13 @@ const converSelectedDateToString = (input: Input) => {
   if (!input) return "";
   if (Array.isArray(input)) {
     const [startDate, endDate] = input;
-    return format(startDate) + (endDate ? " - " + format(endDate) : "");
+    if (!startDate) return "";
+    if (!endDate) return format(startDate);
+    // if same day, return single date
+    if (startDate.toDateString() === endDate.toDateString()) {
+      return format(startDate);
+    }
+    return format(startDate) + " - " + format(endDate);
   }
   // single date
   return format(input as Date);
