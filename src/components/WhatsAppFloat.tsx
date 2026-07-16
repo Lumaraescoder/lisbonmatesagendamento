@@ -6,7 +6,7 @@ const WhatsAppFloat: React.FC<{ phone?: string; message?: string }> = ({ phone =
   if (!mounted) return null;
   const href = `https://wa.me/${phone.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(message)}`;
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-24 lg:bottom-6 right-6 z-50">
       <a href={href} target="_blank" rel="noopener noreferrer" aria-label="Contact on WhatsApp" className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-500 shadow-lg text-white hover:opacity-95 transition-opacity">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-7 h-7 text-white">
           <path d="M21 11.5a8.5 8.5 0 10-2.3 5.6L21 21l-3.9-1.02A8.5 8.5 0 0021 11.5z" strokeLinecap="round" strokeLinejoin="round" />

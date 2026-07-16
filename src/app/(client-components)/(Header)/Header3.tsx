@@ -174,7 +174,7 @@ const Header3: FC<Header3Props> = ({ className = "" }) => {
               <div className="flex-1 hidden lg:flex self-center">
                 {renderButtonOpenHeroSearch()}
               </div>
-              <div className="self-center flex-1 lg:hidden w-full max-w-lg mx-auto">
+              <div className="self-center flex-1 md:hidden w-full max-w-lg mx-auto">
                 <Logo />
               </div>
               {renderHeroSearch()}
