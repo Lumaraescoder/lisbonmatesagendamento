@@ -1,10 +1,7 @@
 "use client";
 
-import { Tab } from "@headlessui/react";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
-import React, { FC, Fragment, useState } from "react";
-import visaPng from "@/images/vis.png";
-import mastercardPng from "@/images/mastercard.svg";
+import React, { FC, useState } from "react";
 import Input from "@/shared/Input";
 import Label from "@/components/Label";
 import Textarea from "@/shared/Textarea";
@@ -15,7 +12,6 @@ import ModalSelectDate from "@/components/ModalSelectDate";
 import converSelectedDateToString from "@/utils/converSelectedDateToString";
 import ModalSelectGuests from "@/components/ModalSelectGuests";
 import Image from "next/image";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { GuestsObject } from "../(client-components)/type";
 
 export interface CheckOutPagePageMainProps {
@@ -26,25 +22,22 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
   className = "",
 }) => {
   const [startDate, setStartDate] = useState<Date | null>(
-    new Date("2023/02/06")
+    new Date("2026/07/24")
   );
-  const [endDate, setEndDate] = useState<Date | null>(new Date("2023/02/23"));
+  const [endDate, setEndDate] = useState<Date | null>(new Date("2026/07/24"));
 
   const [guests, setGuests] = useState<GuestsObject>({
     guestAdults: 2,
-    guestChildren: 1,
-    guestInfants: 1,
+    guestChildren: 0,
+    guestInfants: 0,
   });
-
-  const BASE_PRICE_PER_PERSON = 30;
-  const [showPayPal, setShowPayPal] = useState(false);
 
   const renderSidebar = () => {
     return (
       <div className="w-full flex flex-col sm:rounded-2xl lg:border border-neutral-200 dark:border-neutral-700 space-y-6 sm:space-y-8 px-0 sm:p-6 xl:p-8">
         <div className="flex flex-col sm:flex-row sm:items-center">
           <div className="flex-shrink-0 w-full sm:w-40">
-            <div className=" aspect-w-4 aspect-h-3 sm:aspect-h-4 rounded-2xl overflow-hidden">
+            <div className="aspect-w-4 aspect-h-3 sm:aspect-h-4 rounded-2xl overflow-hidden">
               <Image
                 alt=""
                 fill
@@ -56,34 +49,31 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
           <div className="py-5 sm:px-5 space-y-3">
             <div>
               <span className="text-sm text-neutral-500 dark:text-neutral-400 line-clamp-1">
-                Hotel room in Tokyo, Jappan
+                Lisbon mates
               </span>
               <span className="text-base font-medium mt-1 block">
-                The Lounge & Bar
+                Tour Chiado & Bairro Alto
               </span>
             </div>
-            <span className="block  text-sm text-neutral-500 dark:text-neutral-400">
-              2 beds · 2 baths
-            </span>
-            <div className="w-10 border-b border-neutral-200  dark:border-neutral-700"></div>
+            <div className="w-10 border-b border-neutral-200 dark:border-neutral-700"></div>
             <StartRating />
           </div>
         </div>
         <div className="flex flex-col space-y-4">
-          <h3 className="text-2xl font-semibold">Price detail</h3>
+          <h3 className="text-2xl font-semibold">Detalhes da sua reserva</h3>
           <div className="flex justify-between text-neutral-6000 dark:text-neutral-300">
-            <span>$19 x 3 day</span>
-            <span>$57</span>
+            <span>Data:</span>
+            <span>{converSelectedDateToString([startDate, endDate])}</span>
           </div>
           <div className="flex justify-between text-neutral-6000 dark:text-neutral-300">
-            <span>Service charge</span>
-            <span>$0</span>
+            <span>Pessoas:</span>
+            <span>{`${(guests.guestAdults || 0) + (guests.guestChildren || 0)} Pessoas`}</span>
           </div>
 
           <div className="border-b border-neutral-200 dark:border-neutral-700"></div>
           <div className="flex justify-between font-semibold">
             <span>Total</span>
-            <span>$57</span>
+            <span>Sob Consulta</span>
           </div>
         </div>
       </div>
@@ -91,14 +81,6 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
   };
 
   const renderMain = () => {
-    const totalPersons = (guests.guestAdults || 0) + (guests.guestChildren || 0) + (guests.guestInfants || 0);
-    const totalAmount = BASE_PRICE_PER_PERSON * totalPersons;
-
-    const onSubmitCardForm = (e: React.FormEvent) => {
-      e.preventDefault();
-      setShowPayPal(true);
-    };
-
     return (
       <div className="w-full flex flex-col sm:rounded-2xl sm:border border-neutral-200 dark:border-neutral-700 space-y-8 px-0 sm:p-6 xl:p-8">
         <h2 className="text-3xl lg:text-4xl font-semibold">Confirm and payment</h2>
@@ -110,7 +92,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
               renderTrigger={(openModal) => (
                 <span
                   onClick={() => openModal()}
-                  className="block lg:hidden underline  mt-1 cursor-pointer"
+                  className="block lg:hidden underline mt-1 cursor-pointer"
                 >
                   View booking details
                 </span>
@@ -163,137 +145,69 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
         </div>
 
         <div>
-          <h3 className="text-2xl font-semibold">Pay with</h3>
+          <h3 className="text-2xl font-semibold">Preencha informações do tour</h3>
           <div className="w-14 border-b border-neutral-200 dark:border-neutral-700 my-5"></div>
-
-          <div className="mt-6">
-            <Tab.Group>
-              <Tab.List className="flex my-5 gap-1">
-                <Tab as={Fragment}>
-                  {({ selected }) => (
-                    <button
-                      className={`px-4 py-1.5 sm:px-6 sm:py-2.5 rounded-full focus:outline-none ${selected
-                        ? "bg-neutral-800 dark:bg-neutral-200 text-white dark:text-neutral-900"
-                        : "text-neutral-6000 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800"
-                        }`}
-                    >
-                      Paypal
-                    </button>
-                  )}
-                </Tab>
-                <Tab as={Fragment}>
-                  {({ selected }) => (
-                    <button
-                      className={`px-4 py-1.5 sm:px-6 sm:py-2.5  rounded-full flex items-center justify-center focus:outline-none  ${selected
-                        ? "bg-neutral-800 dark:bg-neutral-200 text-white dark:text-neutral-900"
-                        : " text-neutral-6000 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800"
-                        }`}
-                    >
-                      <span className="mr-2.5">Credit card</span>
-                      <Image className="w-8" src={visaPng} alt="visa" />
-                      <Image
-                        className="w-8"
-                        src={mastercardPng}
-                        alt="mastercard"
-                      />
-                    </button>
-                  )}
-                </Tab>
-              </Tab.List>
-
-              <Tab.Panels>
-                <Tab.Panel className="space-y-5">
-                  <form onSubmit={onSubmitCardForm} className="space-y-4">
-                    <div className="space-y-1">
-                      <Label>Card number </Label>
-                      <Input defaultValue="111 112 222 999" required />
-                    </div>
-                    <div className="space-y-1">
-                      <Label>Card holder </Label>
-                      <Input defaultValue="JOHN DOE" required />
-                    </div>
-                    <div className="flex space-x-5  ">
-                      <div className="flex-1 space-y-1">
-                        <Label>Expiration date </Label>
-                        <Input type="text" placeholder="MM/YY" required />
-                      </div>
-                      <div className="flex-1 space-y-1">
-                        <Label>CVC </Label>
-                        <Input required />
-                      </div>
-                    </div>
-                    <div className="space-y-1">
-                      <Label>Messager for author </Label>
-                      <Textarea placeholder="..." />
-                      <span className="text-sm text-neutral-500 block">
-                        Write a few sentences about yourself.
-                      </span>
-                    </div>
-
-                    <div className="pt-2">
-                      <button type="submit" className="px-4 py-2 bg-neutral-800 text-white rounded-lg">Submit</button>
-                    </div>
-                  </form>
-                </Tab.Panel>
-                <Tab.Panel className="space-y-5">
-                  <div className="space-y-1">
-                    <Label>Email </Label>
-                    <Input type="email" defaultValue="example@gmail.com" />
-                  </div>
-                  <div className="space-y-1">
-                    <Label>Password </Label>
-                    <Input type="password" defaultValue="***" />
-                  </div>
-                  <div className="space-y-1">
-                    <Label>Messager for author </Label>
-                    <Textarea placeholder="..." />
-                    <span className="text-sm text-neutral-500 block">
-                      Write a few sentences about yourself.
-                    </span>
-                  </div>
-                </Tab.Panel>
-              </Tab.Panels>
-            </Tab.Group>
-
-            {showPayPal && (
-              <div className="mt-6">
-                <PayPalScriptProvider
-                  options={{
-                    "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test",
-                    currency: "USD",
-                  }}
-                >
-                  <div className="max-w-sm">
-                    <PayPalButtons
-                      style={{ layout: "vertical" }}
-                      createOrder={(_, actions) => {
-                        return actions.order.create({
-                          purchase_units: [
-                            {
-                              amount: {
-                                value: String(totalAmount),
-                              },
-                            },
-                          ],
-                        });
-                      }}
-                      onApprove={async (_, actions) => {
-                        if (actions && actions.order) {
-                          const details = await actions.order.capture();
-                          // redirect to success page
-                          window.location.href = `/pay-done?orderID=${details.id}`;
-                        }
-                      }}
-                    />
-                  </div>
-                </PayPalScriptProvider>
+          
+          <form action="https://formspree.io/f/xgogoyqq" method="POST" className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-1">
+                <Label>Data *</Label>
+                <Input type="text" name="data" defaultValue={converSelectedDateToString([startDate, endDate])} required />
               </div>
-            )}
-
-            <div className="pt-8">
-              <ButtonPrimary href={"/pay-done"}>Confirm and pay</ButtonPrimary>
+              <div className="space-y-1">
+                <Label>Horário *</Label>
+                <Input type="text" name="horario" placeholder="Ex: 08:00, 19:00" required />
+              </div>
             </div>
-          </div>
+
+            <div className="space-y-1">
+              <Label>Horas *</Label>
+              <Input type="text" name="horas" placeholder="Ex: 2 horas, dia inteiro" required />
+            </div>
+
+            <div className="space-y-1">
+              <Label>Nome Completo *</Label>
+              <Input type="text" name="nome" placeholder="Seu nome" required />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-1">
+                <Label>E-mail *</Label>
+                <Input type="email" name="email" placeholder="seuemail@exemplo.com" required />
+              </div>
+              <div className="space-y-1">
+                <Label>Telefone *</Label>
+                <Input type="tel" name="telefone" placeholder="+351..." required />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-1">
+                <Label>País *</Label>
+                <Input type="text" name="pais" placeholder="Portugal" required />
+              </div>
+              <div className="space-y-1">
+                <Label>Cidade *</Label>
+                <Input type="text" name="cidade" placeholder="Lisboa" required />
+              </div>
+            </div>
+
+            <div className="space-y-1">
+              <Label>Hotel ou ponto de recolha (pode escolher mais tarde) *</Label>
+              <Input type="text" name="ponto_recolha" placeholder="Endereço ou nome do hotel" required />
+            </div>
+
+            <div className="space-y-1">
+              <Label>Conteúdo do Passeio *</Label>
+              <Textarea name="conteudo_passeio" placeholder="Algum detalhe ou pedido especial para o seu passeio?" required />
+            </div>
+
+            <div className="pt-4">
+              <ButtonPrimary type="submit" className="w-full md:w-auto bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-xl font-medium">
+                Próximo
+              </ButtonPrimary>
+            </div>
+          </form>
         </div>
       </div>
     );

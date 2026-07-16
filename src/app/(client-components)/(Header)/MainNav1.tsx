@@ -20,7 +20,7 @@ const MainNav1: FC<MainNav1Props> = ({ className = "" }) => {
           <Navigation />
         </div>
 
-        <div className="flex lg:hidden flex-[3] max-w-lg !mx-auto md:px-3 ">
+        <div className="flex md:hidden flex-[3] max-w-lg !mx-auto md:px-3 ">
           <div className="self-center flex-1">
             <Logo className="w-32 mx-auto" />
           </div>

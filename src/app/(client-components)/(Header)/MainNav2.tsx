@@ -26,7 +26,7 @@ const MainNav2: FC<MainNav2Props> = ({ className = "" }) => {
           </nav>
         </div>
 
-        <div className="self-center lg:hidden flex-[3] max-w-lg !mx-auto md:px-3">
+        <div className="self-center md:hidden flex-[3] max-w-lg !mx-auto md:px-3">
           <Logo className="w-32 mx-auto" />
         </div>
 
