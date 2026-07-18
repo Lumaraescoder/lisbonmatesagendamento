@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import capadesktopJpeg from "@/images/capadesktop.jpeg";
-import capamobileJpeg from "@/images/capamobile.jpeg";
+import capadesktopJpeg from "@/images/capa.jpeg";
+import capamobileJpeg from "@/images/capa.jpeg";
 import Image from "next/image";
 import ButtonPrimary from "@/shared/ButtonPrimary";
 
