@@ -111,12 +111,12 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
     // Query params override (highest precedence)
     if (searchParams) {
       const timeParam = searchParams.get("time") || searchParams.get("horario");
-    const dateParam = searchParams.get("date") || searchParams.get("start");
+      const dateParam = searchParams.get("date") || searchParams.get("start");
       const endParam = searchParams.get("end");
       const adults = parseInt(searchParams.get("adults") || "", 10);
       const children = parseInt(searchParams.get("children") || "", 10);
       const infants = parseInt(searchParams.get("infants") || "", 10);
-    const listingId = searchParams.get("listingId") || searchParams.get("listing");
+      const listingId = searchParams.get("listingId") || searchParams.get("listing");
 
       if (dateParam) {
         const sd = new Date(dateParam);
@@ -323,117 +323,117 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
               <h3 className="text-2xl font-semibold">Fill in tour information</h3>
               <div className="w-14 border-b border-neutral-200 dark:border-neutral-700 my-5"></div>
               <form onSubmit={handleSubmit} className="space-y-6">
-              <input type="hidden" name="listingId" value={listingIdParam} />
-              <input type="hidden" name="listingTitle" value={listingTitle || ""} />
-              <input type="hidden" name="listingImage" value={listingImage || ""} />
-              <input type="hidden" name="date_iso" value={startDate ? startDate.toISOString() : ""} />
-              <input type="hidden" name="adults" value={String(guests.guestAdults || 0)} />
-              <input type="hidden" name="children" value={String(guests.guestChildren || 0)} />
-              <input type="hidden" name="infants" value={String(guests.guestInfants || 0)} />
-              {/* keep action attr for noscript fallback */}
-              <noscript>
-                <form action="https://formspree.io/f/mrenpbrj" method="POST"></form>
-              </noscript>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-1">
-                <Label>Date *</Label>
-                <Input
-                  type="text"
-                  name="date"
-                  value={dateInput}
-                  onChange={(e) => setDateInput(e.target.value)}
-                  required
-                  disabled={isReadOnly}
-                  readOnly={isReadOnly}
-                  className={isReadOnly ? "bg-neutral-100 text-neutral-500 cursor-not-allowed" : ""}
-                />
-              </div>
-              <div className="space-y-1">
-                <Label>Time *</Label>
-                <select
-                  name="time"
-                  required
-                  value={time || ""}
-                  onChange={(e) => setTime(e.target.value)}
-                  className="w-full px-4 py-3 border rounded-md"
-                >
-                  {Array.from({ length: 11 }).map((_, i) => {
-                    const hour = 9 + i;
-                    const hh = hour.toString().padStart(2, "0");
-                    const value = `${hh}:00`;
-                    return (
-                      <option key={value} value={value}>
-                        {value}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-            </div>
+                <input type="hidden" name="listingId" value={listingIdParam} />
+                <input type="hidden" name="listingTitle" value={listingTitle || ""} />
+                <input type="hidden" name="listingImage" value={listingImage || ""} />
+                <input type="hidden" name="date_iso" value={startDate ? startDate.toISOString() : ""} />
+                <input type="hidden" name="adults" value={String(guests.guestAdults || 0)} />
+                <input type="hidden" name="children" value={String(guests.guestChildren || 0)} />
+                <input type="hidden" name="infants" value={String(guests.guestInfants || 0)} />
+                {/* keep action attr for noscript fallback */}
+                <noscript>
+                  <form action="https://formspree.io/f/mrenpbrj" method="POST"></form>
+                </noscript>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-1">
+                    <Label>Date *</Label>
+                    <Input
+                      type="text"
+                      name="date"
+                      value={dateInput}
+                      onChange={(e) => setDateInput(e.target.value)}
+                      required
+                      disabled={isReadOnly}
+                      readOnly={isReadOnly}
+                      className={isReadOnly ? "bg-neutral-100 text-neutral-500 cursor-not-allowed" : ""}
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <Label>Time *</Label>
+                    <select
+                      name="time"
+                      required
+                      value={time || ""}
+                      onChange={(e) => setTime(e.target.value)}
+                      className="w-full px-4 py-3 border rounded-md"
+                    >
+                      {Array.from({ length: 11 }).map((_, i) => {
+                        const hour = 9 + i;
+                        const hh = hour.toString().padStart(2, "0");
+                        const value = `${hh}:00`;
+                        return (
+                          <option key={value} value={value}>
+                            {value}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                </div>
 
-            <div className="space-y-1">
-              <Label>Hours *</Label>
-              <select
-                name="hours"
-                required
-                value={String(hours)}
-                onChange={(e) => setHours(Number(e.target.value))}
-                className="w-full px-4 py-3 border rounded-md"
-              >
-                {Array.from({ length: 8 }).map((_, i) => {
-                  const val = i + 1;
-                  return (
-                    <option key={val} value={String(val)}>
-                      {val} {val === 1 ? "hour" : "hours"}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
+                <div className="space-y-1">
+                  <Label>Hours *</Label>
+                  <select
+                    name="hours"
+                    required
+                    value={String(hours)}
+                    onChange={(e) => setHours(Number(e.target.value))}
+                    className="w-full px-4 py-3 border rounded-md"
+                  >
+                    {Array.from({ length: 8 }).map((_, i) => {
+                      const val = i + 1;
+                      return (
+                        <option key={val} value={String(val)}>
+                          {val} {val === 1 ? "hour" : "hours"}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
 
-            <div className="space-y-1">
-              <Label>Full name *</Label>
-              <Input type="text" name="name" placeholder="Your name" required />
-            </div>
+                <div className="space-y-1">
+                  <Label>Full name *</Label>
+                  <Input type="text" name="name" placeholder="Your name" required />
+                </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-1">
-                <Label>Email *</Label>
-                <Input type="email" name="email" placeholder="you@example.com" required />
-              </div>
-              <div className="space-y-1">
-                <Label>Phone *</Label>
-                <Input type="tel" name="phone" placeholder="+351..." required />
-              </div>
-            </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-1">
+                    <Label>Email *</Label>
+                    <Input type="email" name="email" placeholder="you@example.com" required />
+                  </div>
+                  <div className="space-y-1">
+                    <Label>Phone *</Label>
+                    <Input type="tel" name="phone" placeholder="+351..." required />
+                  </div>
+                </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-1">
-                <Label>Country</Label>
-                <Input type="text" name="country" placeholder="Portugal" />
-              </div>
-              <div className="space-y-1">
-                <Label>City</Label>
-                <Input type="text" name="city" placeholder="Lisbon" />
-              </div>
-            </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-1">
+                    <Label>Country</Label>
+                    <Input type="text" name="country" placeholder="Portugal" />
+                  </div>
+                  <div className="space-y-1">
+                    <Label>City</Label>
+                    <Input type="text" name="city" placeholder="Lisbon" />
+                  </div>
+                </div>
 
-            <div className="space-y-1">
-              <Label>Hotel or pickup point (you can choose later)</Label>
-              <Input type="text" name="pickup_point" placeholder="Address or hotel name" />
-            </div>
+                <div className="space-y-1">
+                  <Label>Hotel or pickup point (you can choose later)</Label>
+                  <Input type="text" name="pickup_point" placeholder="Address or hotel name" />
+                </div>
 
-            <div className="space-y-1">
-              <Label>Trip details</Label>
-              <Textarea name="trip_details" placeholder="Any detail or special request for your trip?" />
-            </div>
+                <div className="space-y-1">
+                  <Label>Trip details</Label>
+                  <Textarea name="trip_details" placeholder="Any detail or special request for your trip?" />
+                </div>
 
-              <div className="pt-4">
-                <ButtonPrimary type="submit" className="w-full md:w-auto bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-xl font-medium">
-                  Next
-                </ButtonPrimary>
-              </div>
-            </form>
+                <div className="pt-4">
+                  <ButtonPrimary type="submit" className="w-full md:w-auto bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-xl font-medium">
+                    Next
+                  </ButtonPrimary>
+                </div>
+              </form>
             </>
           ) : (
             <div className="space-y-6">
