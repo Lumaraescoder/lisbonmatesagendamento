@@ -22,7 +22,6 @@ import GuestsInput from "../GuestsInput";
 import { DEMO_EXPERIENCES_LISTINGS, DEMO_STAY_LISTINGS } from "@/data/listings";
 import { ITINERARIES } from "@/data/itineraries";
 import TourItinerary from "@/components/TourItinerary";
-import MobileFooterSticky from "../../(components)/MobileFooterSticky";
 
 const ListingExperiencesDetailPageDynamic: FC = () => {
   const params = useParams();
@@ -257,7 +256,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
           </div>
         </div>
       </main>
-      <MobileFooterSticky />
+      {/* MobileFooterSticky removed: inline reservation component is used instead */}
     </div>
   );
 };

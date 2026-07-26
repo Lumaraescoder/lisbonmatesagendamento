@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import capadesktopJpeg from "@/images/capadesktop.jpeg";
-import capamobileJpeg from "@/images/capamobile.jpeg";
+import capadesktopJpeg from "@/images/capa.jpeg";
+import capamobileJpeg from "@/images/capa.jpeg";
 import Image from "next/image";
 import ButtonPrimary from "@/shared/ButtonPrimary";
 
@@ -32,6 +32,7 @@ const SectionHero3: FC<SectionHero3Props> = ({
         <ButtonPrimary
           sizeClass="px-6 py-3 lg:px-8 lg:py-4 rounded-xl"
           fontSize="text-sm sm:text-base lg:text-lg font-medium"
+          href="/#tours"
         >
           {buttonLabel}
         </ButtonPrimary>
