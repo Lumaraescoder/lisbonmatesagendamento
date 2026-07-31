@@ -14,7 +14,7 @@ export interface GuestsInputProps {
 const GuestsInput: FC<GuestsInputProps> = ({ className = "flex-1" }) => {
   const [guestAdultsInputValue, setGuestAdultsInputValue] = useState(0);
   const [guestChildrenInputValue, setGuestChildrenInputValue] = useState(0);
-  
+
 
   const handleChangeData = (value: number, type: keyof GuestsObject) => {
     let newValue: { guestAdults: number; guestChildren: number; guestInfants?: number } = {
@@ -39,9 +39,8 @@ const GuestsInput: FC<GuestsInputProps> = ({ className = "flex-1" }) => {
       {({ open }) => (
         <>
           <div
-            className={`flex-1 flex items-center focus:outline-none rounded-b-3xl ${
-              open ? "shadow-lg" : ""
-            }`}
+            className={`flex-1 flex items-center focus:outline-none rounded-b-3xl ${open ? "shadow-lg" : ""
+              }`}
           >
             <Popover.Button
               className={`relative z-10 flex-1 flex text-left items-center p-3 space-x-3 focus:outline-none`}

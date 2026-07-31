@@ -25,7 +25,7 @@ const GuestsInput: FC<GuestsInputProps> = ({
 }) => {
   const [guestAdultsInputValue, setGuestAdultsInputValue] = useState(0);
   const [guestChildrenInputValue, setGuestChildrenInputValue] = useState(0);
-  
+
 
   const handleChangeData = (value: number, type: keyof GuestsObject) => {
     let newValue: { guestAdults: number; guestChildren: number; guestInfants?: number } = {
@@ -50,9 +50,8 @@ const GuestsInput: FC<GuestsInputProps> = ({
       {({ open }) => (
         <>
           <div
-            className={`flex-1 z-10 flex items-center focus:outline-none ${
-              open ? "nc-hero-field-focused" : ""
-            }`}
+            className={`flex-1 z-10 flex items-center focus:outline-none ${open ? "nc-hero-field-focused" : ""
+              }`}
           >
             <Popover.Button
               className={`relative z-10 flex-1 flex text-left items-center ${fieldClassName} space-x-3 focus:outline-none`}

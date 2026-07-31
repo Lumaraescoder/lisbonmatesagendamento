@@ -51,7 +51,7 @@ const GuestsInput: FC<GuestsInputProps> = ({ className = "flex-1", adults, child
               <div className="text-neutral-300 dark:text-neutral-400">
                 <UserPlusIcon className="w-5 h-5 lg:w-7 lg:h-7" />
               </div>
-                <div className="flex-grow">
+              <div className="flex-grow">
                 <span className="block xl:text-lg font-semibold">
                   {totalGuests ? `${totalGuests} Persons` : "Select number of people"}
                 </span>

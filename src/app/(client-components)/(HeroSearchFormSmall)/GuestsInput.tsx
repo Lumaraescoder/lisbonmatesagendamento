@@ -28,7 +28,7 @@ const GuestsInput: FC<GuestsInputProps> = ({
 
   const [guestAdultsInputValue, setGuestAdultsInputValue] = useState(0);
   const [guestChildrenInputValue, setGuestChildrenInputValue] = useState(0);
-  
+
   //
 
   useEffect(() => {
@@ -56,9 +56,8 @@ const GuestsInput: FC<GuestsInputProps> = ({
   return (
     <div className={`flex z-10 relative ${className}`} ref={refContainer}>
       <div
-        className={`flex z-10 relative flex-1 text-left justify-between items-center focus:outline-none cursor-pointer ${
-          isOpen ? "nc-hero-field-focused--2" : ""
-        }`}
+        className={`flex z-10 relative flex-1 text-left justify-between items-center focus:outline-none cursor-pointer ${isOpen ? "nc-hero-field-focused--2" : ""
+          }`}
       >
         <div
           className={`${fieldClassName} flex-1`}

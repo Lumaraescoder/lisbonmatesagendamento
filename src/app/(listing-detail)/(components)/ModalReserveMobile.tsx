@@ -163,10 +163,10 @@ const ModalReserveMobile: FC<ModalReserveMobileProps> = ({
                             </div>
                           </div>
                         ) : (
-                            <div>
-                              <h3 className="text-xl font-semibold mb-4">Payment</h3>
-                              <CheckOutPagePageMain initialDate={selectedDate} initialTime={selectedTime} initialHours={selectedHours} />
-                            </div>
+                          <div>
+                            <h3 className="text-xl font-semibold mb-4">Payment</h3>
+                            <CheckOutPagePageMain initialDate={selectedDate} initialTime={selectedTime} initialHours={selectedHours} />
+                          </div>
                         )}
                       </div>
                     </div>
