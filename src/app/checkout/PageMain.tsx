@@ -527,23 +527,35 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                         const res = await fetch('/api/paypal/create-order', {
                           method: 'POST',
                           headers: { 'Content-Type': 'application/json' },
-                          body: JSON.stringify({ amount, currency: 'EUR' }),
+                          body: JSON.stringify({
+                            amount,
+                            currency: 'EUR',
+                            bookingData: {
+                              tourTitle: listingTitle || 'Tour Booking',
+                              persons: (guests.guestAdults || 0) + (guests.guestChildren || 0),
+                              date: dateInput,
+                              time: time || '',
+                            },
+                          }),
                         });
                         const data = await res.json();
                         if (!res.ok) throw new Error(data?.error || 'create order failed');
-                        return data.id;
+                        // FIX: the API route returns the field as "orderId", not "id".
+                        // Reading data.id here returned undefined and made the PayPal SDK
+                        // fail with a "token": null error when opening checkout.
+                        const orderId = data.orderId || data.id;
+                        if (!orderId) throw new Error('No order ID returned from server');
+                        return orderId;
                       }}
                       onApprove={async (data) => {
                         setPaymentProcessing(true);
                         try {
-                          const orderID = (data && (data.orderID || (data.orderID === undefined && (data as any).orderID))) || (data as any).orderID || (data as any).orderID;
-                          // fallback: PayPal SDK passes data.orderID in modern versions
-                          const oid = (data as any)?.orderID || (data as any)?.orderID;
-                          const finalOrderId = oid || (data as any)?.orderID || (data as any)?.id || data;
+                          const orderID = (data as any)?.orderID;
+                          if (!orderID) throw new Error('Missing orderID from PayPal approval');
                           const captureRes = await fetch('/api/paypal/capture-order', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ orderID: (data as any).orderID || (data as any).orderID || (data as any).id }),
+                            body: JSON.stringify({ orderID }),
                           });
                           const captureData = await captureRes.json();
                           if (!captureRes.ok) throw new Error(captureData?.error || 'capture failed');
