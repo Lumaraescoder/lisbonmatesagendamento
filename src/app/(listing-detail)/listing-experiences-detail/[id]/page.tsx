@@ -56,6 +56,8 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
   const [adults, setAdults] = React.useState<number>(1);
   const [children, setChildren] = React.useState<number>(0);
   const [infants, setInfants] = React.useState<number>(0);
+  const [hours, setHours] = React.useState<number>(1);
+  const [time, setTime] = React.useState<string>("09:00");
 
   // parse numeric price from item.price string like "From€30" or "Fixed Price€320"
   const rawPrice = (item.price || '').toString();
@@ -63,10 +65,24 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
   const currencyMatch = rawPrice.match(/[$€£¥]/);
   const currency = currencyMatch ? currencyMatch[0] : '$';
   const isFixed = /fixed/i.test(rawPrice);
-  const payableGuests = adults + children; // infants free
-  const subtotal = isFixed ? priceNum : priceNum * payableGuests;
-  const serviceCharge = 0;
-  const total = subtotal + serviceCharge;
+  const payableGuests = Math.max(1, adults + children); // infants free
+  // Pricing table (EUR) — matches checkout logic
+  const PRICE_TABLE: Record<number, Record<number, number>> = {
+    1: { 1: 60, 2: 90, 3: 120, 4: 150, 5: 185, 6: 220 },
+    2: { 1: 60, 2: 120, 3: 180, 4: 240, 5: 300, 6: 360 },
+    3: { 1: 90, 2: 170, 3: 250, 4: 330, 5: 410, 6: 480 },
+    4: { 1: 120, 2: 190, 3: 260, 4: 330, 5: 400, 6: 480 },
+    5: { 1: 150, 2: 210, 3: 280, 4: 350, 5: 420, 6: 480 },
+  };
+
+  const peopleKey = payableGuests >= 6 ? 5 : Math.min(5, payableGuests);
+  const hoursKey = Math.min(6, Math.max(1, hours || 1));
+  const total = isFixed
+    ? priceNum
+    : (PRICE_TABLE[peopleKey] ? PRICE_TABLE[peopleKey][hoursKey] || PRICE_TABLE[peopleKey][6] : priceNum * payableGuests);
+
+  const formatEUR = (v: number) => new Intl.NumberFormat("pt-PT", { style: "currency", currency: "EUR" }).format(v);
+  const unitPricePerPerson = Math.max(0, Number((total / Math.max(1, payableGuests)).toFixed(2)));
 
   return (
     <div className={` nc-ListingExperiencesDetailPage `}>
@@ -180,29 +196,64 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
                   className="flex-1"
                   adults={adults}
                   children={children}
-                  infants={infants}
                   onChange={(v) => {
                     setAdults(v.guestAdults);
                     setChildren(v.guestChildren);
-                    setInfants(v.guestInfants);
+                    setInfants(0);
                   }}
                 />
+
+                <div className="p-4">
+                  <label className="block text-sm text-neutral-500">Time</label>
+                  <select
+                    className="w-full mt-2 px-4 py-3 border rounded-md"
+                    value={time}
+                    onChange={(e) => setTime(e.target.value)}
+                  >
+                    {Array.from({ length: 11 }).map((_, i) => {
+                      const hour = 9 + i;
+                      const hh = hour.toString().padStart(2, "0");
+                      const value = `${hh}:00`;
+                      return (
+                        <option key={value} value={value}>
+                          {value}
+                        </option>
+                      );
+                    })}
+                  </select>
+
+                  <label className="block text-sm text-neutral-500 mt-3">Hours</label>
+                  <select
+                    className="w-full mt-2 px-4 py-3 border rounded-md"
+                    value={String(hours)}
+                    onChange={(e) => setHours(Number(e.target.value))}
+                  >
+                    {Array.from({ length: 6 }).map((_, i) => {
+                      const val = i + 1;
+                      return (
+                        <option key={val} value={String(val)}>
+                          {val} {val === 1 ? "hour" : "hours"}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
               </form>
 
               <div className="flex flex-col space-y-4 mt-4">
                 <div className="flex justify-between text-neutral-6000 dark:text-neutral-300">
-                  <span>{rawPrice} x {isFixed ? '—' : `${payableGuests} persons`}</span>
-                  <span>{currency}{isFixed ? priceNum : (priceNum * payableGuests)}</span>
+                  <span>{formatEUR(unitPricePerPerson)} x {payableGuests} persons × {hours}h</span>
+                  <span>{formatEUR(total)}</span>
                 </div>
                 <div className="border-b border-neutral-200 dark:border-neutral-700"></div>
                 <div className="flex justify-between font-semibold">
                   <span>Total</span>
-                  <span>{currency}{total}</span>
+                  <span>{formatEUR(total)}</span>
                 </div>
               </div>
 
               <div className="mt-4">
-                <ButtonPrimary href={`/checkout?listingId=${encodeURIComponent(item.id || '')}&adults=${adults}&children=${children}&infants=${infants}`}>
+                <ButtonPrimary href={`/checkout?listingId=${encodeURIComponent(item.id || '')}&adults=${adults}&children=${children}&infants=${infants}&hours=${hours}&time=${encodeURIComponent(time)}`}>
                   Reserve
                 </ButtonPrimary>
               </div>
@@ -228,28 +279,63 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
                   className="flex-1"
                   adults={adults}
                   children={children}
-                  infants={infants}
                   onChange={(v) => {
                     setAdults(v.guestAdults);
                     setChildren(v.guestChildren);
-                    setInfants(v.guestInfants);
+                    setInfants(0);
                   }}
                 />
+
+                <div className="p-4">
+                  <label className="block text-sm text-neutral-500">Time</label>
+                  <select
+                    className="w-full mt-2 px-4 py-3 border rounded-md"
+                    value={time}
+                    onChange={(e) => setTime(e.target.value)}
+                  >
+                    {Array.from({ length: 11 }).map((_, i) => {
+                      const hour = 9 + i;
+                      const hh = hour.toString().padStart(2, "0");
+                      const value = `${hh}:00`;
+                      return (
+                        <option key={value} value={value}>
+                          {value}
+                        </option>
+                      );
+                    })}
+                  </select>
+
+                  <label className="block text-sm text-neutral-500 mt-3">Hours</label>
+                  <select
+                    className="w-full mt-2 px-4 py-3 border rounded-md"
+                    value={String(hours)}
+                    onChange={(e) => setHours(Number(e.target.value))}
+                  >
+                    {Array.from({ length: 6 }).map((_, i) => {
+                      const val = i + 1;
+                      return (
+                        <option key={val} value={String(val)}>
+                          {val} {val === 1 ? "hour" : "hours"}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
               </form>
 
               <div className="flex flex-col space-y-4">
                 <div className="flex justify-between text-neutral-6000 dark:text-neutral-300">
-                  <span>{rawPrice} x {isFixed ? '—' : `${payableGuests} persons`}</span>
-                  <span>{currency}{isFixed ? priceNum : (priceNum * payableGuests)}</span>
+                  <span>{formatEUR(unitPricePerPerson)} x {payableGuests} persons × {hours}h</span>
+                  <span>{formatEUR(total)}</span>
                 </div>
                 <div className="border-b border-neutral-200 dark:border-neutral-700"></div>
                 <div className="flex justify-between font-semibold">
                   <span>Total</span>
-                  <span>{currency}{total}</span>
+                  <span>{formatEUR(total)}</span>
                 </div>
               </div>
 
-              <ButtonPrimary href={`/checkout?listingId=${encodeURIComponent(item.id || '')}&adults=${adults}&children=${children}&infants=${infants}`}>
+              <ButtonPrimary href={`/checkout?listingId=${encodeURIComponent(item.id || '')}&adults=${adults}&children=${children}&infants=${infants}&hours=${hours}&time=${encodeURIComponent(time)}`}>
                 Reserve
               </ButtonPrimary>
             </div>

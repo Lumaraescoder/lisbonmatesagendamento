@@ -274,11 +274,10 @@ const ListingExperiencesDetailPage: FC<
             className="flex-1"
             adults={adults}
             children={children}
-            infants={infants}
             onChange={(v) => {
               setAdults(v.guestAdults);
               setChildren(v.guestChildren);
-              setInfants(v.guestInfants);
+              setInfants(0);
             }}
           />
         </form>

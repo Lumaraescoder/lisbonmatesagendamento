@@ -23,15 +23,14 @@ const GuestsInput: FC<GuestsInputProps> = ({
   buttonSubmitHref = "/listing-stay-map",
   hasButtonSubmit = true,
 }) => {
-  const [guestAdultsInputValue, setGuestAdultsInputValue] = useState(2);
-  const [guestChildrenInputValue, setGuestChildrenInputValue] = useState(1);
-  const [guestInfantsInputValue, setGuestInfantsInputValue] = useState(1);
+  const [guestAdultsInputValue, setGuestAdultsInputValue] = useState(0);
+  const [guestChildrenInputValue, setGuestChildrenInputValue] = useState(0);
+  
 
   const handleChangeData = (value: number, type: keyof GuestsObject) => {
-    let newValue = {
+    let newValue: { guestAdults: number; guestChildren: number; guestInfants?: number } = {
       guestAdults: guestAdultsInputValue,
       guestChildren: guestChildrenInputValue,
-      guestInfants: guestInfantsInputValue,
     };
     if (type === "guestAdults") {
       setGuestAdultsInputValue(value);
@@ -41,14 +40,10 @@ const GuestsInput: FC<GuestsInputProps> = ({
       setGuestChildrenInputValue(value);
       newValue.guestChildren = value;
     }
-    if (type === "guestInfants") {
-      setGuestInfantsInputValue(value);
-      newValue.guestInfants = value;
-    }
+    // infants removed
   };
 
-  const totalGuests =
-    guestChildrenInputValue + guestAdultsInputValue + guestInfantsInputValue;
+  const totalGuests = guestChildrenInputValue + guestAdultsInputValue;
 
   return (
     <Popover className={`flex relative ${className}`}>
@@ -67,10 +62,10 @@ const GuestsInput: FC<GuestsInputProps> = ({
               </div>
               <div className="flex-grow">
                 <span className="block xl:text-lg font-semibold">
-                  {totalGuests || ""} Guests
+                  {totalGuests ? `${totalGuests} Guests` : "Select number of people"}
                 </span>
                 <span className="block mt-1 text-sm text-neutral-400 leading-none font-light">
-                  {totalGuests ? "Guests" : "Add guests"}
+                  {totalGuests ? "Guests" : "Please select number of people"}
                 </span>
               </div>
 
@@ -79,7 +74,6 @@ const GuestsInput: FC<GuestsInputProps> = ({
                   onClick={() => {
                     setGuestAdultsInputValue(0);
                     setGuestChildrenInputValue(0);
-                    setGuestInfantsInputValue(0);
                   }}
                 />
               )}
@@ -124,14 +118,7 @@ const GuestsInput: FC<GuestsInputProps> = ({
                 desc="Ages 2–12"
               />
 
-              <NcInputNumber
-                className="w-full mt-6"
-                defaultValue={guestInfantsInputValue}
-                onChange={(value) => handleChangeData(value, "guestInfants")}
-                max={4}
-                label="Infants"
-                desc="Ages 0–2"
-              />
+              {/* Infants removed per request */}
             </Popover.Panel>
           </Transition>
         </>

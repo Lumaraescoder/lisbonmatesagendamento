@@ -81,7 +81,7 @@ const ModalSelectGuests: FC<ModalSelectGuestsProps> = ({ renderChildren, value, 
                           >
                             <GuestsInput
                               defaultValue={value}
-                              onChange={(data) => setCurrentGuests(data)}
+                              onChange={(data) => setCurrentGuests((prev) => ({ ...prev, ...data }))}
                             />
                           </div>
                         </div>

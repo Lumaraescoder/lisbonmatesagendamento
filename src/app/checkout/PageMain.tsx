@@ -23,6 +23,7 @@ export interface CheckOutPagePageMainProps {
   initialDate?: Date | string | null;
   initialGuests?: GuestsObject;
   initialTime?: string | null;
+  initialHours?: number | null;
 }
 
 const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
@@ -39,10 +40,11 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
   const [endDate, setEndDate] = useState<Date | null>(new Date("2026/07/24"));
 
   const [guests, setGuests] = useState<GuestsObject>({
-    guestAdults: 2,
+    guestAdults: 0,
     guestChildren: 0,
     guestInfants: 0,
   });
+  const [guestError, setGuestError] = useState<string | null>(null);
 
   const [listingImage, setListingImage] = useState<string | null>(null);
   const [listingTitle, setListingTitle] = useState<string | null>(null);
@@ -58,10 +60,17 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
 
   async function handleSubmit(e: any) {
     e.preventDefault();
-    const formEl = e.currentTarget as HTMLFormElement;
-    const fd = new FormData(formEl);
-    // append contextual fields
-    if (listingIdParam) fd.append("listingId", listingIdParam);
+    // validate guests
+    const totalGuests = (guests.guestAdults || 0) + (guests.guestChildren || 0);
+    if (totalGuests < 1) {
+      setGuestError("Please select number of people");
+      return;
+    }
+    <span className="mt-1.5 text-lg font-semibold">
+      <span className="line-clamp-1 text-neutral-600">
+        {`${(guests.guestAdults || 0) + (guests.guestChildren || 0)} Guests`}
+      </span>
+    </span>
     if (listingTitle) fd.append("listingTitle", listingTitle);
     if (listingImage) fd.append("listingImage", listingImage);
     if (startDate) fd.append("date_iso", startDate.toISOString());
@@ -71,8 +80,24 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
     // include visible date string and hours
     if (dateInput) fd.append("date_display", dateInput);
     if (hours) fd.append("hours", String(hours));
+    // append computed total
+    try {
+      <span className="mt-1.5 text-lg font-semibold">
+        <span className="line-clamp-1">
+          {`${(guests.guestAdults || 0) + (guests.guestChildren || 0)} Guests`}
+        </span>
+      </span>
+      fd.append("breakdown", `${unit} EUR x ${hours}h = ${total} EUR`);
+    } catch (err) {
+      // ignore
+    }
 
     try {
+      {
+        guestError && (
+          <div className="text-sm text-red-600 mt-2">{guestError}</div>
+        )
+      }
       if (time) fd.append("time", time);
       const res = await fetch("https://formspree.io/f/mrenpbrj", {
         method: "POST",
@@ -106,6 +131,10 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
 
     if (initialGuests) {
       setGuests(initialGuests);
+    }
+
+    if (typeof initialHours === "number" && !isNaN(initialHours)) {
+      setHours(initialHours);
     }
 
     // Query params override (highest precedence)
@@ -160,21 +189,22 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
 
   // compute amount from listing when possible
   const computeAmount = () => {
-    try {
-      const listingId = searchParams ? (searchParams.get("listingId") || searchParams.get("listing")) : null;
-      if (!listingId) return 1.0;
-      const all = [...DEMO_EXPERIENCES_LISTINGS, ...DEMO_STAY_LISTINGS];
-      const found = all.find((it) => it.id === listingId || it.href?.endsWith(`/${listingId}`));
-      if (!found) return 1.0;
-      const rawPrice = (found.price || "").toString();
-      const priceNum = parseFloat((rawPrice.match(/[0-9]+(\.[0-9]+)?/) || ["0"])[0]) || 0;
-      const isFixed = /fixed/i.test(rawPrice);
-      const payableGuests = (guests.guestAdults || 0) + (guests.guestChildren || 0);
-      const amount = isFixed ? priceNum : Math.max(1, priceNum * Math.max(1, payableGuests));
-      return Number(amount.toFixed(2));
-    } catch (err) {
-      return 1.0;
-    }
+    // pricing table defined by user (EUR)
+    const PRICE_TABLE: Record<number, Record<number, number>> = {
+      1: { 1: 60, 2: 90, 3: 120, 4: 150, 5: 185, 6: 220 },
+      2: { 1: 60, 2: 120, 3: 180, 4: 240, 5: 300, 6: 360 },
+      3: { 1: 90, 2: 170, 3: 250, 4: 330, 5: 410, 6: 480 },
+      4: { 1: 120, 2: 190, 3: 260, 4: 330, 5: 400, 6: 480 },
+      5: { 1: 150, 2: 210, 3: 280, 4: 350, 5: 420, 6: 480 },
+    };
+
+    const payableGuests = Math.max(1, (guests.guestAdults || 0) + (guests.guestChildren || 0));
+    const peopleKey = payableGuests >= 6 ? 5 : Math.min(5, payableGuests);
+    const hoursKey = Math.min(6, Math.max(1, hours || 1));
+
+    const personPrices = PRICE_TABLE[peopleKey] || PRICE_TABLE[5];
+    const price = (personPrices && (personPrices as any)[hoursKey]) || personPrices[6] || 0;
+    return Number(price.toFixed(2));
   };
 
   const renderSidebar = () => {
@@ -216,9 +246,21 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
           </div>
 
           <div className="border-b border-neutral-200 dark:border-neutral-700"></div>
-          <div className="flex justify-between font-semibold">
-            <span>Total</span>
-            <span>On request</span>
+          <div className="flex flex-col space-y-2">
+            <div className="flex justify-between font-semibold">
+              <span>Total</span>
+              <span>{new Intl.NumberFormat("pt-PT", { style: "currency", currency: "EUR" }).format(computeAmount())}</span>
+            </div>
+            <div className="flex justify-between text-sm text-neutral-500">
+              <span>Breakdown</span>
+              <span>
+                {(() => {
+                  const total = computeAmount();
+                  const unit = Number((total / Math.max(1, hours)).toFixed(2));
+                  return `${new Intl.NumberFormat("pt-PT", { style: "currency", currency: "EUR" }).format(unit)} / h × ${hours}h`;
+                })()}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -289,7 +331,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                       <span className="text-sm text-neutral-400">Guests</span>
                       <span className="mt-1.5 text-lg font-semibold">
                         <span className="line-clamp-1 text-neutral-600">
-                          {`${(guests.guestAdults || 0) + (guests.guestChildren || 0)} Guests, ${guests.guestInfants || 0} Infants`}
+                          {`${(guests.guestAdults || 0) + (guests.guestChildren || 0)} Guests`}
                         </span>
                       </span>
                     </div>
@@ -305,7 +347,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                       <span className="text-sm text-neutral-400">Guests</span>
                       <span className="mt-1.5 text-lg font-semibold">
                         <span className="line-clamp-1">
-                          {`${(guests.guestAdults || 0) + (guests.guestChildren || 0)} Guests, ${guests.guestInfants || 0} Infants`}
+                          {`${(guests.guestAdults || 0) + (guests.guestChildren || 0)} Guests`}
                         </span>
                       </span>
                     </div>
@@ -330,6 +372,11 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                 <input type="hidden" name="adults" value={String(guests.guestAdults || 0)} />
                 <input type="hidden" name="children" value={String(guests.guestChildren || 0)} />
                 <input type="hidden" name="infants" value={String(guests.guestInfants || 0)} />
+                {/* ensure form submits current time, total and breakdown matching visible values */}
+                <input type="hidden" name="time" value={time || ""} />
+                <input type="hidden" name="total" value={String(computeAmount())} />
+                <input type="hidden" name="unit_price" value={String(Number((computeAmount() / Math.max(1, hours)).toFixed(2)))} />
+                <input type="hidden" name="breakdown" value={`${String(Number((computeAmount() / Math.max(1, hours)).toFixed(2)))} EUR x ${hours}h = ${String(computeAmount())} EUR`} />
                 {/* keep action attr for noscript fallback */}
                 <noscript>
                   <form action="https://formspree.io/f/mrenpbrj" method="POST"></form>
@@ -380,7 +427,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                     onChange={(e) => setHours(Number(e.target.value))}
                     className="w-full px-4 py-3 border rounded-md"
                   >
-                    {Array.from({ length: 8 }).map((_, i) => {
+                    {Array.from({ length: 6 }).map((_, i) => {
                       const val = i + 1;
                       return (
                         <option key={val} value={String(val)}>
@@ -442,8 +489,8 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
               <div className="pt-4">
                 <PayPalScriptProvider
                   options={{
-                    "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test",
-                    currency: "USD",
+                    "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
+                    currency: "EUR",
                     locale: "en_US",
                     intent: "capture",
                   }}
