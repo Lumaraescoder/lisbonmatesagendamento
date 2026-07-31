@@ -26,6 +26,7 @@ const ModalReserveMobile: FC<ModalReserveMobileProps> = ({
   const _startOfToday = new Date(_today.setHours(0, 0, 0, 0));
   const [selectedDate, setSelectedDate] = useState<Date | null>(_startOfToday);
   const [selectedTime, setSelectedTime] = useState<string>("09:00");
+  const [selectedHours, setSelectedHours] = useState<number>(2);
 
   function closeModal() {
     setShowModal(false);
@@ -119,6 +120,22 @@ const ModalReserveMobile: FC<ModalReserveMobileProps> = ({
                                 })}
                               </select>
 
+                              <Label text="Hours" />
+                              <select
+                                className="w-full px-4 py-3 border rounded-md mb-3"
+                                value={String(selectedHours)}
+                                onChange={(e) => setSelectedHours(Number(e.target.value))}
+                              >
+                                {Array.from({ length: 6 }).map((_, i) => {
+                                  const val = i + 1;
+                                  return (
+                                    <option key={val} value={String(val)}>
+                                      {val} {val === 1 ? "hour" : "hours"}
+                                    </option>
+                                  );
+                                })}
+                              </select>
+
                               <Label text="Full name" />
                               <Input value={form.name} onChange={(e: any) => setForm({ ...form, name: e.target.value })} />
                             </div>
@@ -146,10 +163,10 @@ const ModalReserveMobile: FC<ModalReserveMobileProps> = ({
                             </div>
                           </div>
                         ) : (
-                            <div>
-                              <h3 className="text-xl font-semibold mb-4">Payment</h3>
-                              <CheckOutPagePageMain initialDate={selectedDate} initialTime={selectedTime} />
-                            </div>
+                          <div>
+                            <h3 className="text-xl font-semibold mb-4">Payment</h3>
+                            <CheckOutPagePageMain initialDate={selectedDate} initialTime={selectedTime} initialHours={selectedHours} />
+                          </div>
                         )}
                       </div>
                     </div>

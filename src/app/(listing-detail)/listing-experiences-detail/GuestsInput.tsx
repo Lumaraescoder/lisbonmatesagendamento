@@ -11,20 +11,17 @@ export interface GuestsInputProps {
   className?: string;
   adults?: number;
   children?: number;
-  infants?: number;
-  onChange?: (value: { guestAdults: number; guestChildren: number; guestInfants: number }) => void;
+  onChange?: (value: { guestAdults: number; guestChildren: number; guestInfants?: number }) => void;
 }
 
-const GuestsInput: FC<GuestsInputProps> = ({ className = "flex-1", adults, children, infants, onChange }) => {
-  const [guestAdultsInputValue, setGuestAdultsInputValue] = useState(adults ?? 2);
-  const [guestChildrenInputValue, setGuestChildrenInputValue] = useState(children ?? 1);
-  const [guestInfantsInputValue, setGuestInfantsInputValue] = useState(infants ?? 1);
+const GuestsInput: FC<GuestsInputProps> = ({ className = "flex-1", adults, children, onChange }) => {
+  const [guestAdultsInputValue, setGuestAdultsInputValue] = useState(adults ?? 0);
+  const [guestChildrenInputValue, setGuestChildrenInputValue] = useState(children ?? 0);
 
   const handleChangeData = (value: number, type: keyof GuestsObject) => {
-    let newValue = {
+    let newValue: { guestAdults: number; guestChildren: number; guestInfants?: number } = {
       guestAdults: guestAdultsInputValue,
       guestChildren: guestChildrenInputValue,
-      guestInfants: guestInfantsInputValue,
     };
     if (type === "guestAdults") {
       setGuestAdultsInputValue(value);
@@ -34,16 +31,11 @@ const GuestsInput: FC<GuestsInputProps> = ({ className = "flex-1", adults, child
       setGuestChildrenInputValue(value);
       newValue.guestChildren = value;
     }
-    if (type === "guestInfants") {
-      setGuestInfantsInputValue(value);
-      newValue.guestInfants = value;
-    }
     // notify parent if provided
     if (onChange) onChange(newValue);
   };
 
-  const totalGuests =
-    guestChildrenInputValue + guestAdultsInputValue + guestInfantsInputValue;
+  const totalGuests = guestChildrenInputValue + guestAdultsInputValue;
 
   return (
     <Popover className={`flex relative ${className}`}>
@@ -61,10 +53,10 @@ const GuestsInput: FC<GuestsInputProps> = ({ className = "flex-1", adults, child
               </div>
               <div className="flex-grow">
                 <span className="block xl:text-lg font-semibold">
-                  {totalGuests || ""} Persons
+                  {totalGuests ? `${totalGuests} Persons` : "Select number of people"}
                 </span>
                 <span className="block mt-1 text-sm text-neutral-400 leading-none font-light">
-                  {totalGuests ? "Persons" : "Add persons"}
+                  {totalGuests ? "Persons" : "Please select number of people"}
                 </span>
               </div>
 
@@ -73,7 +65,6 @@ const GuestsInput: FC<GuestsInputProps> = ({ className = "flex-1", adults, child
                   onClick={() => {
                     setGuestAdultsInputValue(0);
                     setGuestChildrenInputValue(0);
-                    setGuestInfantsInputValue(0);
                   }}
                 />
               )}
@@ -107,15 +98,7 @@ const GuestsInput: FC<GuestsInputProps> = ({ className = "flex-1", adults, child
                 label="Children"
                 desc="Ages 2–12"
               />
-
-              <NcInputNumber
-                className="w-full mt-6"
-                defaultValue={guestInfantsInputValue}
-                onChange={(value) => handleChangeData(value, "guestInfants")}
-                max={4}
-                label="Infants"
-                desc="Ages 0–2"
-              />
+              {/* Infants removed per request */}
             </Popover.Panel>
           </Transition>
         </>

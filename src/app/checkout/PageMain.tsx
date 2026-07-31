@@ -23,6 +23,7 @@ export interface CheckOutPagePageMainProps {
   initialDate?: Date | string | null;
   initialGuests?: GuestsObject;
   initialTime?: string | null;
+  initialHours?: number | null;
 }
 
 const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
@@ -39,10 +40,11 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
   const [endDate, setEndDate] = useState<Date | null>(new Date("2026/07/24"));
 
   const [guests, setGuests] = useState<GuestsObject>({
-    guestAdults: 2,
+    guestAdults: 0,
     guestChildren: 0,
     guestInfants: 0,
   });
+  const [guestError, setGuestError] = useState<string | null>(null);
 
   const [listingImage, setListingImage] = useState<string | null>(null);
   const [listingTitle, setListingTitle] = useState<string | null>(null);
@@ -58,33 +60,79 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
 
   async function handleSubmit(e: any) {
     e.preventDefault();
-    const formEl = e.currentTarget as HTMLFormElement;
-    const fd = new FormData(formEl);
+
+    // validate guests
+    const totalGuests = (guests.guestAdults || 0) + (guests.guestChildren || 0);
+    if (totalGuests < 1) {
+      setGuestError("Please select number of people");
+      return;
+    }
+    setGuestError(null);
+
+    // build FormData robustly (use form element if available)
+    const formEl = (e.currentTarget as HTMLFormElement) || null;
+    let fd: FormData;
+    try {
+      fd = formEl ? new FormData(formEl) : new FormData();
+    } catch (err) {
+      fd = new FormData();
+    }
+
     // append contextual fields
-    if (listingIdParam) fd.append("listingId", listingIdParam);
-    if (listingTitle) fd.append("listingTitle", listingTitle);
-    if (listingImage) fd.append("listingImage", listingImage);
-    if (startDate) fd.append("date_iso", startDate.toISOString());
-    fd.append("adults", String((guests.guestAdults || 0)));
-    fd.append("children", String((guests.guestChildren || 0)));
-    fd.append("infants", String((guests.guestInfants || 0)));
+    if (listingIdParam) fd.set("listingId", listingIdParam);
+    if (listingTitle) fd.set("listingTitle", String(listingTitle));
+    if (listingImage) fd.set("listingImage", String(listingImage));
+    if (startDate) fd.set("date_iso", startDate.toISOString());
+    fd.set("adults", String((guests.guestAdults || 0)));
+    fd.set("children", String((guests.guestChildren || 0)));
+    fd.set("infants", String((guests.guestInfants || 0)));
+
     // include visible date string and hours
-    if (dateInput) fd.append("date_display", dateInput);
-    if (hours) fd.append("hours", String(hours));
+    if (dateInput) fd.set("date_display", dateInput);
+    if (hours) fd.set("hours", String(hours));
+
+    // append computed total + breakdown
+    try {
+      const total = computeAmount();
+      const unit = Number((total / Math.max(1, hours)).toFixed(2));
+      fd.set("total", String(total));
+      fd.set("unit_price", String(unit));
+      fd.set("breakdown", `${unit} EUR x ${hours}h = ${total} EUR`);
+    } catch (err) {
+      // ignore
+    }
+
+    // append remaining fields from the form (if present)
+    try {
+      if (formEl) {
+        const name = (formEl.elements.namedItem('name') as HTMLInputElement | null)?.value;
+        const email = (formEl.elements.namedItem('email') as HTMLInputElement | null)?.value;
+        const phone = (formEl.elements.namedItem('phone') as HTMLInputElement | null)?.value;
+        const country = (formEl.elements.namedItem('country') as HTMLInputElement | null)?.value;
+        const city = (formEl.elements.namedItem('city') as HTMLInputElement | null)?.value;
+        const pickup_point = (formEl.elements.namedItem('pickup_point') as HTMLInputElement | null)?.value;
+        const trip_details = (formEl.elements.namedItem('trip_details') as HTMLInputElement | null)?.value;
+        if (name) fd.set('name', name);
+        if (email) fd.set('email', email);
+        if (phone) fd.set('phone', phone);
+        if (country) fd.set('country', country);
+        if (city) fd.set('city', city);
+        if (pickup_point) fd.set('pickup_point', pickup_point);
+        if (trip_details) fd.set('trip_details', trip_details);
+      }
+    } catch (err) {
+      // ignore
+    }
 
     try {
-      if (time) fd.append("time", time);
-      const res = await fetch("https://formspree.io/f/mrenpbrj", {
-        method: "POST",
+      if (time) fd.set('time', String(time));
+      const res = await fetch('https://formspree.io/f/mrenpbrj', {
+        method: 'POST',
         body: fd,
-        headers: { Accept: "application/json" },
+        headers: { Accept: 'application/json' },
       });
-      if (res.ok) {
-        setSubmitted(true);
-      } else {
-        console.error("Formspree error", res.status);
-        setSubmitted(true);
-      }
+      setSubmitted(true);
+      if (!res.ok) console.error('Formspree error', res.status);
     } catch (err) {
       console.error(err);
       setSubmitted(true);
@@ -106,6 +154,10 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
 
     if (initialGuests) {
       setGuests(initialGuests);
+    }
+
+    if (typeof initialHours === "number" && !isNaN(initialHours)) {
+      setHours(initialHours);
     }
 
     // Query params override (highest precedence)
@@ -160,21 +212,22 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
 
   // compute amount from listing when possible
   const computeAmount = () => {
-    try {
-      const listingId = searchParams ? (searchParams.get("listingId") || searchParams.get("listing")) : null;
-      if (!listingId) return 1.0;
-      const all = [...DEMO_EXPERIENCES_LISTINGS, ...DEMO_STAY_LISTINGS];
-      const found = all.find((it) => it.id === listingId || it.href?.endsWith(`/${listingId}`));
-      if (!found) return 1.0;
-      const rawPrice = (found.price || "").toString();
-      const priceNum = parseFloat((rawPrice.match(/[0-9]+(\.[0-9]+)?/) || ["0"])[0]) || 0;
-      const isFixed = /fixed/i.test(rawPrice);
-      const payableGuests = (guests.guestAdults || 0) + (guests.guestChildren || 0);
-      const amount = isFixed ? priceNum : Math.max(1, priceNum * Math.max(1, payableGuests));
-      return Number(amount.toFixed(2));
-    } catch (err) {
-      return 1.0;
-    }
+    // pricing table defined by user (EUR)
+    const PRICE_TABLE: Record<number, Record<number, number>> = {
+      1: { 1: 60, 2: 90, 3: 120, 4: 150, 5: 185, 6: 220 },
+      2: { 1: 60, 2: 120, 3: 180, 4: 240, 5: 300, 6: 360 },
+      3: { 1: 90, 2: 170, 3: 250, 4: 330, 5: 410, 6: 480 },
+      4: { 1: 120, 2: 190, 3: 260, 4: 330, 5: 400, 6: 480 },
+      5: { 1: 150, 2: 210, 3: 280, 4: 350, 5: 420, 6: 480 },
+    };
+
+    const payableGuests = Math.max(1, (guests.guestAdults || 0) + (guests.guestChildren || 0));
+    const peopleKey = payableGuests >= 6 ? 5 : Math.min(5, payableGuests);
+    const hoursKey = Math.min(6, Math.max(1, hours || 1));
+
+    const personPrices = PRICE_TABLE[peopleKey] || PRICE_TABLE[5];
+    const price = (personPrices && (personPrices as any)[hoursKey]) || personPrices[6] || 0;
+    return Number(price.toFixed(2));
   };
 
   const renderSidebar = () => {
@@ -216,9 +269,21 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
           </div>
 
           <div className="border-b border-neutral-200 dark:border-neutral-700"></div>
-          <div className="flex justify-between font-semibold">
-            <span>Total</span>
-            <span>On request</span>
+          <div className="flex flex-col space-y-2">
+            <div className="flex justify-between font-semibold">
+              <span>Total</span>
+              <span>{new Intl.NumberFormat("pt-PT", { style: "currency", currency: "EUR" }).format(computeAmount())}</span>
+            </div>
+            <div className="flex justify-between text-sm text-neutral-500">
+              <span>Breakdown</span>
+              <span>
+                {(() => {
+                  const total = computeAmount();
+                  const unit = Number((total / Math.max(1, hours)).toFixed(2));
+                  return `${new Intl.NumberFormat("pt-PT", { style: "currency", currency: "EUR" }).format(unit)} / h × ${hours}h`;
+                })()}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -289,7 +354,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                       <span className="text-sm text-neutral-400">Guests</span>
                       <span className="mt-1.5 text-lg font-semibold">
                         <span className="line-clamp-1 text-neutral-600">
-                          {`${(guests.guestAdults || 0) + (guests.guestChildren || 0)} Guests, ${guests.guestInfants || 0} Infants`}
+                          {`${(guests.guestAdults || 0) + (guests.guestChildren || 0)} Guests`}
                         </span>
                       </span>
                     </div>
@@ -305,7 +370,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                       <span className="text-sm text-neutral-400">Guests</span>
                       <span className="mt-1.5 text-lg font-semibold">
                         <span className="line-clamp-1">
-                          {`${(guests.guestAdults || 0) + (guests.guestChildren || 0)} Guests, ${guests.guestInfants || 0} Infants`}
+                          {`${(guests.guestAdults || 0) + (guests.guestChildren || 0)} Guests`}
                         </span>
                       </span>
                     </div>
@@ -330,6 +395,11 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                 <input type="hidden" name="adults" value={String(guests.guestAdults || 0)} />
                 <input type="hidden" name="children" value={String(guests.guestChildren || 0)} />
                 <input type="hidden" name="infants" value={String(guests.guestInfants || 0)} />
+                {/* ensure form submits current time, total and breakdown matching visible values */}
+                <input type="hidden" name="time" value={time || ""} />
+                <input type="hidden" name="total" value={String(computeAmount())} />
+                <input type="hidden" name="unit_price" value={String(Number((computeAmount() / Math.max(1, hours)).toFixed(2)))} />
+                <input type="hidden" name="breakdown" value={`${String(Number((computeAmount() / Math.max(1, hours)).toFixed(2)))} EUR x ${hours}h = ${String(computeAmount())} EUR`} />
                 {/* keep action attr for noscript fallback */}
                 <noscript>
                   <form action="https://formspree.io/f/mrenpbrj" method="POST"></form>
@@ -380,7 +450,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                     onChange={(e) => setHours(Number(e.target.value))}
                     className="w-full px-4 py-3 border rounded-md"
                   >
-                    {Array.from({ length: 8 }).map((_, i) => {
+                    {Array.from({ length: 6 }).map((_, i) => {
                       const val = i + 1;
                       return (
                         <option key={val} value={String(val)}>
@@ -442,8 +512,8 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
               <div className="pt-4">
                 <PayPalScriptProvider
                   options={{
-                    "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test",
-                    currency: "USD",
+                    "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
+                    currency: "EUR",
                     locale: "en_US",
                     intent: "capture",
                   }}
@@ -452,25 +522,49 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                     <PayPalButtons
                       style={{ layout: "vertical" }}
                       forceReRender={[computeAmount(), time]}
-                      createOrder={async (_data, actions) => {
+                      createOrder={async () => {
                         const amount = computeAmount();
-                        return actions.order.create({
-                          purchase_units: [
-                            {
-                              amount: { value: String(amount) },
+                        const res = await fetch('/api/paypal/create-order', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({
+                            amount,
+                            currency: 'EUR',
+                            bookingData: {
+                              tourTitle: listingTitle || 'Tour Booking',
+                              persons: (guests.guestAdults || 0) + (guests.guestChildren || 0),
+                              date: dateInput,
+                              time: time || '',
                             },
-                          ],
+                          }),
                         });
+                        const data = await res.json();
+                        if (!res.ok) throw new Error(data?.error || 'create order failed');
+                        // FIX: the API route returns the field as "orderId", not "id".
+                        // Reading data.id here returned undefined and made the PayPal SDK
+                        // fail with a "token": null error when opening checkout.
+                        const orderId = data.orderId || data.id;
+                        if (!orderId) throw new Error('No order ID returned from server');
+                        return orderId;
                       }}
-                      onApprove={async (_data, actions) => {
+                      onApprove={async (data) => {
                         setPaymentProcessing(true);
-                        if (!actions || !actions.order) return;
-                        const details = await actions.order.capture();
-                        setPaymentProcessing(false);
-                        setPaymentCompleted(true);
-                        // redirect after successful capture
-                        if (typeof window !== "undefined") {
-                          window.location.href = "/pay-done";
+                        try {
+                          const orderID = (data as any)?.orderID;
+                          if (!orderID) throw new Error('Missing orderID from PayPal approval');
+                          const captureRes = await fetch('/api/paypal/capture-order', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ orderID }),
+                          });
+                          const captureData = await captureRes.json();
+                          if (!captureRes.ok) throw new Error(captureData?.error || 'capture failed');
+                          setPaymentCompleted(true);
+                          if (typeof window !== 'undefined') window.location.href = '/pay-done';
+                        } catch (err) {
+                          console.error('PayPal capture error', err);
+                        } finally {
+                          setPaymentProcessing(false);
                         }
                       }}
                       onError={(err) => {
