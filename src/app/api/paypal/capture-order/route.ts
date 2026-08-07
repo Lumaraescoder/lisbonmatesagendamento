@@ -54,7 +54,12 @@ export async function POST(request: Request) {
    return NextResponse.json({ error: 'Error capturing PayPal order', details: data }, { status: 500 });
   }
 
-  return NextResponse.json({ success: true, capture: data });
+  return NextResponse.json({
+   success: data?.status === 'COMPLETED',
+   orderID: data?.id || orderID,
+   status: data?.status,
+   capture: data,
+  });
  } catch (error: any) {
   console.error('❌ Error capturing PayPal order:', error);
   return NextResponse.json({ error: 'Error capturing PayPal order', details: error?.message || String(error) }, { status: 500 });

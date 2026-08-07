@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { calculateTourAmount } from '@/utils/bookingPricing';
 
 const getBase = () =>
  process.env.PAYPAL_ENV === 'live'
@@ -31,13 +32,39 @@ async function getAccessToken() {
  return data.access_token as string;
 }
 
+function calculateAmount(bookingData: any) {
+ const adults = Math.max(0, Math.floor(Number(bookingData?.adults || 0)));
+ const children = Math.max(0, Math.floor(Number(bookingData?.children || 0)));
+ const payableGuests = adults + children;
+ const hours = Math.min(6, Math.max(1, Math.floor(Number(bookingData?.hours || 1))));
+
+ if (payableGuests < 1) {
+  throw new Error('At least one adult or child is required');
+ }
+
+ return calculateTourAmount({ adults, children, hours });
+}
+
+function limitText(value: string, max: number) {
+ return value.length > max ? value.slice(0, max) : value;
+}
+
 export async function POST(request: Request) {
  try {
-  const { amount, bookingData } = await request.json();
-
-  if (typeof amount === 'undefined') {
-   return NextResponse.json({ error: 'Missing amount' }, { status: 400 });
-  }
+  const { bookingData } = await request.json();
+  const origin = new URL(request.url).origin;
+  const amount = calculateAmount(bookingData);
+  const adults = Math.max(0, Math.floor(Number(bookingData?.adults || 0)));
+  const children = Math.max(0, Math.floor(Number(bookingData?.children || 0)));
+  const infants = Math.max(0, Math.floor(Number(bookingData?.infants || 0)));
+  const hours = Math.min(6, Math.max(1, Math.floor(Number(bookingData?.hours || 1))));
+  const compactBooking = [
+   bookingData?.listingId || 'no-listing',
+   bookingData?.date || 'no-date',
+   bookingData?.time || 'no-time',
+   `${adults}a${children}c${infants}i`,
+   `${hours}h`,
+  ].join('|');
 
   const token = await getAccessToken();
 
@@ -49,19 +76,20 @@ export async function POST(request: Request) {
    },
    body: JSON.stringify({
     intent: 'CAPTURE',
+    application_context: {
+     return_url: `${origin}/checkout?paypal=success`,
+     cancel_url: `${origin}/checkout?paypal=cancel`,
+     shipping_preference: 'NO_SHIPPING',
+     user_action: 'PAY_NOW',
+    },
     purchase_units: [
      {
       amount: {
        currency_code: 'EUR',
-       value: String(amount),
+       value: amount.toFixed(2),
       },
-      description: bookingData?.tourTitle || 'Tour Booking',
-      custom_id: JSON.stringify({
-       tourTitle: bookingData?.tourTitle || 'No title',
-       persons: bookingData?.persons?.toString() || '1',
-       date: bookingData?.date || 'No date',
-       time: bookingData?.time || 'No time',
-      }),
+      description: limitText(bookingData?.tourTitle || 'Tour Booking', 127),
+      custom_id: limitText(compactBooking, 127),
      },
     ],
    }),
@@ -75,12 +103,14 @@ export async function POST(request: Request) {
   }
 
   // Return the `id` field that PayPal SDK expects when createOrder resolves.
-  return NextResponse.json({ success: true, id: order.id, paypalOrder: order });
+  return NextResponse.json({ success: true, id: order.id, amount, currency: 'EUR', paypalOrder: order });
  } catch (error: any) {
   console.error('❌ Error creating PayPal order:', error);
+  const message = error?.message || String(error);
+  const status = message.includes('required') || message.includes('calculate') ? 400 : 500;
   return NextResponse.json(
-   { error: 'Error creating PayPal order', details: error?.message || String(error) },
-   { status: 500 }
+   { error: 'Error creating PayPal order', details: message },
+   { status }
   );
  }
 }
