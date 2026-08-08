@@ -22,6 +22,7 @@ import GuestsInput from "../GuestsInput";
 import { DEMO_EXPERIENCES_LISTINGS, DEMO_STAY_LISTINGS } from "@/data/listings";
 import { ITINERARIES } from "@/data/itineraries";
 import TourItinerary from "@/components/TourItinerary";
+import { calculateTourAmount } from "@/utils/bookingPricing";
 
 const ListingExperiencesDetailPageDynamic: FC = () => {
   const params = useParams();
@@ -66,20 +67,9 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
   const currency = currencyMatch ? currencyMatch[0] : '$';
   const isFixed = /fixed/i.test(rawPrice);
   const payableGuests = Math.max(1, adults + children); // infants free
-  // Pricing table (EUR) — matches checkout logic
-  const PRICE_TABLE: Record<number, Record<number, number>> = {
-    1: { 1: 60, 2: 90, 3: 120, 4: 150, 5: 185, 6: 220 },
-    2: { 1: 60, 2: 120, 3: 180, 4: 240, 5: 300, 6: 360 },
-    3: { 1: 90, 2: 170, 3: 250, 4: 330, 5: 410, 6: 480 },
-    4: { 1: 120, 2: 190, 3: 260, 4: 330, 5: 400, 6: 480 },
-    5: { 1: 150, 2: 210, 3: 280, 4: 350, 5: 420, 6: 480 },
-  };
-
-  const peopleKey = payableGuests >= 6 ? 5 : Math.min(5, payableGuests);
-  const hoursKey = Math.min(6, Math.max(1, hours || 1));
   const total = isFixed
     ? priceNum
-    : (PRICE_TABLE[peopleKey] ? PRICE_TABLE[peopleKey][hoursKey] || PRICE_TABLE[peopleKey][6] : priceNum * payableGuests);
+    : calculateTourAmount({ adults, children, hours });
 
   const formatEUR = (v: number) => new Intl.NumberFormat("pt-PT", { style: "currency", currency: "EUR" }).format(v);
   const unitPricePerPerson = Math.max(0, Number((total / Math.max(1, payableGuests)).toFixed(2)));

@@ -80,7 +80,7 @@ const ModalSelectGuests: FC<ModalSelectGuestsProps> = ({ renderChildren, value, 
                             className={`flex-1 relative flex z-10 overflow-hidden`}
                           >
                             <GuestsInput
-                              defaultValue={value}
+                              defaultValue={currentGuests}
                               onChange={(data) => setCurrentGuests((prev) => ({ ...prev, ...data }))}
                             />
                           </div>
@@ -91,7 +91,13 @@ const ModalSelectGuests: FC<ModalSelectGuestsProps> = ({ renderChildren, value, 
                       <button
                         type="button"
                         className="underline font-semibold flex-shrink-0"
-                        onClick={() => { }}
+                        onClick={() => {
+                          setCurrentGuests({
+                            guestAdults: 0,
+                            guestChildren: 0,
+                            guestInfants: 0,
+                          });
+                        }}
                       >
                         Clear data
                       </button>

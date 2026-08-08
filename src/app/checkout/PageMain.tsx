@@ -16,7 +16,7 @@ import Image from "next/image";
 import { GuestsObject } from "../(client-components)/type";
 import { DEMO_EXPERIENCES_LISTINGS, DEMO_STAY_LISTINGS } from "@/data/listings";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { useRouter } from "next/navigation";
+import { calculateTourAmount } from "@/utils/bookingPricing";
 
 export interface CheckOutPagePageMainProps {
   className?: string;
@@ -31,6 +31,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
   initialDate = null,
   initialGuests,
   initialTime = null,
+  initialHours = null,
 }) => {
   const searchParams = useSearchParams();
 
@@ -51,92 +52,28 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
   const [listingSubtitle, setListingSubtitle] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [paymentProcessing, setPaymentProcessing] = useState<boolean>(false);
-  const [paymentCompleted, setPaymentCompleted] = useState<boolean>(false);
+  const [successModalOpen, setSuccessModalOpen] = useState<boolean>(false);
+  const [paymentError, setPaymentError] = useState<string | null>(null);
+  const [paidOrderId, setPaidOrderId] = useState<string | null>(null);
   const [time, setTime] = useState<string | null>(initialTime || "09:00");
   const [dateInput, setDateInput] = useState<string>(converSelectedDateToString([startDate, endDate]));
   const [hours, setHours] = useState<number>(2);
   const [isReadOnly, setIsReadOnly] = useState<boolean>(false);
   const listingIdParam = (searchParams && (searchParams.get("listingId") || searchParams.get("listing"))) || "";
 
-  async function handleSubmit(e: any) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    // validate guests
     const totalGuests = (guests.guestAdults || 0) + (guests.guestChildren || 0);
     if (totalGuests < 1) {
       setGuestError("Please select number of people");
+      setSubmitted(false);
       return;
     }
+
     setGuestError(null);
-
-    // build FormData robustly (use form element if available)
-    const formEl = (e.currentTarget as HTMLFormElement) || null;
-    let fd: FormData;
-    try {
-      fd = formEl ? new FormData(formEl) : new FormData();
-    } catch (err) {
-      fd = new FormData();
-    }
-
-    // append contextual fields
-    if (listingIdParam) fd.set("listingId", listingIdParam);
-    if (listingTitle) fd.set("listingTitle", String(listingTitle));
-    if (listingImage) fd.set("listingImage", String(listingImage));
-    if (startDate) fd.set("date_iso", startDate.toISOString());
-    fd.set("adults", String((guests.guestAdults || 0)));
-    fd.set("children", String((guests.guestChildren || 0)));
-    fd.set("infants", String((guests.guestInfants || 0)));
-
-    // include visible date string and hours
-    if (dateInput) fd.set("date_display", dateInput);
-    if (hours) fd.set("hours", String(hours));
-
-    // append computed total + breakdown
-    try {
-      const total = computeAmount();
-      const unit = Number((total / Math.max(1, hours)).toFixed(2));
-      fd.set("total", String(total));
-      fd.set("unit_price", String(unit));
-      fd.set("breakdown", `${unit} EUR x ${hours}h = ${total} EUR`);
-    } catch (err) {
-      // ignore
-    }
-
-    // append remaining fields from the form (if present)
-    try {
-      if (formEl) {
-        const name = (formEl.elements.namedItem('name') as HTMLInputElement | null)?.value;
-        const email = (formEl.elements.namedItem('email') as HTMLInputElement | null)?.value;
-        const phone = (formEl.elements.namedItem('phone') as HTMLInputElement | null)?.value;
-        const country = (formEl.elements.namedItem('country') as HTMLInputElement | null)?.value;
-        const city = (formEl.elements.namedItem('city') as HTMLInputElement | null)?.value;
-        const pickup_point = (formEl.elements.namedItem('pickup_point') as HTMLInputElement | null)?.value;
-        const trip_details = (formEl.elements.namedItem('trip_details') as HTMLInputElement | null)?.value;
-        if (name) fd.set('name', name);
-        if (email) fd.set('email', email);
-        if (phone) fd.set('phone', phone);
-        if (country) fd.set('country', country);
-        if (city) fd.set('city', city);
-        if (pickup_point) fd.set('pickup_point', pickup_point);
-        if (trip_details) fd.set('trip_details', trip_details);
-      }
-    } catch (err) {
-      // ignore
-    }
-
-    try {
-      if (time) fd.set('time', String(time));
-      const res = await fetch('https://formspree.io/f/mrenpbrj', {
-        method: 'POST',
-        body: fd,
-        headers: { Accept: 'application/json' },
-      });
-      setSubmitted(true);
-      if (!res.ok) console.error('Formspree error', res.status);
-    } catch (err) {
-      console.error(err);
-      setSubmitted(true);
-    }
+    setPaymentError(null);
+    setSubmitted(true);
   }
 
   useEffect(() => {
@@ -206,28 +143,27 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
       const hasPrefill = Boolean(listingId || dateParam || timeParam || adultsParam || initialDate || initialGuests);
       setIsReadOnly(hasPrefill);
     }
-  }, [initialDate, initialGuests, searchParams]);
-
-  const router = useRouter();
+  }, [initialDate, initialGuests, initialHours, searchParams]);
 
   // compute amount from listing when possible
   const computeAmount = () => {
-    // pricing table defined by user (EUR)
-    const PRICE_TABLE: Record<number, Record<number, number>> = {
-      1: { 1: 60, 2: 90, 3: 120, 4: 150, 5: 185, 6: 220 },
-      2: { 1: 60, 2: 120, 3: 180, 4: 240, 5: 300, 6: 360 },
-      3: { 1: 90, 2: 170, 3: 250, 4: 330, 5: 410, 6: 480 },
-      4: { 1: 120, 2: 190, 3: 260, 4: 330, 5: 400, 6: 480 },
-      5: { 1: 150, 2: 210, 3: 280, 4: 350, 5: 420, 6: 480 },
-    };
+    return calculateTourAmount({
+      adults: guests.guestAdults || 0,
+      children: guests.guestChildren || 0,
+      hours,
+    });
+  };
 
-    const payableGuests = Math.max(1, (guests.guestAdults || 0) + (guests.guestChildren || 0));
-    const peopleKey = payableGuests >= 6 ? 5 : Math.min(5, payableGuests);
-    const hoursKey = Math.min(6, Math.max(1, hours || 1));
+  const totalPayableGuests = (guests.guestAdults || 0) + (guests.guestChildren || 0);
 
-    const personPrices = PRICE_TABLE[peopleKey] || PRICE_TABLE[5];
-    const price = (personPrices && (personPrices as any)[hoursKey]) || personPrices[6] || 0;
-    return Number(price.toFixed(2));
+  const getErrorMessage = (error: unknown, fallback: string) => {
+    if (error instanceof Error && error.message) return error.message;
+    if (typeof error === "string" && error) return error;
+    try {
+      return JSON.stringify(error);
+    } catch {
+      return fallback;
+    }
   };
 
   const renderSidebar = () => {
@@ -347,14 +283,25 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
             />
 
             <ModalSelectGuests
+              value={guests}
+              onSave={(data) => {
+                setGuests({
+                  guestAdults: data.guestAdults || 0,
+                  guestChildren: data.guestChildren || 0,
+                  guestInfants: data.guestInfants || 0,
+                });
+                setSubmitted(false);
+                setGuestError(null);
+                setPaymentError(null);
+              }}
               renderChildren={({ openModal }) => (
                 isReadOnly ? (
                   <div className="text-left flex-1 p-5 flex justify-between space-x-5 bg-neutral-50 dark:bg-neutral-900" aria-disabled>
                     <div className="flex flex-col">
                       <span className="text-sm text-neutral-400">Guests</span>
                       <span className="mt-1.5 text-lg font-semibold">
-                        <span className="line-clamp-1 text-neutral-600">
-                          {`${(guests.guestAdults || 0) + (guests.guestChildren || 0)} Guests`}
+                        <span className="line-clamp-1 text-neutral-600 dark:text-neutral-300">
+                          {totalPayableGuests > 0 ? `${totalPayableGuests} Guests` : "No guests selected"}
                         </span>
                       </span>
                     </div>
@@ -370,7 +317,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                       <span className="text-sm text-neutral-400">Guests</span>
                       <span className="mt-1.5 text-lg font-semibold">
                         <span className="line-clamp-1">
-                          {`${(guests.guestAdults || 0) + (guests.guestChildren || 0)} Guests`}
+                          {totalPayableGuests > 0 ? `${totalPayableGuests} Guests` : "Select guests"}
                         </span>
                       </span>
                     </div>
@@ -380,6 +327,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
               )}
             />
           </div>
+          {guestError && <p className="mt-3 text-sm text-red-600">{guestError}</p>}
         </div>
 
         <div>
@@ -388,22 +336,6 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
               <h3 className="text-2xl font-semibold">Fill in tour information</h3>
               <div className="w-14 border-b border-neutral-200 dark:border-neutral-700 my-5"></div>
               <form onSubmit={handleSubmit} className="space-y-6">
-                <input type="hidden" name="listingId" value={listingIdParam} />
-                <input type="hidden" name="listingTitle" value={listingTitle || ""} />
-                <input type="hidden" name="listingImage" value={listingImage || ""} />
-                <input type="hidden" name="date_iso" value={startDate ? startDate.toISOString() : ""} />
-                <input type="hidden" name="adults" value={String(guests.guestAdults || 0)} />
-                <input type="hidden" name="children" value={String(guests.guestChildren || 0)} />
-                <input type="hidden" name="infants" value={String(guests.guestInfants || 0)} />
-                {/* ensure form submits current time, total and breakdown matching visible values */}
-                <input type="hidden" name="time" value={time || ""} />
-                <input type="hidden" name="total" value={String(computeAmount())} />
-                <input type="hidden" name="unit_price" value={String(Number((computeAmount() / Math.max(1, hours)).toFixed(2)))} />
-                <input type="hidden" name="breakdown" value={`${String(Number((computeAmount() / Math.max(1, hours)).toFixed(2)))} EUR x ${hours}h = ${String(computeAmount())} EUR`} />
-                {/* keep action attr for noscript fallback */}
-                <noscript>
-                  <form action="https://formspree.io/f/mrenpbrj" method="POST"></form>
-                </noscript>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-1">
                     <Label>Date *</Label>
@@ -411,7 +343,11 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                       type="text"
                       name="date"
                       value={dateInput}
-                      onChange={(e) => setDateInput(e.target.value)}
+                      onChange={(e) => {
+                        setDateInput(e.target.value);
+                        setSubmitted(false);
+                        setPaymentError(null);
+                      }}
                       required
                       disabled={isReadOnly}
                       readOnly={isReadOnly}
@@ -424,7 +360,11 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                       name="time"
                       required
                       value={time || ""}
-                      onChange={(e) => setTime(e.target.value)}
+                      onChange={(e) => {
+                        setTime(e.target.value);
+                        setSubmitted(false);
+                        setPaymentError(null);
+                      }}
                       className="w-full px-4 py-3 border rounded-md"
                     >
                       {Array.from({ length: 11 }).map((_, i) => {
@@ -447,7 +387,11 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                     name="hours"
                     required
                     value={String(hours)}
-                    onChange={(e) => setHours(Number(e.target.value))}
+                    onChange={(e) => {
+                      setHours(Number(e.target.value));
+                      setSubmitted(false);
+                      setPaymentError(null);
+                    }}
                     className="w-full px-4 py-3 border rounded-md"
                   >
                     {Array.from({ length: 6 }).map((_, i) => {
@@ -507,8 +451,20 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
             </>
           ) : (
             <div className="space-y-6">
-              <h3 className="text-2xl font-semibold">Reservation received</h3>
-              <div className="text-neutral-600">Your reservation request was submitted. Proceed to payment.</div>
+              <h3 className="text-2xl font-semibold">Payment</h3>
+              <div className="text-neutral-600 dark:text-neutral-300">
+                Your details are complete. Continue with PayPal to confirm the booking.
+              </div>
+              {paymentError && (
+                <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                  {paymentError}
+                </div>
+              )}
+              {paymentProcessing && (
+                <div className="rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-700">
+                  Confirming PayPal payment...
+                </div>
+              )}
               <div className="pt-4">
                 <PayPalScriptProvider
                   options={{
@@ -523,26 +479,29 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                       style={{ layout: "vertical" }}
                       forceReRender={[computeAmount(), time]}
                       createOrder={async () => {
-                        const amount = computeAmount();
                         const res = await fetch('/api/paypal/create-order', {
                           method: 'POST',
                           headers: { 'Content-Type': 'application/json' },
                           body: JSON.stringify({
-                            amount,
-                            currency: 'EUR',
                             bookingData: {
+                              listingId: listingIdParam,
                               tourTitle: listingTitle || 'Tour Booking',
-                              persons: (guests.guestAdults || 0) + (guests.guestChildren || 0),
+                              adults: guests.guestAdults || 0,
+                              children: guests.guestChildren || 0,
+                              infants: guests.guestInfants || 0,
+                              persons: totalPayableGuests,
                               date: dateInput,
+                              hours,
                               time: time || '',
                             },
                           }),
                         });
                         const data = await res.json();
-                        if (!res.ok) throw new Error(data?.error || 'create order failed');
-                        // FIX: the API route returns the field as "orderId", not "id".
-                        // Reading data.id here returned undefined and made the PayPal SDK
-                        // fail with a "token": null error when opening checkout.
+                        if (!res.ok) {
+                          const message = data?.details || data?.error || 'PayPal could not create the order.';
+                          setPaymentError(typeof message === 'string' ? message : 'PayPal could not create the order.');
+                          throw new Error(data?.error || 'create order failed');
+                        }
                         const orderId = data.orderId || data.id;
                         if (!orderId) throw new Error('No order ID returned from server');
                         return orderId;
@@ -558,17 +517,22 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                             body: JSON.stringify({ orderID }),
                           });
                           const captureData = await captureRes.json();
-                          if (!captureRes.ok) throw new Error(captureData?.error || 'capture failed');
-                          setPaymentCompleted(true);
-                          if (typeof window !== 'undefined') window.location.href = '/pay-done';
+                          if (!captureRes.ok || captureData?.status !== 'COMPLETED') {
+                            const details = captureData?.details || captureData?.error || 'PayPal payment was not completed.';
+                            throw new Error(typeof details === 'string' ? details : JSON.stringify(details));
+                          }
+                          setPaidOrderId(orderID);
+                          setSuccessModalOpen(true);
                         } catch (err) {
                           console.error('PayPal capture error', err);
+                          setPaymentError(err instanceof Error ? err.message : 'PayPal capture failed.');
                         } finally {
                           setPaymentProcessing(false);
                         }
                       }}
                       onError={(err) => {
                         console.error("PayPal error", err);
+                        setPaymentError(getErrorMessage(err, "PayPal payment could not be completed. Please try again."));
                       }}
                     />
                   </div>
@@ -587,6 +551,57 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
         <div className="w-full lg:w-3/5 xl:w-2/3 lg:pr-10 ">{renderMain()}</div>
         <div className="hidden lg:block flex-grow">{renderSidebar()}</div>
       </main>
+      <NcModal
+        isOpenProp={successModalOpen}
+        onCloseModal={() => setSuccessModalOpen(false)}
+        renderTrigger={() => null}
+        modalTitle="Payment confirmed"
+        contentExtraClass="max-w-lg"
+        renderContent={() => (
+          <div className="space-y-5 text-center">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-green-100 text-3xl text-green-700">
+              ✓
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold">Booking payment successful</h3>
+              <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">
+                PayPal confirmed the payment for your booking.
+              </p>
+            </div>
+            <div className="space-y-2 rounded-xl bg-neutral-50 p-4 text-left text-sm dark:bg-neutral-900">
+              <div className="flex justify-between gap-4">
+                <span className="text-neutral-500">Tour</span>
+                <span className="font-medium text-right">{listingTitle || "Tour Booking"}</span>
+              </div>
+              <div className="flex justify-between gap-4">
+                <span className="text-neutral-500">Date</span>
+                <span className="font-medium text-right">{dateInput}</span>
+              </div>
+              <div className="flex justify-between gap-4">
+                <span className="text-neutral-500">Time</span>
+                <span className="font-medium text-right">{time}</span>
+              </div>
+              <div className="flex justify-between gap-4">
+                <span className="text-neutral-500">Guests</span>
+                <span className="font-medium text-right">{totalPayableGuests}</span>
+              </div>
+              <div className="flex justify-between gap-4">
+                <span className="text-neutral-500">Total</span>
+                <span className="font-medium text-right">
+                  {new Intl.NumberFormat("pt-PT", { style: "currency", currency: "EUR" }).format(computeAmount())}
+                </span>
+              </div>
+              {paidOrderId && (
+                <div className="flex justify-between gap-4">
+                  <span className="text-neutral-500">PayPal order</span>
+                  <span className="font-medium text-right">{paidOrderId}</span>
+                </div>
+              )}
+            </div>
+            <ButtonPrimary href="/">Done</ButtonPrimary>
+          </div>
+        )}
+      />
     </div>
   );
 };
