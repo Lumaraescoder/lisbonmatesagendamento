@@ -479,65 +479,65 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                   >
                     <div>
                       <PayPalButtons
-                      style={{ layout: "vertical" }}
-                      forceReRender={[computeAmount(), time]}
-                      createOrder={async () => {
-                        const res = await fetch('/api/paypal/create-order', {
-                          method: 'POST',
-                          headers: { 'Content-Type': 'application/json' },
-                          body: JSON.stringify({
-                            bookingData: {
-                              listingId: listingIdParam,
-                              tourTitle: listingTitle || 'Tour Booking',
-                              adults: guests.guestAdults || 0,
-                              children: guests.guestChildren || 0,
-                              infants: guests.guestInfants || 0,
-                              persons: totalPayableGuests,
-                              date: dateInput,
-                              hours,
-                              time: time || '',
-                            },
-                          }),
-                        });
-                        const data = await res.json();
-                        if (!res.ok) {
-                          const message = data?.details || data?.error || 'PayPal could not create the order.';
-                          setPaymentError(typeof message === 'string' ? message : 'PayPal could not create the order.');
-                          throw new Error(data?.error || 'create order failed');
-                        }
-                        const orderId = data.orderId || data.id;
-                        if (!orderId) throw new Error('No order ID returned from server');
-                        return orderId;
-                      }}
-                      onApprove={async (data) => {
-                        setPaymentProcessing(true);
-                        try {
-                          const orderID = (data as any)?.orderID;
-                          if (!orderID) throw new Error('Missing orderID from PayPal approval');
-                          const captureRes = await fetch('/api/paypal/capture-order', {
+                        style={{ layout: "vertical" }}
+                        forceReRender={[computeAmount(), time]}
+                        createOrder={async () => {
+                          const res = await fetch('/api/paypal/create-order', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ orderID }),
+                            body: JSON.stringify({
+                              bookingData: {
+                                listingId: listingIdParam,
+                                tourTitle: listingTitle || 'Tour Booking',
+                                adults: guests.guestAdults || 0,
+                                children: guests.guestChildren || 0,
+                                infants: guests.guestInfants || 0,
+                                persons: totalPayableGuests,
+                                date: dateInput,
+                                hours,
+                                time: time || '',
+                              },
+                            }),
                           });
-                          const captureData = await captureRes.json();
-                          if (!captureRes.ok || captureData?.status !== 'COMPLETED') {
-                            const details = captureData?.details || captureData?.error || 'PayPal payment was not completed.';
-                            throw new Error(typeof details === 'string' ? details : JSON.stringify(details));
+                          const data = await res.json();
+                          if (!res.ok) {
+                            const message = data?.details || data?.error || 'PayPal could not create the order.';
+                            setPaymentError(typeof message === 'string' ? message : 'PayPal could not create the order.');
+                            throw new Error(data?.error || 'create order failed');
                           }
-                          setPaidOrderId(orderID);
-                          setSuccessModalOpen(true);
-                        } catch (err) {
-                          console.error('PayPal capture error', err);
-                          setPaymentError(err instanceof Error ? err.message : 'PayPal capture failed.');
-                        } finally {
-                          setPaymentProcessing(false);
-                        }
-                      }}
-                      onError={(err) => {
-                        console.error("PayPal error", err);
-                        setPaymentError(getErrorMessage(err, "PayPal payment could not be completed. Please try again."));
-                      }}
-                    />
+                          const orderId = data.orderId || data.id;
+                          if (!orderId) throw new Error('No order ID returned from server');
+                          return orderId;
+                        }}
+                        onApprove={async (data) => {
+                          setPaymentProcessing(true);
+                          try {
+                            const orderID = (data as any)?.orderID;
+                            if (!orderID) throw new Error('Missing orderID from PayPal approval');
+                            const captureRes = await fetch('/api/paypal/capture-order', {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({ orderID }),
+                            });
+                            const captureData = await captureRes.json();
+                            if (!captureRes.ok || captureData?.status !== 'COMPLETED') {
+                              const details = captureData?.details || captureData?.error || 'PayPal payment was not completed.';
+                              throw new Error(typeof details === 'string' ? details : JSON.stringify(details));
+                            }
+                            setPaidOrderId(orderID);
+                            setSuccessModalOpen(true);
+                          } catch (err) {
+                            console.error('PayPal capture error', err);
+                            setPaymentError(err instanceof Error ? err.message : 'PayPal capture failed.');
+                          } finally {
+                            setPaymentProcessing(false);
+                          }
+                        }}
+                        onError={(err) => {
+                          console.error("PayPal error", err);
+                          setPaymentError(getErrorMessage(err, "PayPal payment could not be completed. Please try again."));
+                        }}
+                      />
                     </div>
                   </PayPalScriptProvider>
                 ) : (
@@ -546,7 +546,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                     {process.env.NODE_ENV === 'production' && typeof window !== 'undefined' && (function logMissing() {
                       try {
                         console.error('Missing or empty NEXT_PUBLIC_PAYPAL_CLIENT_ID in production build. PayPal SDK will not be initialized and PayPal Buttons will not render.');
-                      } catch (e) {}
+                      } catch (e) { }
                       return null;
                     })()}
                   </div>
