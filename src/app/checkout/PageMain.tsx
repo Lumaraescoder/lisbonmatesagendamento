@@ -419,18 +419,18 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                   </div>
                   <div className="space-y-1">
                     <Label>Phone *</Label>
-                    <Input type="tel" name="phone" placeholder="+351..." required />
+                    <Input type="tel" name="phone" placeholder="Phone number" required />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-1">
                     <Label>Country</Label>
-                    <Input type="text" name="country" placeholder="Portugal" />
+                    <Input type="text" name="country" placeholder="Write your country" />
                   </div>
                   <div className="space-y-1">
                     <Label>City</Label>
-                    <Input type="text" name="city" placeholder="Lisbon" />
+                    <Input type="text" name="city" placeholder="write your city" />
                   </div>
                 </div>
 
