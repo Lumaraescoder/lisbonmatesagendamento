@@ -2,7 +2,7 @@
 
 import React, { FC, useState } from "react";
 import { ArrowRightIcon, Squares2X2Icon } from "@heroicons/react/24/outline";
-import { t } from '@/i18n';
+import { useI18n } from "@/i18n/I18nProvider";
 import CommentListing from "@/components/CommentListing";
 import FiveStartIconForRate from "@/components/FiveStartIconForRate";
 import Avatar from "@/shared/Avatar";
@@ -26,6 +26,7 @@ export interface ListingExperiencesDetailPageProps { }
 const ListingExperiencesDetailPage: FC<
   ListingExperiencesDetailPageProps
 > = ({ }) => {
+  const { t } = useI18n();
   const thisPathname = usePathname();
   const router = useRouter();
 
@@ -83,7 +84,7 @@ const ListingExperiencesDetailPage: FC<
           </div>
           <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 text-center sm:text-left sm:space-x-3 ">
             <i className="las la-language text-2xl"></i>
-            <span className="">{t('experiences.languagesLabel')}: English, Vietnamese</span>
+            <span className="">{t('experiences.languagesLabel')}: {t("experiences.languagesValue")}</span>
           </div>
         </div>
       </div>
@@ -118,12 +119,11 @@ const ListingExperiencesDetailPage: FC<
         <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
         {/* 6 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-sm text-neutral-700 dark:text-neutral-300 ">
-          {includes_demo
-            .filter((_, i) => i < 12)
+          {(t("experiences.includes") as string[])
             .map((item) => (
-              <div key={item.name} className="flex items-center space-x-3">
+              <div key={item} className="flex items-center space-x-3">
                 <i className="las la-check-circle text-2xl"></i>
-                <span>{item.name}</span>
+                <span>{item}</span>
               </div>
             ))}
         </div>
@@ -180,7 +180,7 @@ const ListingExperiencesDetailPage: FC<
         <div>
           <h2 className="text-2xl font-semibold">{t('experiences.location')}</h2>
           <span className="block mt-2 text-neutral-500 dark:text-neutral-400">
-            San Diego, CA, United States of America (SAN-San Diego Intl.)
+            {t("experiences.locationSample")}
           </span>
         </div>
         <div className="w-14 border-b border-neutral-200 dark:border-neutral-700" />
@@ -260,7 +260,7 @@ const ListingExperiencesDetailPage: FC<
           <span className="text-3xl font-semibold">
             ${pricePerPerson}
             <span className="ml-1 text-base font-normal text-neutral-500 dark:text-neutral-400">
-              /person
+              {t("common.perPerson")}
             </span>
           </span>
           <StartRating />
@@ -285,22 +285,22 @@ const ListingExperiencesDetailPage: FC<
         {/* SUM */}
         <div className="flex flex-col space-y-4">
           <div className="flex justify-between text-neutral-6000 dark:text-neutral-300">
-            <span>${pricePerPerson} x {payableGuests} persons</span>
+            <span>{t("experiences.priceGuests", { price: pricePerPerson, count: payableGuests })}</span>
             <span>${subtotal}</span>
           </div>
           <div className="flex justify-between text-neutral-6000 dark:text-neutral-300">
-            <span>Service charge</span>
+            <span>{t("common.serviceCharge")}</span>
             <span>${serviceCharge}</span>
           </div>
           <div className="border-b border-neutral-200 dark:border-neutral-700"></div>
           <div className="flex justify-between font-semibold">
-            <span>Total</span>
+            <span>{t("common.total")}</span>
             <span>${total}</span>
           </div>
         </div>
 
         {/* SUBMIT */}
-        <ButtonPrimary href={'/checkout'}>Reserve</ButtonPrimary>
+        <ButtonPrimary href={'/checkout'}>{t("common.reserve")}</ButtonPrimary>
       </div>
     );
   };
@@ -315,7 +315,7 @@ const ListingExperiencesDetailPage: FC<
             onClick={handleOpenModalImageGallery}
           >
             <Image
-              alt="photo 1"
+              alt={t("experiences.showAllPhotos")}
               fill
               className="object-cover  rounded-md sm:rounded-xl"
               src={PHOTOS[0]}
@@ -331,7 +331,7 @@ const ListingExperiencesDetailPage: FC<
             >
               <div className="aspect-w-4 aspect-h-3">
                 <Image
-                  alt="photos"
+                  alt={t("experiences.showAllPhotos")}
                   fill
                   className="object-cover w-full h-full rounded-md sm:rounded-xl "
                   src={item || ""}
@@ -353,7 +353,7 @@ const ListingExperiencesDetailPage: FC<
           >
             <Squares2X2Icon className="h-5 w-5" />
             <span className="ml-2 text-neutral-800 text-sm font-medium">
-              Show all photos
+              {t("experiences.showAllPhotos")}
             </span>
           </div>
         </div>

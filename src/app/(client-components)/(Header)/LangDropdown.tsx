@@ -4,9 +4,10 @@ import {
   GlobeAltIcon,
   ChevronDownIcon,
 } from "@heroicons/react/24/outline";
-import { FC, Fragment, useEffect, useState } from "react";
+import { FC, Fragment } from "react";
 import { headerCurrency } from "./CurrencyDropdown";
-import { detectLocale, setLocale } from "@/i18n";
+import { Locale } from "@/i18n";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export const headerLanguage = [
   { id: "pt", name: "Português", description: "Português", href: "#" },
@@ -30,10 +31,7 @@ const LangDropdown: FC<LangDropdownProps> = ({
   panelClassName = "top-full right-0 max-w-sm w-96",
   className = "hidden md:flex",
 }) => {
-  const [current, setCurrent] = useState<string>('pt');
-  useEffect(() => {
-    setCurrent(detectLocale());
-  }, []);
+  const { locale, setLocale, t } = useI18n();
 
   const renderLang = (close: () => void) => {
     return (
@@ -44,17 +42,16 @@ const LangDropdown: FC<LangDropdownProps> = ({
             href={item.href}
             onClick={(e) => {
               e.preventDefault();
-              // persist and reload
-              setLocale(item.id as any);
+              setLocale(item.id as Locale);
               close();
             }}
-            className={`flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 ${current === item.id ? "bg-gray-100 dark:bg-gray-700" : "opacity-80"
+            className={`flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 ${locale === item.id ? "bg-gray-100 dark:bg-gray-700" : "opacity-80"
               }`}
           >
             <div className="">
               <p className="text-sm font-medium ">{item.name}</p>
               <p className="text-xs text-gray-500 dark:text-gray-400">
-                {item.description}
+                {t(`languageNames.${item.id}`)}
               </p>
             </div>
           </a>
@@ -114,7 +111,7 @@ const LangDropdown: FC<LangDropdownProps> = ({
                 <div className="p-3 sm:p-6 rounded-2xl bg-white dark:bg-neutral-800 shadow-lg ring-1 ring-black ring-opacity-5">
                   <Tab.Group>
                     <Tab.List className="flex space-x-1 rounded-full bg-gray-100 dark:bg-slate-700 p-1">
-                      {["Language", "Currency"].map((category) => (
+                      {[t("common.language"), t("common.currency")].map((category) => (
                         <Tab
                           key={category}
                           className={({ selected }) =>

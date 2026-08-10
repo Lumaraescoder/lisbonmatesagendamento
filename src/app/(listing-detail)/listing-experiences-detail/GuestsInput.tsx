@@ -6,6 +6,7 @@ import NcInputNumber from "@/components/NcInputNumber";
 import { UserPlusIcon } from "@heroicons/react/24/outline";
 import ClearDataButton from "@/app/(client-components)/(HeroSearchForm)/ClearDataButton";
 import { GuestsObject } from "@/app/(client-components)/type";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export interface GuestsInputProps {
   className?: string;
@@ -15,6 +16,7 @@ export interface GuestsInputProps {
 }
 
 const GuestsInput: FC<GuestsInputProps> = ({ className = "flex-1", adults, children, onChange }) => {
+  const { t } = useI18n();
   const [guestAdultsInputValue, setGuestAdultsInputValue] = useState(adults ?? 0);
   const [guestChildrenInputValue, setGuestChildrenInputValue] = useState(children ?? 0);
 
@@ -53,10 +55,10 @@ const GuestsInput: FC<GuestsInputProps> = ({ className = "flex-1", adults, child
               </div>
               <div className="flex-grow">
                 <span className="block xl:text-lg font-semibold">
-                  {totalGuests ? `${totalGuests} Persons` : "Select number of people"}
+                  {totalGuests ? `${totalGuests} ${t("common.persons")}` : t("experiences.selectGuests")}
                 </span>
                 <span className="block mt-1 text-sm text-neutral-400 leading-none font-light">
-                  {totalGuests ? "Persons" : "Please select number of people"}
+                  {totalGuests ? t("common.persons") : t("experiences.selectGuestsDescription")}
                 </span>
               </div>
 
@@ -87,16 +89,16 @@ const GuestsInput: FC<GuestsInputProps> = ({ className = "flex-1", adults, child
                 onChange={(value) => handleChangeData(value, "guestAdults")}
                 max={10}
                 min={1}
-                label="Adults"
-                desc="Ages 13 or above"
+                label={t("experiences.adults")}
+                desc={t("experiences.adultsDesc")}
               />
               <NcInputNumber
                 className="w-full mt-6"
                 defaultValue={guestChildrenInputValue}
                 onChange={(value) => handleChangeData(value, "guestChildren")}
                 max={4}
-                label="Children"
-                desc="Ages 2–12"
+                label={t("experiences.children")}
+                desc={t("experiences.childrenDesc")}
               />
               {/* Infants removed per request */}
             </Popover.Panel>

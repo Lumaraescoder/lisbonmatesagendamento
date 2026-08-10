@@ -6,6 +6,7 @@ import AvatarDropdown from "./AvatarDropdown";
 import Link from "next/link";
 import { Route } from "@/routers/types";
 import { usePathname } from "next/navigation";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export interface MainNav2Props {
   className?: string;
@@ -13,16 +14,17 @@ export interface MainNav2Props {
 
 const MainNav2: FC<MainNav2Props> = ({ className = "" }) => {
   const pathname = usePathname();
+  const { t } = useI18n();
   return (
     <div className={`MainNav2 relative z-10 ${className}`}>
       <div className="px-4 h-20 lg:container flex justify-between items-center">
         <div className="hidden md:flex items-center space-x-6 flex-1">
           <Logo className="w-32 self-center" />
           <nav className="hidden lg:flex space-x-6 text-neutral-700 dark:text-neutral-100">
-            <Link href="/#hero" className="hover:text-black">Home</Link>
-            <Link href="/#tours" className="hover:text-black">Tours</Link>
+            <Link href="/#hero" className="hover:text-black">{t("common.home")}</Link>
+            <Link href="/#tours" className="hover:text-black">{t("common.tours")}</Link>
             {/* <Link href="/#testimonials" className="hover:text-black">Testimonials</Link> */}
-            <Link href="/#contact" className="hover:text-black">Contact</Link>
+            <Link href="/#contact" className="hover:text-black">{t("common.contact")}</Link>
           </nav>
         </div>
 
