@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useI18n } from "@/i18n/I18nProvider";
-const WhatsAppFloat: React.FC<{ phone?: string; message?: string }> = ({ phone = "351912345678", message = "Hello! I have a question about tours" }) => {
+const WhatsAppFloat: React.FC<{ phone?: string; message?: string }> = ({ phone = "351928386233", message = "Hello! I have a question about tours" }) => {
   const { t } = useI18n();
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
