@@ -104,7 +104,7 @@
     },
     "id_3": {
       "title": "Tour por Belém",
-      "description": "Visita el Monasterio de los Jerónimos, la Torre de Belém y el Monumento a los Descubrimientos, con tiempo para hacer fotos y probar un pastel de nata recién hecho.",
+      "description": "Visita el Monasterio de los Jerónimos, la Torre de Belém y el Monumento a los Descubrimientos, con tiempo para hacer fotos y tomar un pastel fresco.",
       "address": "Lisboa, Portugal"
     },
     "id_4": {
@@ -161,7 +161,7 @@
       "Transporte y almuerzo según lo indicado"
     ],
     "tourTitle": "Tour por el casco antiguo - Alfama",
-    "longDescription": "TOUR PRIVADO EN TUK-TUK - adaptado a ti.\n\nNuestro guía te encontrará en el punto de recogida acordado y comenzará el tour en un tuk-tuk cómodo y 100% eléctrico. La ruta incluye miradores, calles históricas y paradas locales adaptadas a tu ritmo e intereses.\n\nSe incluyen pausas breves cuando se indique. Al final del tour volvemos al punto original o a otro lugar céntrico acordado.\n\nLos horarios son indicativos y pueden ajustarse bajo petición.",
+    "longDescription": "TOUR PRIVADO EN TUK-TUK - adaptado a ti.\n\nNuestro guía te encontrará en el punto de encuentro acordado y comenzará el tour en un tuk-tuk cómodo y 100% eléctrico. La ruta incluye miradores, calles históricas y paradas locales adaptadas a tu ritmo e intereses.\n\nSe incluyen pausas breves cuando se indique. Al final del tour volvemos al punto de encuentro original o a otro lugar céntrico acordado.\n\nLos horarios son indicativos y pueden ajustarse bajo petición.",
     "availability": "Disponibilidad",
     "availabilityDescription": "Los precios pueden aumentar en fines de semana o festivos",
     "time": "Hora",

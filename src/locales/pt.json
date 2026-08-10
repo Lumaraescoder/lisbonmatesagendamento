@@ -79,7 +79,7 @@
     "title": "Participe da nossa newsletter",
     "description": "Leia e partilhe novas perspetivas sobre praticamente qualquer assunto. Todos são bem-vindos.",
     "benefit1": "Obtenha um desconto maior",
-    "benefit2": "Receba guias premium",
+    "benefit2": "Receba revistas premium",
     "placeholder": "Introduza o seu e-mail",
     "button": "Inscrever-se"
   },
@@ -104,7 +104,7 @@
     },
     "id_3": {
       "title": "Passeio por Belém",
-      "description": "Visite o Mosteiro dos Jerónimos, a Torre de Belém e o Padrão dos Descobrimentos, com tempo para fotografias e um pastel de nata acabado de fazer.",
+      "description": "Visite o Mosteiro dos Jerónimos, a Torre de Belém e o Padrão dos Descobrimentos, com tempo para fotografias e um pastel fresco.",
       "address": "Lisboa, Portugal"
     },
     "id_4": {
@@ -139,9 +139,9 @@
     "experiencesDescriptions": "Descrição da experiência",
     "include": "Incluído",
     "includedInPrice": "Incluído no preço",
-    "reviews": "Comentários",
-    "sharePlaceholder": "Partilhe a sua opinião...",
-    "viewMoreReviews": "Ver mais {count} comentários",
+    "reviews": "Avaliações",
+    "sharePlaceholder": "Partilhe os seus pensamentos...",
+    "viewMoreReviews": "Ver mais {count} avaliações",
     "hostedBy": "Organizado por",
     "hoursLabel": "horas",
     "upToLabel": "Até {count} pessoas",
@@ -161,7 +161,7 @@
       "Transporte e almoço conforme indicado"
     ],
     "tourTitle": "Passeio pelo Centro Antigo - Alfama",
-    "longDescription": "TOUR PRIVADO DE TUK-TUK - adaptado a si.\n\nO nosso guia irá encontrá-lo no ponto de recolha combinado e dará início ao passeio num tuk-tuk confortável e 100% elétrico. O percurso inclui miradouros, ruas históricas e paragens locais adaptadas ao seu ritmo e aos seus interesses.\n\nEstão incluídas pequenas pausas quando indicado. No final do passeio, regressaremos ao ponto de recolha original ou a outro local central acordado.\n\nOs horários são indicativos e podem ser ajustados mediante pedido.",
+    "longDescription": "TOUR PRIVADO DE TUK-TUK - adaptado a si.\n\nO nosso guia irá encontrá-lo no ponto de encontro combinado e dará início ao passeio num tuk-tuk confortável e 100% elétrico. O percurso inclui miradouros, ruas históricas e paragens locais adaptadas ao seu ritmo e aos seus interesses.\n\nEstão incluídas pequenas pausas quando indicado. No final do passeio, regressaremos ao ponto de encontro original ou a outro local central acordado.\n\nOs horários são indicativos e podem ser ajustados mediante pedido.",
     "availability": "Disponibilidade",
     "availabilityDescription": "Os preços podem aumentar nos fins de semana ou feriados",
     "time": "Horário",

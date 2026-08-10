@@ -104,7 +104,7 @@
     },
     "id_3": {
       "title": "Visite de Belém",
-      "description": "Visitez le monastère des Jerónimos, la tour de Belém et le Monument des Découvertes, avec du temps pour les photos et un pastel de nata frais.",
+      "description": "Visitez le monastère des Jerónimos, la tour de Belém et le Monument des Découvertes, avec du temps pour les photos et une pâtisserie fraîche.",
       "address": "Lisbonne, Portugal"
     },
     "id_4": {
@@ -161,7 +161,7 @@
       "Transport et déjeuner selon les indications"
     ],
     "tourTitle": "Visite de la vieille ville - Alfama",
-    "longDescription": "VISITE PRIVÉE EN TUK-TUK — adaptée à vos envies.\n\nNotre guide vous retrouvera au point de prise en charge convenu et commencera la visite à bord d'un tuk-tuk confortable et 100 % électrique. Le parcours comprend des points de vue, des rues historiques et des arrêts locaux adaptés à votre rythme et à vos intérêts.\n\nDe courtes pauses sont prévues lorsque cela est indiqué. À la fin de la visite, nous retournons au point de départ ou à un autre lieu central convenu.\n\nLes horaires sont indicatifs et peuvent être ajustés sur demande.",
+    "longDescription": "VISITE PRIVÉE EN TUK-TUK — adaptée à vos envies.\n\nNotre guide vous retrouvera au point de rendez-vous convenu et commencera la visite à bord d'un tuk-tuk confortable et 100 % électrique. Le parcours comprend des points de vue, des rues historiques et des arrêts locaux adaptés à votre rythme et à vos intérêts.\n\nDe courtes pauses sont prévues lorsque cela est indiqué. À la fin de la visite, nous retournons au point de rendez-vous initial ou à un autre lieu central convenu.\n\nLes horaires sont indicatifs et peuvent être ajustés sur demande.",
     "availability": "Disponibilité",
     "availabilityDescription": "Les prix peuvent augmenter les week-ends ou les jours fériés",
     "time": "Heure",

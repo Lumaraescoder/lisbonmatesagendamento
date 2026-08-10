@@ -79,7 +79,7 @@
     "title": "Join our newsletter",
     "description": "Read and share new perspectives on just about any topic. Everyone's welcome.",
     "benefit1": "Get a bigger discount",
-    "benefit2": "Receive premium guides",
+    "benefit2": "Receive premium magazines",
     "placeholder": "Enter your email",
     "button": "Subscribe"
   },
@@ -104,7 +104,7 @@
     },
     "id_3": {
       "title": "Belém Tour",
-      "description": "Visit Jerónimos Monastery, Belém Tower, and the Monument to the Discoveries, with time for photos and a fresh pastel de nata.",
+      "description": "Visit Jerónimos Monastery, Belém Tower, and the Monument to the Discoveries, with time for photos and a fresh pastry.",
       "address": "Lisbon, Portugal"
     },
     "id_4": {
@@ -119,7 +119,7 @@
     },
     "id_6": {
       "title": "Magical Christmas Lights Tour in Lisbon",
-      "description": "Glide through Baixa, Chiado, and Praça do Comércio to see Lisbon's best holiday lights and stop for photos.",
+      "description": "Travel through Baixa, Chiado, and Praça do Comércio to see the best Christmas lights and stop for photos.",
       "address": "Lisbon, Portugal"
     },
     "id_7": {
@@ -161,7 +161,7 @@
       "Transport and lunch as indicated"
     ],
     "tourTitle": "The Old Town Tour - Alfama",
-    "longDescription": "PRIVATE TUK-TUK TOUR - tailored around you.\n\nOur guide will meet you at the agreed pickup point and begin the tour in a comfortable, 100% electric tuk-tuk. The route includes viewpoints, historic streets, and local stops adapted to your pace and interests.\n\nShort breaks are included where indicated. At the end of the tour we return to the original pickup point or another agreed central location.\n\nTimes are indicative and can be adjusted on request.",
+    "longDescription": "PRIVATE TUK-TUK TOUR - tailored around you.\n\nOur guide will meet you at the agreed meeting point and begin the tour in a comfortable, 100% electric tuk-tuk. The route includes viewpoints, historic streets, and local stops adapted to your pace and interests.\n\nShort breaks are included where indicated. At the end of the tour we return to the original meeting point or another agreed central location.\n\nTimes are indicative and can be adjusted on request.",
     "availability": "Availability",
     "availabilityDescription": "Prices may increase on weekends or holidays",
     "time": "Time",
