@@ -1,0 +1,39 @@
+{
+  "protectedNames": [
+    "Alfama",
+    "Avenida da Liberdade",
+    "Bairro Alto",
+    "Baixa",
+    "Belém",
+    "Boca do Inferno",
+    "Cabo da Roca",
+    "Cascais",
+    "Chiado",
+    "Cristo Rei",
+    "Fado",
+    "Ginjinha",
+    "Graça",
+    "Jerónimos",
+    "Luís de Camões",
+    "Manueline",
+    "Óbidos",
+    "Pastéis de Belém",
+    "Portas do Sol",
+    "Praça do Comércio",
+    "Rossio",
+    "Santa Luzia",
+    "Senhora do Monte",
+    "Sintra",
+    "São Jorge",
+    "São Pedro de Alcântara",
+    "Tagus",
+    "Tuk-Tuk"
+  ],
+  "foodAndCulture": {
+    "queijadas": "keep the Portuguese pastry name",
+    "travesseiros": "keep the Portuguese pastry name",
+    "pastel de nata": "keep the Portuguese pastry name",
+    "Fado": "keep the Portuguese music name",
+    "Ginjinha": "keep the Portuguese drink name"
+  }
+}

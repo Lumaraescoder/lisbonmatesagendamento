@@ -6,8 +6,8 @@
     "contact": "Kontakt",
     "links": "Links",
     "language": "Sprache",
-    "currency": "Waehrung",
-    "openMenu": "Menue oeffnen",
+    "currency": "Währung",
+    "openMenu": "Menü öffnen",
     "signUp": "Registrieren",
     "viewAll": "Alle ansehen",
     "save": "Speichern",
@@ -15,7 +15,7 @@
     "showAllPhotos": "Alle Fotos anzeigen",
     "reserve": "Reservieren",
     "total": "Gesamt",
-    "serviceCharge": "Servicegebuehr",
+    "serviceCharge": "Servicegebühr",
     "perPerson": "/Person",
     "persons": "Personen",
     "person": "Person",
@@ -25,7 +25,40 @@
     "fixedFullDayPrice": "Festpreis €320",
     "saleToday": "-{discount}% heute",
     "whatsAppMessage": "Hallo, ich habe eine Frage zu den Touren",
-    "whatsAppLabel": "Kontakt per WhatsApp"
+    "whatsAppLabel": "Kontakt per WhatsApp",
+    "date": "Datum",
+    "time": "Uhrzeit",
+    "guests": "Gäste",
+    "people": "Personen",
+    "breakdown": "Aufschlüsselung",
+    "next": "Weiter",
+    "payment": "Zahlung",
+    "cancel": "Abbrechen",
+    "saveAction": "Speichern",
+    "clearData": "Daten löschen",
+    "continueToPayment": "Zur Zahlung fortfahren",
+    "done": "Fertig",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "country": "Land",
+    "city": "Stadt",
+    "fullName": "Vollständiger Name",
+    "selectDate": "Datum auswählen",
+    "selectGuests": "Gäste auswählen",
+    "noGuestsSelected": "Keine Gäste ausgewählt",
+    "bookingDetails": "Buchungsdetails",
+    "hoursLabel": "Stunden",
+    "tour": "Tour",
+    "paypalOrder": "PayPal-Bestellung",
+    "payPalConfigMissing": "PayPal ist für diese Umgebung nicht konfiguriert. Setzen Sie `NEXT_PUBLIC_PAYPAL_CLIENT_ID` in Ihren Umgebungsvariablen und bauen/deployen Sie neu. (Die öffentliche Client-ID muss zur Build-Zeit als `NEXT_PUBLIC_PAYPAL_CLIENT_ID` bereitgestellt werden).",
+    "confirmingPaypal": "PayPal-Zahlung wird bestätigt...",
+    "paymentConfirmed": "Zahlung bestätigt",
+    "bookingPaymentSuccessful": "Buchungszahlung erfolgreich",
+    "bookingPaymentConfirmedText": "PayPal hat die Zahlung für Ihre Buchung bestätigt.",
+    "returnHomePage": "Zur Startseite zurückkehren",
+    "pageNotFound": "DIE GESUCHTE SEITE EXISTIERT NICHT.",
+    "contactTitle": "Kontakt",
+    "socials": "SOZIALE NETZWERKE"
   },
   "hero": {
     "subtitle": "Entdecken Sie die besten Touren und Erlebnisse in Lissabon",
@@ -33,11 +66,13 @@
     "button": "Jetzt buchen",
     "imageAlt": "Lisbon Mates Tour in Lissabon"
   },
-  "section": { "featuredTours": "Empfohlene Touren" },
+  "section": {
+    "featuredTours": "Empfohlene Touren"
+  },
   "categories": {
     "scenic": "Panorama-Tuk-Tuk-Touren",
     "fado": "Fado und kulturelle Erlebnisse",
-    "historical": "Historische und religioese Orte",
+    "historical": "Historische und religiöse Orte",
     "food": "Kulinarische Erlebnisse"
   },
   "subscribe": {
@@ -52,19 +87,51 @@
     "en": "Englisch",
     "pt": "Portugiesisch",
     "es": "Spanisch",
-    "fr": "Franzoesisch",
+    "fr": "Französisch",
     "de": "Deutsch",
     "it": "Italienisch"
   },
   "tourCards": {
-    "id1": { "title": "Altstadt-Tour - Alfama", "description": "Eine private Alfama-Tour, angepasst an Ihre Zeit, Interessen und Ihr Tempo, mit lokalem Guide und 100% elektrischem Tuk-Tuk.", "address": "Lissabon" },
-    "id_2": { "title": "Tour Chiado und Bairro Alto", "description": "Erkunden Sie Literaturcafes, Boutiquen, bohemische Strassen und Aussichtspunkte ueber den Tejo in Ihrem Tempo.", "address": "Lissabon" },
-    "id_3": { "title": "Tour Belem", "description": "Besuchen Sie das Jeronimos-Kloster, den Belem-Turm und das Denkmal der Entdeckungen mit Zeit fuer Fotos.", "address": "Lissabon, Portugal" },
-    "id_4": { "title": "Lissabon ganzer Tag", "description": "Ein ganztägiges Erlebnis durch Alfama, Belem, das Zentrum und Ihre liebsten Aussichtspunkte.", "address": "Lissabon, Portugal" },
-    "id_5": { "title": "Aussichtspunkte-Tour Lissabon", "description": "Entdecken Sie bekannte Aussichtspunkte und ruhigere Panoramen ueber den Tejo in einem leisen Elektro-Tuk-Tuk.", "address": "Lissabon, Portugal" },
-    "id_6": { "title": "Magische Weihnachtslichter-Tour in Lissabon", "description": "Fahren Sie durch Baixa, Chiado und Praca do Comercio zu den schoensten Lichtern und Fotostopps.", "address": "Lissabon, Portugal" },
-    "id_7": { "title": "Sintra und Cascais ab Lissabon", "description": "Erkunden Sie Palaeste, Gaerten, Kuestenaussichten und individuelle Stopps zwischen Sintra und Cascais.", "address": "Lissabon, Portugal" },
-    "id_8": { "title": "Fatima, Nazare, Batalha und Obidos", "description": "Eine private Ganztagestour zu religioesen, kuestennahen und mittelalterlichen Hoehepunkten Zentralportugals.", "address": "Lissabon, Portugal" }
+    "id1": {
+      "title": "Altstadt-Tour - Alfama",
+      "description": "Eine private Alfama-Tour, angepasst an Ihre Zeit, Interessen und Ihr Tempo, mit lokalem Guide und 100% elektrischem Tuk-Tuk.",
+      "address": "Lissabon"
+    },
+    "id_2": {
+      "title": "Tour Chiado und Bairro Alto",
+      "description": "Erkunden Sie Literaturcafés, Boutiquen, böhmische Straßen und Aussichtspunkte über den Tejo in Ihrem eigenen Tempo.",
+      "address": "Lissabon"
+    },
+    "id_3": {
+      "title": "Belém-Tour",
+      "description": "Besuchen Sie das Jerónimos-Kloster, den Belém-Turm und das Denkmal der Entdeckungen – mit Zeit für Fotos und einen frischen Pastel de Nata.",
+      "address": "Lissabon, Portugal"
+    },
+    "id_4": {
+      "title": "Lissabon ganzer Tag",
+      "description": "Ein ganztägiges Lissabon-Erlebnis durch Alfama, Belém, das Stadtzentrum und Ihre bevorzugten Aussichtspunkte.",
+      "address": "Lissabon, Portugal"
+    },
+    "id_5": {
+      "title": "Aussichtspunkte-Tour Lissabon",
+      "description": "Entdecken Sie berühmte Aussichtspunkte und ruhigere Panoramen über den Tejo in einem leisen Elektro-Tuk-Tuk.",
+      "address": "Lissabon, Portugal"
+    },
+    "id_6": {
+      "title": "Magische Weihnachtslichter-Tour in Lissabon",
+      "description": "Fahren Sie durch Baixa, Chiado und Praça do Comércio zu den schönsten Weihnachtslichtern und Fotostopps.",
+      "address": "Lissabon, Portugal"
+    },
+    "id_7": {
+      "title": "Sintra und Cascais ab Lissabon",
+      "description": "Erkunden Sie Paläste, Gärten und Küstenaussichten mit individuellen Stopps zwischen Sintra und Cascais.",
+      "address": "Lissabon, Portugal"
+    },
+    "id_8": {
+      "title": "Fatima, Nazare, Batalha und Obidos",
+      "description": "Eine private Ganztagestour zu den religiösen, landschaftlichen und mittelalterlichen Höhepunkten Zentralportugals.",
+      "address": "Lissabon, Portugal"
+    }
   },
   "experiences": {
     "specificTour": "Spezielle Tour",
@@ -84,29 +151,374 @@
     "locationSample": "Lissabon, Portugal",
     "thingsToKnow": "Wissenswertes",
     "cancellationPolicy": "Stornierungsbedingungen",
-    "cancellationPolicyDesc": "Jedes Erlebnis kann innerhalb von 24 Stunden nach dem Kauf oder mindestens 7 Tage vor Beginn vollstaendig erstattet storniert werden.",
-    "personRequirements": "Anforderungen an Gaeste",
-    "personRequirementsDesc": "Bis zu 10 Personen ab 4 Jahren koennen teilnehmen. Eltern koennen auch Kinder unter 2 Jahren mitbringen.",
+    "cancellationPolicyDesc": "Jedes Erlebnis kann innerhalb von 24 Stunden nach dem Kauf oder mindestens 7 Tage vor Beginn storniert und vollständig erstattet werden.",
+    "personRequirements": "Anforderungen an Gäste",
+    "personRequirementsDesc": "Bis zu 10 Personen ab 4 Jahren können teilnehmen. Eltern können auch Kinder unter 2 Jahren mitbringen.",
     "whatToBring": "Was mitzubringen ist",
-    "whatToBringList": ["Geeignete Kleidung fuer religioese Orte", "Bitte vor der vereinbarten Zeit bereit sein", "Transport und Mittagessen wie angegeben"],
+    "whatToBringList": [
+      "Geeignete Kleidung für religiöse Orte",
+      "Bitte vor der vereinbarten Zeit bereit sein",
+      "Transport und Mittagessen wie angegeben"
+    ],
     "tourTitle": "Altstadt-Tour - Alfama",
-    "longDescription": "PRIVATE TUK-TUK-TOUR - auf Sie zugeschnitten.\n\nUnser Guide trifft Sie am vereinbarten Abholpunkt und beginnt die Tour in einem komfortablen, 100% elektrischen Tuk-Tuk. Die Route umfasst Aussichtspunkte, historische Strassen und lokale Stopps, angepasst an Ihr Tempo und Ihre Interessen.\n\nKurze Pausen sind enthalten, wenn angegeben. Am Ende kehren wir zum urspruenglichen Treffpunkt oder zu einem anderen vereinbarten zentralen Ort zurueck.\n\nZeiten sind Richtwerte und koennen auf Anfrage angepasst werden.",
-    "availability": "Verfuegbarkeit",
-    "availabilityDescription": "Preise koennen an Wochenenden oder Feiertagen steigen",
+    "longDescription": "PRIVATE TUK-TUK-TOUR — auf Sie zugeschnitten.\n\nUnser Guide trifft Sie am vereinbarten Abholpunkt und beginnt die Tour in einem komfortablen, 100 % elektrischen Tuk-Tuk. Die Route umfasst Aussichtspunkte, historische Straßen und lokale Stopps, abgestimmt auf Ihr Tempo und Ihre Interessen.\n\nKurze Pausen sind vorgesehen, wenn dies angegeben ist. Am Ende kehren wir zum ursprünglichen Treffpunkt oder zu einem anderen vereinbarten zentralen Ort zurück.\n\nDie Zeiten sind Richtwerte und können auf Anfrage angepasst werden.",
+    "availability": "Verfügbarkeit",
+    "availabilityDescription": "Die Preise können an Wochenenden oder Feiertagen steigen",
     "time": "Uhrzeit",
     "duration": "Stunden",
     "listingNotFound": "Tour nicht gefunden: {id}",
-    "noDescription": "Keine Beschreibung verfuegbar.",
-    "selectGuests": "Anzahl der Personen waehlen",
-    "selectGuestsDescription": "Bitte waehlen Sie die Anzahl der Personen",
+    "noDescription": "Keine Beschreibung verfügbar.",
+    "selectGuests": "Anzahl der Personen wählen",
+    "selectGuestsDescription": "Bitte wählen Sie die Anzahl der Personen",
     "adults": "Erwachsene",
-    "adultsDesc": "13 Jahre oder aelter",
+    "adultsDesc": "Ab 13 Jahren",
     "children": "Kinder",
     "childrenDesc": "2 bis 12 Jahre",
-    "addDates": "Daten hinzufuegen",
+    "addDates": "Daten hinzufügen",
     "checkInOut": "Anreise - Abreise",
     "priceGuests": "€{price} x {count} Personen",
-    "includes": ["Private Elektro-Tuk-Tuk-Tour", "Lokaler Guide", "Abholung im Zentrum von Lissabon wenn verfuegbar", "Flexible Fotostopps", "Route angepasst an Ihr Tempo"]
+    "whosComing": "Wer kommt?",
+    "includes": [
+      "Private Elektro-Tuk-Tuk-Tour",
+      "Lokaler Guide",
+      "Abholung im Zentrum von Lissabon, sofern verfügbar",
+      "Flexible Fotostopps",
+      "Route angepasst an Ihr Tempo"
+    ]
   },
-  "itinerary": { "title": "Reiseplan" }
+  "checkout": {
+    "pleaseSelectPeople": "Bitte wählen Sie die Anzahl der Personen",
+    "yourReservationDetails": "Ihre Reservierungsdetails",
+    "confirmAndPayment": "Bestätigen und bezahlen",
+    "yourTrip": "Ihre Reise",
+    "viewBookingDetails": "Buchungsdetails anzeigen",
+    "fillTourInformation": "Tourinformationen ausfüllen",
+    "yourDetailsComplete": "Ihre Angaben sind vollständig. Fahren Sie mit PayPal fort, um die Buchung zu bestätigen.",
+    "yourName": "Ihr Name",
+    "phoneNumber": "Telefonnummer",
+    "writeYourCountry": "Geben Sie Ihr Land ein",
+    "writeYourCity": "Geben Sie Ihre Stadt ein",
+    "pickupPointLabel": "Hotel oder Abholpunkt (kann später gewählt werden)",
+    "pickupPointPlaceholder": "Adresse oder Hotelname",
+    "tripDetailsLabel": "Reisedetails",
+    "tripDetailsPlaceholder": "Gibt es Details oder Sonderwünsche für Ihre Reise?"
+  },
+  "contactPage": {
+    "addressTitle": "🗺 ADRESSE",
+    "addressDesc": "Photo booth tattooed prism, portland taiyaki hoodie neutra typewriter",
+    "emailTitle": "💌 E-MAIL",
+    "emailDesc": "nc.example@example.com",
+    "phoneTitle": "☎ TELEFON",
+    "phoneDesc": "000-123-456-7890",
+    "fullNamePlaceholder": "Beispiel Doe",
+    "emailPlaceholder": "example@example.com",
+    "message": "Nachricht",
+    "sendMessage": "Nachricht senden"
+  },
+  "itinerary": {
+    "title": "Reiseplan",
+    "tours": {
+      "id1": {
+        "stops": [
+          {
+            "title": "Wählen Sie Ihren Abholpunkt",
+            "description": "Lisbon Mates bietet einen bequemen Abholservice direkt von Hotels und örtlichen Unterkünften (Airbnb) im Zentrum von Lissabon."
+          },
+          {
+            "title": "Santa Luzia",
+            "description": "Einer der romantischsten Aussichtspunkte der Stadt mit atemberaubendem Blick über die Dächer von Alfama und den Fluss Tejo."
+          },
+          {
+            "title": "Kathedrale von Lissabon (Sé)",
+            "description": "Die älteste Kirche der Stadt beeindruckt durch ihre romanische Architektur und ihre jahrhundertealte Geschichte."
+          },
+          {
+            "title": "Aussichtspunkt Senhora do Monte",
+            "description": "Der höchste Punkt der Stadt bietet einen der spektakulärsten und umfassendsten Panoramablicke auf Lissabon."
+          },
+          {
+            "title": "Nationales Pantheon",
+            "description": "Ursprünglich die Kirche Santa Engrácia, ist sie eines der symbolträchtigsten Denkmäler Lissabons und dient heute als Ruhestätte wichtiger historischer Persönlichkeiten Portugals."
+          },
+          {
+            "title": "Alfama",
+            "description": "Das älteste Viertel Lissabons und eines der authentischsten. Berühmt für seine engen Gassen, farbenfrohen Häuser und die traditionelle Fado-Kultur."
+          },
+          {
+            "title": "Kirche des Heiligen Antonius",
+            "description": "Die malerische Kirche wurde genau an der Stelle errichtet, an der der Heilige Antonius, Lissabons beliebtester Schutzpatron, geboren wurde."
+          },
+          {
+            "title": "Aussichtspunkt Portas do Sol",
+            "description": "Einer der berühmtesten Aussichtspunkte in Lissabon, im Herzen von Alfama gelegen, mit spektakulärem Blick über den Fluss Tejo und historische Dächer."
+          },
+          {
+            "title": "Graça",
+            "description": "Ein lebendiges und historisches Viertel mit künstlerischer Atmosphäre, berühmt für seine Terrassen und berühmten Aussichtspunkte."
+          },
+          {
+            "title": "Wählen Sie Ihren Rückgabeort",
+            "description": "Am Ende Ihres Erlebnisses können wir Sie zu Ihrem Hotel, Airbnb im Zentrum von Lissabon oder zu unserem Treffpunkt in der Avenida da Liberdade, Nr. 3, bringen."
+          }
+        ]
+      },
+      "id_2": {
+        "stops": [
+          {
+            "title": "Wählen Sie Ihren Abholpunkt",
+            "description": "Wir holen Sie direkt in Ihrem Hotel oder Ihrer Unterkunft in der zentralen Region Lissabon ab. Wenn Sie außerhalb des Zentrums übernachten, können wir einen nahegelegenen Treffpunkt vereinbaren."
+          },
+          {
+            "title": "Carmo-Kloster",
+            "description": "Gotische Ruinen eines Klosters aus dem 14. Jahrhundert, teilweise zerstört durch das Erdbeben von 1755. Seitdem ist es dachlos und sorgt so für eine einzigartige Open-Air-Atmosphäre."
+          },
+          {
+            "title": "Buchhandlung Bertrand",
+            "description": "Sie wurde 1732 gegründet und gilt offiziell als die älteste noch bestehende Buchhandlung der Welt. Es liegt im Herzen von Chiado."
+          },
+          {
+            "title": "Santa Justa-Aufzug",
+            "description": "1902 eröffnet, um Baixa mit Chiado zu verbinden. Von der französischen Industriearchitektur inspirierte Eisenkonstruktion mit Panoramablick von oben."
+          },
+          {
+            "title": "Kirche von São Roque",
+            "description": "Jesuitenkirche aus dem 16. Jahrhundert, berühmt für ihr reich verziertes barockes Interieur und ihre Kapellen. Eines der wichtigsten religiösen Denkmäler in Lissabon."
+          },
+          {
+            "title": "Aussichtspunkt São Pedro de Alcântara",
+            "description": "Einer der beliebtesten Aussichtspunkte der Stadt mit Blick auf Baixa und Castelo de São Jorge. Es vereint Gärten, Terrassen und Panoramablick."
+          },
+          {
+            "title": "Bairro Alto",
+            "description": "Eines der traditionellsten und lebendigsten Viertel Lissabons. Tagsüber bewahrt es seinen historischen Charme und verwandelt sich nachts in einen der lebhaftesten Orte der Stadt."
+          },
+          {
+            "title": "Luís-de-Camões-Platz",
+            "description": "Wichtiger Platz, der Chiado mit Bairro Alto verbindet. Es ist nach dem größten portugiesischen Dichter benannt und ein traditioneller Treffpunkt für Künstler und Besucher."
+          },
+          {
+            "title": "Wählen Sie Ihren Rückgabeort",
+            "description": "Am Ende der Tour bringen wir Sie zu Ihrem Hotel oder Ihrer Unterkunft in Lissabon oder zu einem zuvor vereinbarten Treffpunkt zurück."
+          }
+        ]
+      },
+      "id_3": {
+        "stops": [
+          {
+            "title": "Wählen Sie Ihren Abholpunkt",
+            "description": "Wir holen Sie direkt in Ihrem Hotel oder Ihrer Unterkunft in der zentralen Region Lissabon ab. Wenn Sie außerhalb des Zentrums übernachten, können wir einen nahegelegenen Treffpunkt vereinbaren."
+          },
+          {
+            "title": "Belém-Turm",
+            "description": "Es wurde im 16. Jahrhundert am Ufer des Tejo erbaut und gehört zum UNESCO-Weltkulturerbe und ist ein Symbol des Zeitalters der Entdeckungen. Die manuelinische Architektur ist eine der meistfotografierten Postkarten Lissabons."
+          },
+          {
+            "title": "Pastéis de Belém",
+            "description": "Machen Sie Halt in der Bäckerei, wo das Originalrezept für Pastel de Nata seit Generationen erhalten bleibt. Außen knusprig und innen cremig, ist es eine unverzichtbare gastronomische Tradition."
+          },
+          {
+            "title": "Jerónimos-Kloster",
+            "description": "Meisterwerk manuelinischer Architektur, erbaut zur Feier der Reise von Vasco da Gama nach Indien. Im Inneren befindet sich das Grab des Seefahrers."
+          },
+          {
+            "title": "Denkmal der Entdeckungen",
+            "description": "Denkmal in Form einer Karavelle mit Blick auf den Tejo als Hommage an portugiesische Seefahrer. Es zeigt neben anderen historischen Persönlichkeiten die Figur des Infanten Dom Henrique."
+          },
+          {
+            "title": "Pink Street",
+            "description": "Ehemalige Straße mit Anbindung an das Nachtleben des Hafens, heute eines der angesagtesten Viertel Lissabons. Rosafarbene Bürgersteige und lebhafte Bars kennzeichnen das moderne gesellschaftliche Leben der Stadt."
+          },
+          {
+            "title": "25-de-Abril-Brücke",
+            "description": "Aufgrund seines Aussehens wird es oft mit dem Goldenen Tor verglichen und verbindet Lissabon mit dem Südufer des Tejo. Sein heutiger Name ist eine Hommage an die Revolution vom 25. April 1974."
+          },
+          {
+            "title": "Time Out Market",
+            "description": "Es befindet sich im historischen Mercado da Ribeira und vereint einige der besten gastronomischen Erlebnisse Lissabons an einem Ort, von traditionell bis modern."
+          },
+          {
+            "title": "Belém-Palast",
+            "description": "Offizieller Wohnsitz des Präsidenten der Portugiesischen Republik. Historisches Gebäude umgeben von Gärten, Symbol der politischen Macht des Landes."
+          },
+          {
+            "title": "Wählen Sie Ihren Rückgabeort",
+            "description": "Am Ende der Tour garantieren wir eine bequeme Rückkehr zu Ihrem Hotel oder Ihrer Unterkunft oder zu einem vorher vereinbarten Punkt."
+          }
+        ]
+      },
+      "id_4": {
+        "stops": [
+          {
+            "title": "Wählen Sie Ihren Abholpunkt",
+            "description": "Persönlicher Abholservice direkt von Ihrem Hotel oder Ihrer Unterkunft, um Ihren ganzen Tag in Lissabon zu beginnen."
+          },
+          {
+            "title": "Belém und historische Denkmäler",
+            "description": "Erkunden Sie den Belém-Turm, das Denkmal der Entdeckungen, und machen Sie einen köstlichen Halt bei den berühmten und originellen Pastéis de Belém."
+          },
+          {
+            "title": "Jerónimos-Kloster",
+            "description": "Führung durch dieses prächtige Meisterwerk manuelinischer Architektur aus dem 16. Jahrhundert."
+          },
+          {
+            "title": "Baixa Pombalina und Praça do Comércio",
+            "description": "Durchgang durch den monumentalen Bereich, der nach dem Erdbeben von 1755 wieder aufgebaut wurde und die großen Plätze mit dem Fluss Tejo verbindet."
+          },
+          {
+            "title": "Chiado und traditionelles Mittagessen",
+            "description": "Machen Sie eine Pause im eleganten und unkonventionellen Viertel Chiado und haben Sie Zeit zur freien Verfügung, um ein traditionelles portugiesisches Mittagessen zu genießen."
+          },
+          {
+            "title": "Aussichtspunkte und historische Hügel",
+            "description": "Machen Sie eine Tuk-Tuk-Fahrt zu den höchsten Punkten der Stadt, einschließlich Senhora do Monte und São Pedro de Alcântara, und genießen Sie atemberaubende Ausblicke."
+          },
+          {
+            "title": "Alte Alfama",
+            "description": "Geführter Spaziergang durch die ältesten mittelalterlichen Straßen Lissabons, bei dem Sie in die Seele und Geschichte des Fado eintauchen."
+          },
+          {
+            "title": "Kathedrale und St. Antonius",
+            "description": "Besuch der Kathedrale von Lissabon und der historischen Kirche, die am Geburtsort des Heiligen Antonius errichtet wurde."
+          },
+          {
+            "title": "Wählen Sie Ihren Rückgabeort",
+            "description": "Beenden Sie Ihre Ganztagestour mit der direkten und bequemen Rückkehr zu Ihrem Hotel oder einem zentralen Punkt Ihrer Wahl."
+          }
+        ]
+      },
+      "id_5": {
+        "stops": [
+          {
+            "title": "Wählen Sie Ihren Abholpunkt",
+            "description": "Lassen Sie sich direkt von Ihrer Unterkunft abholen und beginnen Sie eine Panoramatour durch die berühmtesten Hügel Lissabons."
+          },
+          {
+            "title": "Aussichtspunkt São Pedro de Alcântara",
+            "description": "Ein klassischer und monumentaler Blick über Baixa Pombalina, den Graça-Hügel und die imposante Burg São Jorge."
+          },
+          {
+            "title": "Aussichtspunkt Santa Catarina (Adamastor)",
+            "description": "Entspannte Atmosphäre am Rande des Hügels mit weitem Blick über den Hafen von Lissabon, die Brücke und Cristo Rei."
+          },
+          {
+            "title": "Aussichtspunkt Senhora do Monte",
+            "description": "Die absolute Spitze von Lissabon. Der spektakulärste Panoramablick, bei dem wir fast die gesamte Länge der antiken Stadt überblicken können."
+          },
+          {
+            "title": "Aussichtspunkt Graça",
+            "description": "Direkt neben der berühmten Kirche gelegen, ist es einer der beliebtesten Haltepunkte der Lissabonner, um die Altstadt im Schatten der Pinien zu erkunden."
+          },
+          {
+            "title": "Aussichtspunkt Portas do Sol",
+            "description": "Ein authentischer mittelalterlicher Balkon, der über den traditionellen Dächern von Alfama und der perfekten Krümmung des Flusses Tejo schwebt."
+          },
+          {
+            "title": "Wählen Sie Ihren Rückgabeort",
+            "description": "Steigen Sie bequem in Ihrem Hotel oder an einem Aussichtspunkt Ihrer Wahl aus und genießen Sie den Abend."
+          }
+        ]
+      },
+      "id_6": {
+        "stops": [
+          {
+            "title": "Wählen Sie Ihren Abholpunkt",
+            "description": "Wir holen Sie am späten Nachmittag in Ihrem Hotel mit dem Tuk-Tuk ab, das vollständig dekoriert und für den Weihnachtszauber vorbereitet ist."
+          },
+          {
+            "title": "Praça do Comércio und großer Weihnachtsbaum",
+            "description": "Genießen Sie die großartige Beleuchtung von Lissabons größtem Platz und seinem traditionellen, riesigen, glänzenden Weihnachtsbaum."
+          },
+          {
+            "title": "Rua Augusta und beleuchtete Baixa",
+            "description": "Schlendern Sie unter den Decken mit funkelnden Lichtern und thematischen Dekorationen der belebtesten Einkaufsstraßen der Stadt entlang."
+          },
+          {
+            "title": "Rossio und Weihnachtsmarkt",
+            "description": "Durchfahrt durch den Rossio und optionaler Stopp zur Erkundung der kleinen Holzhütten mit Kunsthandwerk, typischen Süßigkeiten und Glühwein."
+          },
+          {
+            "title": "Avenida da Liberdade",
+            "description": "Parade entlang der luxuriösesten Allee Lissabons, komplett geschmückt mit Tausenden von LED-Lichtern an ihren jahrhundertealten Bäumen."
+          },
+          {
+            "title": "Chiado und Praça Luís de Camões",
+            "description": "Tauchen Sie ein in die magische und künstlerische Atmosphäre des Chiado mit seinen berühmten hellen Fassaden, die Kinder und Erwachsene gleichermaßen verzaubern."
+          },
+          {
+            "title": "Wählen Sie Ihren Rückgabeort",
+            "description": "Bequeme Rückkehr in Ihr Hotel oder Restaurant Ihrer Wahl, um das Weihnachtsessen zu genießen."
+          }
+        ]
+      },
+      "id_7": {
+        "stops": [
+          {
+            "title": "Wählen Sie Ihren Abholpunkt",
+            "description": "Private Abholung am Morgen von Ihrem Hotel, um eine unvergessliche Reise in die atemberaubende Serra de Sintra zu beginnen."
+          },
+          {
+            "title": "Nationalpalast von Pena",
+            "description": "Entdecken Sie den farbenfrohsten und romantischsten Palast Europas, der wie ein wahres Märchenschloss auf dem Gipfel des Berges erbaut wurde."
+          },
+          {
+            "title": "Historisches Dorf Sintra",
+            "description": "Freizeit, um die mittelalterlichen Gassen und örtlichen Geschäfte zu erkunden und Sintras berühmte Queijadas und Travesseiros zu probieren."
+          },
+          {
+            "title": "Cabo da Roca",
+            "description": "Besuchen Sie den westlichsten Punkt Kontinentaleuropas, wo das Meer auf die beeindruckenden Felsklippen trifft."
+          },
+          {
+            "title": "Boca do Inferno",
+            "description": "Bewundern Sie die dramatische Kraft des Atlantischen Ozeans, der die Höhlen und Felsformationen an der Küste von Cascais formt."
+          },
+          {
+            "title": "Cascais und die Küste von Estoril",
+            "description": "Machen Sie eine Tour durch das charmante Küstendorf Cascais, die ehemalige Sommerresidenz der Könige, und kehren Sie entlang der malerischen Küstenstraße zurück."
+          },
+          {
+            "title": "Wählen Sie Ihren Rückgabeort",
+            "description": "Kehren Sie bequem und sicher direkt zu Ihrer Unterkunft in Lissabon zurück."
+          }
+        ]
+      },
+      "id_8": {
+        "stops": [
+          {
+            "title": "Wählen Sie Ihren Abholpunkt",
+            "description": "Private Abfahrt von Ihrem Hotel in Lissabon in das historische, religiöse und kulturelle Herz Zentralportugals."
+          },
+          {
+            "title": "Heiligtum von Fátima",
+            "description": "Besuch des Ortes der Marienerscheinungen von 1917, Besichtigung der Basilika Unserer Lieben Frau vom Rosenkranz, der Erscheinungskapelle und der Basilika der Heiligen Dreifaltigkeit."
+          },
+          {
+            "title": "Batalha-Kloster",
+            "description": "Ein imposantes Juwel portugiesischer gotischer und manuelinischer Architektur, das von der UNESCO zum Weltkulturerbe erklärt wurde."
+          },
+          {
+            "title": "Nazaré und Aussichtspunkt der Riesenwellen",
+            "description": "Klettern Sie zum Sítio da Nazaré und genießen Sie einen atemberaubenden Panoramablick auf den Strand und die berühmten Riesenwellen von Canhão da Nazaré."
+          },
+          {
+            "title": "Mittelalterliches Dorf Óbidos",
+            "description": "Machen Sie eine Zeitreise in die Vergangenheit, während Sie durch die Mauern und Straßen von Óbidos spazieren und mit dem klassischen Ginjinha, serviert in einer Schokoladentasse, enden."
+          },
+          {
+            "title": "Wählen Sie Ihren Rückgabeort",
+            "description": "Bequeme und entspannte Rückkehr mit endgültiger Rückfahrt zu Ihrem Hotel oder Ihrer Unterkunft in Lissabon."
+          }
+        ]
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Unsere Google-Bewertungen",
+    "description": "Lesen Sie, was Gäste über Lisbon Mates sagen",
+    "reviews": [
+      "Ausgezeichnete Alfama-Tour! Der Guide kannte jede Geschichte und jeden versteckten Winkel. Sehr empfehlenswert für alle, die die Stadt erleben und authentischen Fado hören möchten. (Google-Bewertung)",
+      "Wunderbare Belém-Tour — Klöster, Gebäck und Denkmäler. Sehr gut organisiert und ausführlich erklärt. Fünf Sterne bei Google!",
+      "Umfassende Lissabon-Tour durch Alfama und Belém. Professionelle Route, sehr gutes Zeitmanagement und ausgezeichnete Restaurantempfehlungen. Ein tolles Erlebnis. (Google-Bewertung)"
+    ]
+  }
 }

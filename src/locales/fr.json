@@ -2,7 +2,7 @@
   "common": {
     "home": "Accueil",
     "tours": "Visites",
-    "testimonials": "Temoignages",
+    "testimonials": "Témoignages",
     "contact": "Contact",
     "links": "Liens",
     "language": "Langue",
@@ -13,7 +13,7 @@
     "save": "Enregistrer",
     "share": "Partager",
     "showAllPhotos": "Voir toutes les photos",
-    "reserve": "Reserver",
+    "reserve": "Réserver",
     "total": "Total",
     "serviceCharge": "Frais de service",
     "perPerson": "/personne",
@@ -25,25 +25,60 @@
     "fixedFullDayPrice": "Prix fixe €320",
     "saleToday": "-{discount}% aujourd'hui",
     "whatsAppMessage": "Bonjour, j'ai une question sur les visites",
-    "whatsAppLabel": "Contacter sur WhatsApp"
+    "whatsAppLabel": "Contacter sur WhatsApp",
+    "date": "Date",
+    "time": "Heure",
+    "guests": "Invités",
+    "people": "Personnes",
+    "breakdown": "Détail",
+    "next": "Suivant",
+    "payment": "Paiement",
+    "cancel": "Annuler",
+    "saveAction": "Enregistrer",
+    "clearData": "Effacer les données",
+    "continueToPayment": "Continuer vers le paiement",
+    "done": "Terminé",
+    "email": "Email",
+    "phone": "Téléphone",
+    "country": "Pays",
+    "city": "Ville",
+    "fullName": "Nom complet",
+    "selectDate": "Sélectionner une date",
+    "selectGuests": "Sélectionner les invités",
+    "noGuestsSelected": "Aucun invité sélectionné",
+    "bookingDetails": "Détails de la réservation",
+    "hoursLabel": "Heures",
+    "tour": "Visite",
+    "paypalOrder": "Commande PayPal",
+    "payPalConfigMissing": "PayPal n'est pas configuré pour cet environnement. Définissez `NEXT_PUBLIC_PAYPAL_CLIENT_ID` dans vos variables d'environnement puis reconstruisez/redéployez. (L'identifiant client public doit être fourni au moment du build sous `NEXT_PUBLIC_PAYPAL_CLIENT_ID`).",
+    "confirmingPaypal": "Confirmation du paiement PayPal...",
+    "paymentConfirmed": "Paiement confirmé",
+    "bookingPaymentSuccessful": "Paiement de réservation effectué avec succès",
+    "bookingPaymentConfirmedText": "PayPal a confirmé le paiement de votre réservation.",
+    "returnHomePage": "Retour à l'accueil",
+    "pageNotFound": "LA PAGE QUE VOUS CHERCHIEZ N'EXISTE PAS.",
+    "contactTitle": "Contact",
+    "socials": "RÉSEAUX SOCIAUX"
   },
   "hero": {
-    "subtitle": "Decouvrez les meilleures visites et experiences a Lisbonne",
+    "subtitle": "Découvrez les meilleures visites et expériences à Lisbonne",
     "title": "Lisbon Mates",
-    "button": "Reserver maintenant",
-    "imageAlt": "Visite Lisbon Mates a Lisbonne"
+    "button": "Réserver maintenant",
+    "imageAlt": "Visite Lisbon Mates à Lisbonne"
   },
-  "section": { "featuredTours": "Visites en vedette" },
+  "section": {
+    "featuredTours": "Visites en vedette"
+  },
   "categories": {
     "scenic": "Visites panoramiques en Tuk-Tuk",
-    "fado": "Fado et experiences culturelles",
+    "fado": "Fado et expériences culturelles",
     "historical": "Sites historiques et religieux",
     "food": "Experiences gastronomiques"
   },
   "subscribe": {
     "title": "Rejoignez notre newsletter",
     "description": "Lisez et partagez de nouvelles perspectives sur presque tous les sujets. Tout le monde est bienvenu.",
-    "benefit1": "Obtenez plus de reduction",
+    "benefit1": "Obtenez davantage de réductions",
     "benefit2": "Recevez des magazines premium",
     "placeholder": "Entrez votre e-mail",
     "button": "S'inscrire"
@@ -52,24 +87,56 @@
     "en": "Anglais",
     "pt": "Portugais",
     "es": "Espagnol",
-    "fr": "Francais",
+    "fr": "Français",
     "de": "Allemand",
     "it": "Italien"
   },
   "tourCards": {
-    "id1": { "title": "Visite de la vieille ville - Alfama", "description": "Une visite privee d'Alfama adaptee a votre temps, vos interets et votre rythme, avec guide local et tuk-tuk 100% electrique.", "address": "Lisbonne" },
-    "id_2": { "title": "Visite Chiado et Bairro Alto", "description": "Explorez cafes litteraires, boutiques, rues bohemes et points de vue sur le Tage a votre rythme.", "address": "Lisbonne" },
-    "id_3": { "title": "Visite de Belem", "description": "Visitez le monastere des Jeronimos, la tour de Belem et le monument des Decouvertes avec du temps pour les photos.", "address": "Lisbonne, Portugal" },
-    "id_4": { "title": "Lisbonne journee complete", "description": "Une experience d'une journee couvrant Alfama, Belem, le centre et vos belvederes preferes.", "address": "Lisbonne, Portugal" },
-    "id_5": { "title": "Visite des belvederes de Lisbonne", "description": "Decouvrez des points de vue emblematiques et des panoramas plus calmes sur le Tage en tuk-tuk electrique silencieux.", "address": "Lisbonne, Portugal" },
-    "id_6": { "title": "Visite magique des lumieres de Noel a Lisbonne", "description": "Traversez Baixa, Chiado et Praca do Comercio pour voir les meilleures lumieres de fete et faire des arrets photo.", "address": "Lisbonne, Portugal" },
-    "id_7": { "title": "Sintra et Cascais depuis Lisbonne", "description": "Explorez palais, jardins, points de vue cotiers et arrets personnalises entre Sintra et Cascais.", "address": "Lisbonne, Portugal" },
-    "id_8": { "title": "Fatima, Nazare, Batalha et Obidos", "description": "Un itineraire prive d'une journee a travers les points forts religieux, cotiers et medievaux du centre du Portugal.", "address": "Lisbonne, Portugal" }
+    "id1": {
+      "title": "Visite de la vieille ville - Alfama",
+      "description": "Une visite privée d'Alfama adaptée à votre emploi du temps, à vos intérêts et à votre rythme, avec un guide local et un tuk-tuk 100 % électrique.",
+      "address": "Lisbonne"
+    },
+    "id_2": {
+      "title": "Visite Chiado et Bairro Alto",
+      "description": "Explorez les cafés littéraires, les boutiques, les rues bohèmes et les points de vue sur le Tage à votre rythme.",
+      "address": "Lisbonne"
+    },
+    "id_3": {
+      "title": "Visite de Belém",
+      "description": "Visitez le monastère des Jerónimos, la tour de Belém et le Monument des Découvertes, avec du temps pour les photos et un pastel de nata frais.",
+      "address": "Lisbonne, Portugal"
+    },
+    "id_4": {
+      "title": "Lisbonne en une journée",
+      "description": "Une journée complète à Lisbonne couvrant Alfama, Belém, le centre-ville et vos points de vue préférés.",
+      "address": "Lisbonne, Portugal"
+    },
+    "id_5": {
+      "title": "Visite des points de vue de Lisbonne",
+      "description": "Découvrez des points de vue emblématiques et des panoramas plus paisibles sur le Tage à bord d'un tuk-tuk électrique silencieux.",
+      "address": "Lisbonne, Portugal"
+    },
+    "id_6": {
+      "title": "Visite des lumières magiques de Noël à Lisbonne",
+      "description": "Traversez Baixa, Chiado et Praça do Comércio pour admirer les plus belles illuminations de Noël et faire des pauses photo.",
+      "address": "Lisbonne, Portugal"
+    },
+    "id_7": {
+      "title": "Sintra et Cascais depuis Lisbonne",
+      "description": "Explorez les palais, les jardins et les points de vue côtiers, avec des arrêts personnalisés entre Sintra et Cascais.",
+      "address": "Lisbonne, Portugal"
+    },
+    "id_8": {
+      "title": "Fatima, Nazare, Batalha et Obidos",
+      "description": "Un itinéraire privé d'une journée à travers les principaux sites religieux, côtiers et médiévaux du centre du Portugal.",
+      "address": "Lisbonne, Portugal"
+    }
   },
   "experiences": {
     "specificTour": "Visite specifique",
     "showAllPhotos": "Voir toutes les photos",
-    "experiencesDescriptions": "Description de l'experience",
+    "experiencesDescriptions": "Description de l'expérience",
     "include": "Inclus",
     "includedInPrice": "Inclus dans le prix",
     "reviews": "Avis",
@@ -82,31 +149,376 @@
     "languagesValue": "Anglais, Portugais, Espagnol",
     "location": "Lieu",
     "locationSample": "Lisbonne, Portugal",
-    "thingsToKnow": "A savoir",
+    "thingsToKnow": "À savoir",
     "cancellationPolicy": "Politique d'annulation",
-    "cancellationPolicyDesc": "Toute experience peut etre annulee et entierement remboursee dans les 24 heures suivant l'achat, ou au moins 7 jours avant son debut.",
+    "cancellationPolicyDesc": "Toute expérience peut être annulée et intégralement remboursée dans les 24 heures suivant l'achat, ou au moins 7 jours avant son début.",
     "personRequirements": "Conditions pour les participants",
     "personRequirementsDesc": "Jusqu'a 10 personnes de 4 ans et plus peuvent participer. Les parents peuvent aussi amener des enfants de moins de 2 ans.",
     "whatToBring": "Que prendre",
-    "whatToBringList": ["Vetements adaptes aux sites religieux", "Soyez pret avant l'heure convenue", "Transport et dejeuner selon indication"],
+    "whatToBringList": [
+      "Vêtements adaptés aux sites religieux",
+      "Soyez prêt avant l'heure de prise en charge convenue",
+      "Transport et déjeuner selon les indications"
+    ],
     "tourTitle": "Visite de la vieille ville - Alfama",
-    "longDescription": "VISITE PRIVEE EN TUK-TUK - adaptee a vous.\n\nNotre guide vous retrouvera au point de prise en charge convenu et commencera la visite dans un tuk-tuk confortable et 100% electrique. Le parcours inclut des belvederes, des rues historiques et des arrets locaux adaptes a votre rythme et a vos interets.\n\nDe courtes pauses sont incluses lorsque precise. A la fin, nous retournons au point initial ou a un autre lieu central convenu.\n\nLes horaires sont indicatifs et peuvent etre ajustes sur demande.",
-    "availability": "Disponibilite",
-    "availabilityDescription": "Les prix peuvent augmenter les week-ends ou jours feries",
+    "longDescription": "VISITE PRIVÉE EN TUK-TUK — adaptée à vos envies.\n\nNotre guide vous retrouvera au point de prise en charge convenu et commencera la visite à bord d'un tuk-tuk confortable et 100 % électrique. Le parcours comprend des points de vue, des rues historiques et des arrêts locaux adaptés à votre rythme et à vos intérêts.\n\nDe courtes pauses sont prévues lorsque cela est indiqué. À la fin de la visite, nous retournons au point de départ ou à un autre lieu central convenu.\n\nLes horaires sont indicatifs et peuvent être ajustés sur demande.",
+    "availability": "Disponibilité",
+    "availabilityDescription": "Les prix peuvent augmenter les week-ends ou les jours fériés",
     "time": "Heure",
     "duration": "Heures",
     "listingNotFound": "Visite introuvable : {id}",
     "noDescription": "Aucune description disponible.",
-    "selectGuests": "Selectionnez le nombre de personnes",
+    "selectGuests": "Sélectionnez le nombre de personnes",
     "selectGuestsDescription": "Veuillez selectionner le nombre de personnes",
     "adults": "Adultes",
     "adultsDesc": "13 ans ou plus",
     "children": "Enfants",
-    "childrenDesc": "2 a 12 ans",
+    "childrenDesc": "De 2 à 12 ans",
     "addDates": "Ajouter des dates",
-    "checkInOut": "Arrivee - Depart",
+    "checkInOut": "Arrivée - Départ",
     "priceGuests": "€{price} x {count} personnes",
-    "includes": ["Visite privee en tuk-tuk electrique", "Guide local", "Prise en charge au centre de Lisbonne selon disponibilite", "Arrets photo flexibles", "Itineraire adapte a votre rythme"]
+    "whosComing": "Qui vient ?",
+    "includes": [
+      "Visite privée en tuk-tuk électrique",
+      "Guide local",
+      "Prise en charge au centre de Lisbonne selon disponibilite",
+      "Arrêts photo flexibles",
+      "Itinéraire adapté à votre rythme"
+    ]
   },
-  "itinerary": { "title": "Itineraire" }
+  "checkout": {
+    "pleaseSelectPeople": "Veuillez sélectionner le nombre de personnes",
+    "yourReservationDetails": "Détails de votre réservation",
+    "confirmAndPayment": "Confirmer et payer",
+    "yourTrip": "Votre voyage",
+    "viewBookingDetails": "Voir les détails de la réservation",
+    "fillTourInformation": "Remplissez les informations de la visite",
+    "yourDetailsComplete": "Vos informations sont complètes. Continuez avec PayPal pour confirmer la réservation.",
+    "yourName": "Votre nom",
+    "phoneNumber": "Numéro de téléphone",
+    "writeYourCountry": "Saisissez votre pays",
+    "writeYourCity": "Saisissez votre ville",
+    "pickupPointLabel": "Hôtel ou point de prise en charge (vous pouvez choisir plus tard)",
+    "pickupPointPlaceholder": "Adresse ou nom de l'hôtel",
+    "tripDetailsLabel": "Détails du voyage",
+    "tripDetailsPlaceholder": "Un détail ou une demande spéciale pour votre voyage ?"
+  },
+  "contactPage": {
+    "addressTitle": "🗺 ADRESSE",
+    "addressDesc": "Photo booth tattooed prism, portland taiyaki hoodie neutra typewriter",
+    "emailTitle": "💌 EMAIL",
+    "emailDesc": "nc.example@example.com",
+    "phoneTitle": "☎ TÉLÉPHONE",
+    "phoneDesc": "000-123-456-7890",
+    "fullNamePlaceholder": "Exemple Doe",
+    "emailPlaceholder": "example@example.com",
+    "message": "Message",
+    "sendMessage": "Envoyer le message"
+  },
+  "itinerary": {
+    "title": "Itinéraire",
+    "tours": {
+      "id1": {
+        "stops": [
+          {
+            "title": "Choisissez votre point d'embarquement",
+            "description": "Lisbon Mates propose un service de prise en charge pratique directement depuis les hôtels et les hébergements locaux (Airbnb) situés dans le centre de Lisbonne."
+          },
+          {
+            "title": "Santa Luzia",
+            "description": "L'un des points de vue les plus romantiques de la ville, avec une vue imprenable sur les toits de l'Alfama et le Tage."
+          },
+          {
+            "title": "Cathédrale de Lisbonne (Sé)",
+            "description": "La plus ancienne église de la ville, imposante par son architecture romane et ses siècles d'histoire."
+          },
+          {
+            "title": "Point de vue de Senhora do Monte",
+            "description": "Le point culminant de la ville, offrant l’une des vues panoramiques les plus spectaculaires et complètes de Lisbonne."
+          },
+          {
+            "title": "Panthéon national",
+            "description": "À l'origine église de Santa Engrácia, c'est l'un des monuments les plus emblématiques de Lisbonne, servant aujourd'hui de lieu de repos à d'importants personnages historiques du Portugal."
+          },
+          {
+            "title": "Alfama",
+            "description": "Le quartier le plus ancien de Lisbonne et l’un des plus authentiques. Célèbre pour ses rues étroites, ses maisons colorées et sa culture traditionnelle du Fado."
+          },
+          {
+            "title": "Saint-Antoine",
+            "description": "L'église pittoresque construite à l'endroit exact où est né Saint Antoine, le saint patron le plus aimé de Lisbonne."
+          },
+          {
+            "title": "Point de vue de Portas do Sol",
+            "description": "L'un des points de vue les plus célèbres de Lisbonne, situé au cœur d'Alfama, avec des vues spectaculaires sur le Tage et les toits historiques."
+          },
+          {
+            "title": "Graça",
+            "description": "Un quartier animé et historique à l'atmosphère artistique, célèbre pour ses terrasses et ses points de vue emblématiques."
+          },
+          {
+            "title": "Choisissez votre point de débarquement",
+            "description": "À la fin de votre expérience, nous pouvons vous déposer à votre hôtel, Airbnb au centre de Lisbonne ou à notre point de rendez-vous à l'Avenida da Liberdade, nº 3."
+          }
+        ]
+      },
+      "id_2": {
+        "stops": [
+          {
+            "title": "Choisissez votre point d'embarquement",
+            "description": "Nous venons vous chercher directement à votre hôtel ou hébergement dans la région centrale de Lisbonne. Si vous séjournez en dehors du centre, nous pouvons organiser un point de rendez-vous à proximité."
+          },
+          {
+            "title": "Convento do Carmo",
+            "description": "Ruines gothiques d'un couvent du XIVe siècle, partiellement détruit par le tremblement de terre de 1755. Depuis, il n’y a plus de toit, créant une atmosphère unique en plein air."
+          },
+          {
+            "title": "Librairie Bertrand",
+            "description": "Fondée en 1732, elle est officiellement reconnue comme la plus ancienne librairie au monde encore en activité. C'est au coeur du Chiado."
+          },
+          {
+            "title": "Ascenseur de Santa Justa",
+            "description": "Ouvert en 1902 pour relier la Baixa au Chiado. Structure en fer inspirée de l'architecture industrielle française, avec vue panoramique depuis le sommet."
+          },
+          {
+            "title": "Église de São Roque",
+            "description": "Église des Jésuites du XVIe siècle, célèbre pour son intérieur baroque et ses chapelles richement décorés. L'un des monuments religieux les plus importants de Lisbonne."
+          },
+          {
+            "title": "Point de vue de São Pedro de Alcântara",
+            "description": "L'un des points de vue les plus populaires de la ville, avec vue sur la Baixa et le Castelo de São Jorge. Il allie jardins, terrasses et vues panoramiques."
+          },
+          {
+            "title": "Bairro Alto",
+            "description": "L'un des quartiers les plus traditionnels et animés de Lisbonne. Pendant la journée, il préserve son charme historique et la nuit, il se transforme en l'un des lieux les plus animés de la ville."
+          },
+          {
+            "title": "Place Luís de Camões",
+            "description": "Place importante qui relie le Chiado au Bairro Alto. Il porte le nom du plus grand poète portugais et constitue un point de rencontre traditionnel pour les artistes et les visiteurs."
+          },
+          {
+            "title": "Choisissez votre point de débarquement",
+            "description": "À la fin de la visite, nous vous ramènerons à votre hôtel ou hébergement à Lisbonne, ou à un point de rendez-vous préalablement convenu."
+          }
+        ]
+      },
+      "id_3": {
+        "stops": [
+          {
+            "title": "Choisissez votre point d'embarquement",
+            "description": "Nous venons vous chercher directement à votre hôtel ou hébergement dans la région centrale de Lisbonne. Si vous séjournez en dehors du centre, nous pouvons organiser un point de rendez-vous à proximité."
+          },
+          {
+            "title": "Tour de Belém",
+            "description": "Construit au XVIe siècle sur les rives du Tage, il est inscrit au patrimoine mondial de l'UNESCO et symbole de l'âge des découvertes. Son architecture manuéline est l'une des cartes postales les plus photographiées de Lisbonne."
+          },
+          {
+            "title": "Pastéis de Belém",
+            "description": "Arrêtez-vous à la boulangerie où la recette originale du pastel de nata est conservée depuis des générations. Croustillant à l’extérieur et crémeux à l’intérieur, c’est une tradition gastronomique incontournable."
+          },
+          {
+            "title": "Monastère des Hiéronymites",
+            "description": "Chef-d'œuvre de l'architecture manuéline, construit pour célébrer le voyage de Vasco de Gama en Inde. Il abrite à l'intérieur le tombeau du navigateur."
+          },
+          {
+            "title": "Monument des Découvertes",
+            "description": "Monument en forme de caravelle face au Tage, qui rend hommage aux navigateurs portugais. Il présente la figure de l'Infant Dom Henrique parmi d'autres personnalités historiques."
+          },
+          {
+            "title": "Pink Street",
+            "description": "Ancienne rue liée à la vie nocturne du port, aujourd'hui l'un des quartiers les plus branchés de Lisbonne. Les trottoirs roses et les bars animés marquent la scène sociale moderne de la ville."
+          },
+          {
+            "title": "Pont du 25 avril",
+            "description": "Souvent comparé au Golden Gate pour son apparence, il relie Lisbonne à la rive sud du Tage. Son nom actuel rend hommage à la Révolution du 25 avril 1974."
+          },
+          {
+            "title": "Time Out Market",
+            "description": "Situé dans l'historique Mercado da Ribeira, il rassemble en un seul lieu certaines des meilleures expériences gastronomiques de Lisbonne, du traditionnel au contemporain."
+          },
+          {
+            "title": "Palais de Belém",
+            "description": "Résidence officielle du Président de la République portugaise. Bâtiment historique entouré de jardins, symbole du pouvoir politique du pays."
+          },
+          {
+            "title": "Choisissez votre point de débarquement",
+            "description": "À la fin du circuit, nous garantissons un retour confortable à votre hôtel ou hébergement, ou à un point préalablement convenu."
+          }
+        ]
+      },
+      "id_4": {
+        "stops": [
+          {
+            "title": "Choisissez votre point d'embarquement",
+            "description": "Service de prise en charge personnalisé directement depuis votre hôtel ou votre hébergement pour commencer votre journée complète à Lisbonne."
+          },
+          {
+            "title": "Belém et monuments historiques",
+            "description": "Explorez la Tour de Belém, le Monument des Découvertes et faites une délicieuse halte aux célèbres et originaux Pastéis de Belém."
+          },
+          {
+            "title": "Monastère des Hiéronymites",
+            "description": "Visite guidée des extérieurs de ce magnifique chef-d'œuvre de l'architecture manuéline du XVIe siècle."
+          },
+          {
+            "title": "Baixa Pombalina et Praça do Comércio",
+            "description": "Passage par la zone monumentale reconstruite après le tremblement de terre de 1755, reliant les grandes places au Tage."
+          },
+          {
+            "title": "Chiado et déjeuner traditionnel",
+            "description": "Faites une pause dans le quartier élégant et bohème du Chiado avec du temps libre pour savourer un déjeuner portugais traditionnel."
+          },
+          {
+            "title": "Points de vue et collines historiques",
+            "description": "Faites une balade en tuk-tuk jusqu'aux points les plus élevés de la ville, notamment Senhora do Monte et São Pedro de Alcântara, pour des vues à couper le souffle."
+          },
+          {
+            "title": "Vieille Alfama",
+            "description": "Promenade guidée dans les plus anciennes rues médiévales de Lisbonne, plongeant dans l'âme et l'histoire du Fado."
+          },
+          {
+            "title": "Cathédrale et Saint Antoine",
+            "description": "Visite de la cathédrale de Lisbonne et de l'église historique construite sur la maison natale de Saint Antoine."
+          },
+          {
+            "title": "Choisissez votre point de débarquement",
+            "description": "Terminez votre excursion d'une journée par un retour direct et confortable à votre hôtel ou au point central de votre choix."
+          }
+        ]
+      },
+      "id_5": {
+        "stops": [
+          {
+            "title": "Choisissez votre point d'embarquement",
+            "description": "Prise en charge directement à votre hébergement pour commencer un itinéraire panoramique à travers les collines les plus célèbres de Lisbonne."
+          },
+          {
+            "title": "Point de vue de São Pedro de Alcântara",
+            "description": "Une vue classique et monumentale sur la Baixa Pombalina, la colline de Graça et l'imposant château São Jorge."
+          },
+          {
+            "title": "Point de vue de Santa Catarina (Adamastor)",
+            "description": "Ambiance détendue au bord de la colline avec une large vue sur le port de Lisbonne, le pont et le Cristo Rei."
+          },
+          {
+            "title": "Point de vue de Senhora do Monte",
+            "description": "Le sommet absolu de Lisbonne. La vue panoramique la plus spectaculaire, où l'on peut voir presque toute la longueur de la ville antique."
+          },
+          {
+            "title": "Point de vue de Graça",
+            "description": "Située à côté de l'église emblématique, c'est l'une des étapes préférées des Lisboètes pour observer la vieille ville à l'ombre des pins."
+          },
+          {
+            "title": "Point de vue de Portas do Sol",
+            "description": "Un authentique balcon médiéval suspendu au-dessus des toits traditionnels d'Alfama et de la courbure parfaite du Tage."
+          },
+          {
+            "title": "Choisissez votre point de débarquement",
+            "description": "Débarquez confortablement à votre hôtel ou au point de vue de votre choix pour profiter de la soirée."
+          }
+        ]
+      },
+      "id_6": {
+        "stops": [
+          {
+            "title": "Choisissez votre point d'embarquement",
+            "description": "Nous venons vous chercher en fin d'après-midi à votre hôtel avec le Tuk-Tuk entièrement décoré et préparé pour la magie de Noël."
+          },
+          {
+            "title": "Place du Commerce et arbre géant",
+            "description": "Profitez du grand éclairage de la plus grande place de Lisbonne et de son sapin de Noël traditionnel, géant et brillant."
+          },
+          {
+            "title": "Rue Augusta et Baixa Iluminada",
+            "description": "Promenez-vous sous les plafonds aux lumières scintillantes et les décorations thématiques des rues commerçantes les plus fréquentées de la ville."
+          },
+          {
+            "title": "Rossio et marché de Noël",
+            "description": "Passage par Rossio et arrêt optionnel pour découvrir les petites cabanes en bois avec artisanat, friandises typiques et vin chaud."
+          },
+          {
+            "title": "Avenida da Liberdade",
+            "description": "Défilez le long de l'avenue la plus luxueuse de Lisbonne, entièrement décorée de milliers de lumières LED sur ses arbres centenaires."
+          },
+          {
+            "title": "Chiado et Praça Luís de Camões",
+            "description": "Plongez dans l'atmosphère magique et artistique du Chiado avec ses célèbres façades lumineuses qui enchantent petits et grands."
+          },
+          {
+            "title": "Choisissez votre point de débarquement",
+            "description": "Retour confortable à votre hôtel ou restaurant de votre choix pour profiter du dîner de Noël."
+          }
+        ]
+      },
+      "id_7": {
+        "stops": [
+          {
+            "title": "Choisissez votre point d'embarquement",
+            "description": "Prise en charge privée le matin à votre hôtel pour commencer un voyage inoubliable vers la magnifique Serra de Sintra."
+          },
+          {
+            "title": "Palais national de Pena",
+            "description": "Explorez le palais le plus coloré et romantique d'Europe, construit au sommet de la montagne comme un véritable château de conte de fées."
+          },
+          {
+            "title": "Village historique de Sintra",
+            "description": "Temps libre pour explorer les ruelles médiévales, visiter les boutiques locales et déguster les célèbres queijadas et travesseiros de Sintra."
+          },
+          {
+            "title": "Cabo da Roca",
+            "description": "Visite du point le plus occidental de l'Europe continentale, là où la mer rencontre les impressionnantes falaises rocheuses."
+          },
+          {
+            "title": "Boca do Inferno",
+            "description": "Admirez la force dramatique de l'océan Atlantique sculptant les grottes et les formations rocheuses de la côte de Cascais."
+          },
+          {
+            "title": "Cascais et la côte d'Estoril",
+            "description": "Visitez le charmant village côtier de Cascais, ancienne résidence d'été de la royauté, et revenez par la route côtière pittoresque."
+          },
+          {
+            "title": "Choisissez votre point de débarquement",
+            "description": "Retournez en tout confort et en toute sécurité directement à votre hébergement à Lisbonne."
+          }
+        ]
+      },
+      "id_8": {
+        "stops": [
+          {
+            "title": "Choisissez votre point d'embarquement",
+            "description": "Départ privé de votre hôtel à Lisbonne vers le cœur historique, religieux et culturel du centre du Portugal."
+          },
+          {
+            "title": "Sanctuaire de Fátima",
+            "description": "Visite du site des apparitions mariales de 1917, visite de la Basilique Notre-Dame du Rosaire, de la Chapelle des Apparitions et de la Basilique de la Sainte Trinité."
+          },
+          {
+            "title": "Monastère de Batalha",
+            "description": "Un joyau imposant de l'architecture gothique et manuéline portugaise, classé au patrimoine mondial de l'UNESCO."
+          },
+          {
+            "title": "Site de Nazaré et de la Vague Géante",
+            "description": "Montez au Sítio da Nazaré pour une vue panoramique à couper le souffle sur la plage et les vagues géantes emblématiques de Canhão da Nazaré."
+          },
+          {
+            "title": "Village médiéval d'Óbidos",
+            "description": "Voyagez dans le temps en vous promenant le long des murs et des rues d'Óbidos, pour terminer avec la classique Ginjinha servie dans une tasse de chocolat."
+          },
+          {
+            "title": "Choisissez votre point de débarquement",
+            "description": "Retour confortable et relaxant avec dépôt final à votre hôtel ou point d'hébergement à Lisbonne."
+          }
+        ]
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Nos avis Google",
+    "description": "Découvrez ce que les visiteurs pensent de Lisbon Mates",
+    "reviews": [
+      "Excellente visite d'Alfama ! Le guide connaissait chaque histoire et chaque recoin caché. Vivement recommandé pour découvrir la ville et écouter un fado authentique. (Avis Google)",
+      "Magnifique visite de Belém — monastères, pâtisseries et monuments. Très bien organisée, avec des explications détaillées. Cinq étoiles sur Google !",
+      "Visite complète de Lisbonne, d'Alfama et de Belém. Itinéraire professionnel, excellente gestion du temps et très bonnes recommandations de restaurants. Une superbe expérience. (Avis Google)"
+    ]
+  }
 }
