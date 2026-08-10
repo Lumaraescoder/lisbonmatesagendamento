@@ -58,6 +58,8 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
   const [time, setTime] = useState<string | null>(initialTime || "09:00");
   const [dateInput, setDateInput] = useState<string>(converSelectedDateToString([startDate, endDate]));
   const [hours, setHours] = useState<number>(2);
+  const paypalClientId = typeof process !== 'undefined' ? process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || (process.env.NODE_ENV !== 'production' ? 'sb' : '') : '';
+  const isPaypalClientIdValid = typeof paypalClientId === 'string' && paypalClientId.trim().length > 0;
   const [isReadOnly, setIsReadOnly] = useState<boolean>(false);
   const listingIdParam = (searchParams && (searchParams.get("listingId") || searchParams.get("listing"))) || "";
 
@@ -466,16 +468,17 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                 </div>
               )}
               <div className="pt-4">
-                <PayPalScriptProvider
-                  options={{
-                    "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
-                    currency: "EUR",
-                    locale: "en_US",
-                    intent: "capture",
-                  }}
-                >
-                  <div>
-                    <PayPalButtons
+                {isPaypalClientIdValid ? (
+                  <PayPalScriptProvider
+                    options={{
+                      "client-id": paypalClientId,
+                      currency: "EUR",
+                      locale: "en-US",
+                      intent: "capture",
+                    }}
+                  >
+                    <div>
+                      <PayPalButtons
                       style={{ layout: "vertical" }}
                       forceReRender={[computeAmount(), time]}
                       createOrder={async () => {
@@ -535,8 +538,19 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                         setPaymentError(getErrorMessage(err, "PayPal payment could not be completed. Please try again."));
                       }}
                     />
+                    </div>
+                  </PayPalScriptProvider>
+                ) : (
+                  <div className="rounded-xl border border-yellow-200 bg-yellow-50 px-4 py-3 text-sm text-yellow-700">
+                    PayPal is not configured for this environment. Set `NEXT_PUBLIC_PAYPAL_CLIENT_ID` in your environment variables and rebuild/deploy. (The public Client ID must be provided at build time as `NEXT_PUBLIC_PAYPAL_CLIENT_ID`).
+                    {process.env.NODE_ENV === 'production' && typeof window !== 'undefined' && (function logMissing() {
+                      try {
+                        console.error('Missing or empty NEXT_PUBLIC_PAYPAL_CLIENT_ID in production build. PayPal SDK will not be initialized and PayPal Buttons will not render.');
+                      } catch (e) {}
+                      return null;
+                    })()}
                   </div>
-                </PayPalScriptProvider>
+                )}
               </div>
             </div>
           )}
