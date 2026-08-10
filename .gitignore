@@ -41,3 +41,5 @@ yarn-error.log*
 .cache/
 dist/
 *.gz
+.vercel
+.env*.local

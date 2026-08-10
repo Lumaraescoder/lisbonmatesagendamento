@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-const WhatsAppFloat: React.FC<{ phone?: string; message?: string }> = ({ phone = "351912345678", message = "Hello! I have a question about tours" }) => {
+const WhatsAppFloat: React.FC<{ phone?: string; message?: string }> = ({ phone = "351928386233", message = "Hello! I have a question about tours" }) => {
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
   if (!mounted) return null;
