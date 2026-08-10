@@ -1,14 +1,40 @@
 {
+  "common": {
+    "home": "Home",
+    "tours": "Tours",
+    "testimonials": "Testimonials",
+    "contact": "Contact",
+    "links": "Links",
+    "language": "Language",
+    "currency": "Currency",
+    "openMenu": "Open menu",
+    "signUp": "Sign up",
+    "viewAll": "View all",
+    "save": "Save",
+    "share": "Share",
+    "showAllPhotos": "Show all photos",
+    "reserve": "Reserve",
+    "total": "Total",
+    "serviceCharge": "Service charge",
+    "perPerson": "/person",
+    "persons": "persons",
+    "person": "person",
+    "hour": "hour",
+    "hours": "hours",
+    "fromPrice": "From €30",
+    "fixedFullDayPrice": "Fixed Price €320",
+    "saleToday": "-{discount}% today",
+    "whatsAppMessage": "Hello! I have a question about tours",
+    "whatsAppLabel": "Contact on WhatsApp"
+  },
+  "hero": {
+    "subtitle": "Discover the best tours and experiences in Lisbon",
+    "title": "Lisbon Mates",
+    "button": "Book now",
+    "imageAlt": "Lisbon Mates tour in Lisbon"
+  },
   "section": {
     "featuredTours": "Featured tours"
-  },
-  "subscribe": {
-    "title": "Join our newsletter 🎉",
-    "description": "Read and share new perspectives on just about any topic. Everyone’s welcome.",
-    "benefit1": "Get more discount",
-    "benefit2": "Get premium magazines",
-    "placeholder": "Enter your email",
-    "button": "Subscribe"
   },
   "categories": {
     "scenic": "Tuk-Tuk Scenic Tours",
@@ -16,16 +42,69 @@
     "historical": "Historical & Religious Sites",
     "food": "Food Experiences"
   },
-  "hero": {
-    "subtitle": "Discover the best tours and experiences in Lisbon",
-    "title": "Lisbon Mates",
-    "button": "Book now"
+  "subscribe": {
+    "title": "Join our newsletter",
+    "description": "Read and share new perspectives on just about any topic. Everyone's welcome.",
+    "benefit1": "Get more discount",
+    "benefit2": "Get premium magazines",
+    "placeholder": "Enter your email",
+    "button": "Subscribe"
+  },
+  "languageNames": {
+    "en": "English",
+    "pt": "Portuguese",
+    "es": "Spanish",
+    "fr": "French",
+    "de": "German",
+    "it": "Italian"
+  },
+  "tourCards": {
+    "id1": {
+      "title": "The Old Town Tour Alfama",
+      "description": "A private Alfama tour adapted to your time, interests, and pace, with a local guide and a 100% electric tuk-tuk.",
+      "address": "Lisbon"
+    },
+    "id_2": {
+      "title": "Tour Chiado & Bairro Alto",
+      "description": "Explore literary cafes, boutiques, bohemian streets, and viewpoints over the Tagus at your pace.",
+      "address": "Lisbon"
+    },
+    "id_3": {
+      "title": "Tour Belem",
+      "description": "Visit Jeronimos Monastery, Belem Tower, and the Monument to the Discoveries with time for photos and a fresh pastel.",
+      "address": "Lisbon, Portugal"
+    },
+    "id_4": {
+      "title": "Lisbon Full Day",
+      "description": "A full-day Lisbon experience covering Alfama, Belem, the center, and your favorite viewpoints.",
+      "address": "Lisbon, Portugal"
+    },
+    "id_5": {
+      "title": "Lisbon Viewpoints Tour",
+      "description": "Discover iconic lookouts and quieter panoramas over the Tagus in a silent electric tuk-tuk.",
+      "address": "Lisbon, Portugal"
+    },
+    "id_6": {
+      "title": "Magical Christmas Lights Tour in Lisbon",
+      "description": "Glide through Baixa, Chiado, and Praca do Comercio for Lisbon's best holiday lights and photo stops.",
+      "address": "Lisbon, Portugal"
+    },
+    "id_7": {
+      "title": "Sintra and Cascais from Lisbon",
+      "description": "Explore palaces, gardens, coastal viewpoints, and tailored stops between Sintra and Cascais.",
+      "address": "Lisbon, Portugal"
+    },
+    "id_8": {
+      "title": "Fatima, Nazare, Batalha and Obidos",
+      "description": "A full-day private route through central Portugal's religious, coastal, and medieval highlights.",
+      "address": "Lisbon, Portugal"
+    }
   },
   "experiences": {
     "specificTour": "Specific Tour",
     "showAllPhotos": "Show all photos",
-    "experiencesDescriptions": "Experiences descriptions",
-    "include": "Include",
+    "experiencesDescriptions": "Experience description",
+    "include": "Included",
     "includedInPrice": "Included in the price",
     "reviews": "Reviews",
     "sharePlaceholder": "Share your thoughts ...",
@@ -34,21 +113,46 @@
     "hoursLabel": "hours",
     "upToLabel": "Up to {count} people",
     "languagesLabel": "Languages",
+    "languagesValue": "English, Portuguese, Spanish",
     "location": "Location",
+    "locationSample": "Lisbon, Portugal",
     "thingsToKnow": "Things to know",
     "cancellationPolicy": "Cancellation policy",
     "cancellationPolicyDesc": "Any experience can be canceled and fully refunded within 24 hours of purchase, or at least 7 days before the experience starts.",
-    "personRequirements": "Person requirements",
-    "personRequirementsDesc": "Up to 10 persons ages 4 and up can attend. Parents may also bring children under 2 years of age.",
+    "personRequirements": "Guest requirements",
+    "personRequirementsDesc": "Up to 10 guests ages 4 and up can attend. Parents may also bring children under 2 years of age.",
     "whatToBring": "What to bring",
     "whatToBringList": [
       "Appropriate clothing for religious sites",
-      "Be ready before 7:30 AM",
+      "Be ready before the scheduled pickup time",
       "Transport and lunch as indicated"
     ],
-    "tourTitle": "The Old Town Tour — Alfama",
-    "locationSample": "Lisbon, Portugal",
-    "longDescription": "PRIVATE TUK-TUK TOUR — tailored around you.\n\n07:30 – Our guide will meet you at the agreed pickup point and begin the tour in a comfortable, 100% electric tuk-tuk. The route includes the sanctuary, coastal viewpoints and medieval streets — stops and timing are adapted to your pace and interests.\n\nLunch and short breaks are included where indicated. At the end of the day we return to the original pickup point.\n\nThis is a full-day tour; times are indicative and can be adjusted on request.",
-    "reserve": "Reserve"
+    "tourTitle": "The Old Town Tour - Alfama",
+    "longDescription": "PRIVATE TUK-TUK TOUR - tailored around you.\n\nOur guide will meet you at the agreed pickup point and begin the tour in a comfortable, 100% electric tuk-tuk. The route includes viewpoints, historic streets, and local stops adapted to your pace and interests.\n\nShort breaks are included where indicated. At the end of the tour we return to the original pickup point or another agreed central location.\n\nTimes are indicative and can be adjusted on request.",
+    "availability": "Availability",
+    "availabilityDescription": "Prices may increase on weekends or holidays",
+    "time": "Time",
+    "duration": "Hours",
+    "listingNotFound": "Listing not found: {id}",
+    "noDescription": "No description provided.",
+    "selectGuests": "Select number of people",
+    "selectGuestsDescription": "Please select number of people",
+    "adults": "Adults",
+    "adultsDesc": "Ages 13 or above",
+    "children": "Children",
+    "childrenDesc": "Ages 2-12",
+    "addDates": "Add dates",
+    "checkInOut": "Check in - Check out",
+    "priceGuests": "€{price} x {count} persons",
+    "includes": [
+      "Private electric tuk-tuk tour",
+      "Local guide",
+      "Pickup in central Lisbon when available",
+      "Flexible photo stops",
+      "Route adapted to your pace"
+    ]
+  },
+  "itinerary": {
+    "title": "Itinerary"
   }
 }

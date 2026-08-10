@@ -1,14 +1,40 @@
 {
+  "common": {
+    "home": "Início",
+    "tours": "Passeios",
+    "testimonials": "Depoimentos",
+    "contact": "Contato",
+    "links": "Links",
+    "language": "Idioma",
+    "currency": "Moeda",
+    "openMenu": "Abrir menu",
+    "signUp": "Criar conta",
+    "viewAll": "Ver tudo",
+    "save": "Salvar",
+    "share": "Compartilhar",
+    "showAllPhotos": "Ver todas as fotos",
+    "reserve": "Reservar",
+    "total": "Total",
+    "serviceCharge": "Taxa de serviço",
+    "perPerson": "/pessoa",
+    "persons": "pessoas",
+    "person": "pessoa",
+    "hour": "hora",
+    "hours": "horas",
+    "fromPrice": "A partir de €30",
+    "fixedFullDayPrice": "Preço fixo €320",
+    "saleToday": "-{discount}% hoje",
+    "whatsAppMessage": "Olá! Tenho uma pergunta sobre os passeios",
+    "whatsAppLabel": "Contato pelo WhatsApp"
+  },
+  "hero": {
+    "subtitle": "Descubra os melhores passeios e experiências em Lisboa",
+    "title": "Lisbon Mates",
+    "button": "Reservar agora",
+    "imageAlt": "Passeio da Lisbon Mates em Lisboa"
+  },
   "section": {
     "featuredTours": "Passeios em destaque"
-  },
-  "subscribe": {
-    "title": "Participe da nossa newsletter 🎉",
-    "description": "Leia e compartilhe novas perspectivas sobre praticamente qualquer assunto. Todos são bem-vindos.",
-    "benefit1": "Obtenha mais desconto",
-    "benefit2": "Receba revistas premium",
-    "placeholder": "Digite seu e-mail",
-    "button": "Inscrever-se"
   },
   "categories": {
     "scenic": "Passeios panorâmicos de Tuk-Tuk",
@@ -16,16 +42,69 @@
     "historical": "Locais históricos e religiosos",
     "food": "Experiências gastronômicas"
   },
-  "hero": {
-    "subtitle": "Descubra os melhores passeios e experiências em Lisboa",
-    "title": "Lisbon Mates",
-    "button": "Reservar agora"
+  "subscribe": {
+    "title": "Participe da nossa newsletter",
+    "description": "Leia e compartilhe novas perspectivas sobre praticamente qualquer assunto. Todos são bem-vindos.",
+    "benefit1": "Obtenha mais desconto",
+    "benefit2": "Receba revistas premium",
+    "placeholder": "Digite seu e-mail",
+    "button": "Inscrever-se"
+  },
+  "languageNames": {
+    "en": "Inglês",
+    "pt": "Português",
+    "es": "Espanhol",
+    "fr": "Francês",
+    "de": "Alemão",
+    "it": "Italiano"
+  },
+  "tourCards": {
+    "id1": {
+      "title": "Passeio pelo Centro Antigo - Alfama",
+      "description": "Um passeio privado por Alfama adaptado ao seu tempo, interesses e ritmo, com guia local e tuk-tuk 100% elétrico.",
+      "address": "Lisboa"
+    },
+    "id_2": {
+      "title": "Passeio Chiado e Bairro Alto",
+      "description": "Explore cafés literários, lojas, ruas boêmias e miradouros sobre o Tejo no seu ritmo.",
+      "address": "Lisboa"
+    },
+    "id_3": {
+      "title": "Passeio por Belém",
+      "description": "Visite o Mosteiro dos Jerónimos, a Torre de Belém e o Padrão dos Descobrimentos com tempo para fotos e um pastel fresco.",
+      "address": "Lisboa, Portugal"
+    },
+    "id_4": {
+      "title": "Lisboa Dia Inteiro",
+      "description": "Uma experiência de dia inteiro por Alfama, Belém, centro histórico e seus miradouros favoritos.",
+      "address": "Lisboa, Portugal"
+    },
+    "id_5": {
+      "title": "Passeio pelos Miradouros de Lisboa",
+      "description": "Descubra miradouros icônicos e panoramas mais tranquilos sobre o Tejo em um tuk-tuk elétrico silencioso.",
+      "address": "Lisboa, Portugal"
+    },
+    "id_6": {
+      "title": "Passeio Mágico das Luzes de Natal em Lisboa",
+      "description": "Passe por Baixa, Chiado e Praça do Comércio para ver as melhores luzes natalinas e fazer paradas para fotos.",
+      "address": "Lisboa, Portugal"
+    },
+    "id_7": {
+      "title": "Sintra e Cascais saindo de Lisboa",
+      "description": "Explore palácios, jardins, miradouros costeiros e paradas personalizadas entre Sintra e Cascais.",
+      "address": "Lisboa, Portugal"
+    },
+    "id_8": {
+      "title": "Fátima, Nazaré, Batalha e Óbidos",
+      "description": "Uma rota privada de dia inteiro pelos destaques religiosos, costeiros e medievais do centro de Portugal.",
+      "address": "Lisboa, Portugal"
+    }
   },
   "experiences": {
     "specificTour": "Passeio específico",
     "showAllPhotos": "Ver todas as fotos",
     "experiencesDescriptions": "Descrição da experiência",
-    "include": "Inclui",
+    "include": "Incluído",
     "includedInPrice": "Incluído no preço",
     "reviews": "Avaliações",
     "sharePlaceholder": "Compartilhe seus pensamentos ...",
@@ -34,21 +113,46 @@
     "hoursLabel": "horas",
     "upToLabel": "Até {count} pessoas",
     "languagesLabel": "Idiomas",
+    "languagesValue": "Inglês, Português, Espanhol",
     "location": "Localização",
+    "locationSample": "Lisboa, Portugal",
     "thingsToKnow": "Coisas a saber",
     "cancellationPolicy": "Política de cancelamento",
     "cancellationPolicyDesc": "Qualquer experiência pode ser cancelada e totalmente reembolsada dentro de 24 horas após a compra, ou pelo menos 7 dias antes do início da experiência.",
-    "personRequirements": "Requisitos de pessoas",
+    "personRequirements": "Requisitos dos participantes",
     "personRequirementsDesc": "Até 10 pessoas com 4 anos ou mais podem participar. Pais também podem trazer crianças menores de 2 anos.",
     "whatToBring": "O que levar",
     "whatToBringList": [
-      "Roupa apropriada para visitar locais religiosos",
-      "Esteja pronto antes das 7:30",
+      "Roupa apropriada para locais religiosos",
+      "Esteja pronto antes do horário combinado",
       "Transporte e almoço conforme indicado"
     ],
-    "tourTitle": "Passeio pelo Centro Antigo — Alfama",
-    "locationSample": "Lisboa, Portugal",
-    "longDescription": "TOUR PRIVADO DE TUK-TUK — adaptado a você.\n\n07:30 – Nosso guia encontrará você no ponto de encontro combinado e começará o passeio em um tuk-tuk 100% elétrico. O percurso inclui santuários, mirantes costeiros e ruas medievais — paradas e horários adaptados ao seu ritmo e interesses.\n\nAlmoço e pequenas pausas estão incluídos onde indicado. Ao final do dia retornamos ao ponto de encontro original.\n\nEste é um passeio de dia inteiro; os horários são indicativos e podem ser ajustados mediante pedido.",
-    "reserve": "Reservar"
+    "tourTitle": "Passeio pelo Centro Antigo - Alfama",
+    "longDescription": "TOUR PRIVADO DE TUK-TUK - adaptado a você.\n\nNosso guia encontrará você no ponto de encontro combinado e começará o passeio em um tuk-tuk confortável e 100% elétrico. O percurso inclui miradouros, ruas históricas e paradas locais adaptadas ao seu ritmo e interesses.\n\nPequenas pausas estão incluídas quando indicado. Ao final do passeio retornamos ao ponto de encontro original ou a outro local central combinado.\n\nOs horários são indicativos e podem ser ajustados mediante pedido.",
+    "availability": "Disponibilidade",
+    "availabilityDescription": "Os preços podem aumentar nos fins de semana ou feriados",
+    "time": "Horário",
+    "duration": "Horas",
+    "listingNotFound": "Passeio não encontrado: {id}",
+    "noDescription": "Nenhuma descrição disponível.",
+    "selectGuests": "Selecione o número de pessoas",
+    "selectGuestsDescription": "Por favor selecione o número de pessoas",
+    "adults": "Adultos",
+    "adultsDesc": "13 anos ou mais",
+    "children": "Crianças",
+    "childrenDesc": "2 a 12 anos",
+    "addDates": "Adicionar datas",
+    "checkInOut": "Entrada - Saída",
+    "priceGuests": "€{price} x {count} pessoas",
+    "includes": [
+      "Passeio privado em tuk-tuk elétrico",
+      "Guia local",
+      "Recolha no centro de Lisboa quando disponível",
+      "Paradas flexíveis para fotos",
+      "Rota adaptada ao seu ritmo"
+    ]
+  },
+  "itinerary": {
+    "title": "Roteiro"
   }
 }
