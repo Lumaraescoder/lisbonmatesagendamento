@@ -7,6 +7,7 @@ import React, { FC, Fragment, useEffect, useState } from "react";
 import ButtonPrimary from "@/shared/ButtonPrimary";
 import DatePickerCustomHeaderTwoMonth from "./DatePickerCustomHeaderTwoMonth";
 import DatePickerCustomDay from "./DatePickerCustomDay";
+import { useI18n } from "@/i18n/I18nProvider";
 
 interface ModalSelectDateProps {
   renderChildren?: (p: { openModal: () => void }) => React.ReactNode;
@@ -17,6 +18,7 @@ interface ModalSelectDateProps {
 }
 
 const ModalSelectDate: FC<ModalSelectDateProps> = ({ renderChildren, single = false, onSave }) => {
+  const { t } = useI18n();
   const [showModal, setShowModal] = useState(false);
 
   const [startDate, setStartDate] = useState<Date | null>(new Date("2023/02/06"));
@@ -47,7 +49,7 @@ const ModalSelectDate: FC<ModalSelectDateProps> = ({ renderChildren, single = fa
     return renderChildren ? (
       renderChildren({ openModal })
     ) : (
-      <button onClick={openModal}>Select Date</button>
+      <button onClick={openModal}>{t("common.selectDate")}</button>
     );
   };
 
@@ -87,7 +89,7 @@ const ModalSelectDate: FC<ModalSelectDateProps> = ({ renderChildren, single = fa
                         <div className="flex-1 flex flex-col transition-opacity animate-[myblur_0.4s_ease-in-out] overflow-auto">
                           <div className="p-5 ">
                             <span className="block font-semibold text-xl sm:text-2xl">
-                              {` When's your trip?`}
+                              {t("common.selectDate")}
                             </span>
                           </div>
                           <div className="flex-1 relative flex z-10 ">
@@ -124,7 +126,7 @@ const ModalSelectDate: FC<ModalSelectDateProps> = ({ renderChildren, single = fa
                           if (single && onSave) onSave(null);
                         }}
                       >
-                        Clear dates
+                        {t("common.clearData")}
                       </button>
                       <ButtonPrimary
                         sizeClass="px-6 py-3 !rounded-xl"
@@ -133,7 +135,7 @@ const ModalSelectDate: FC<ModalSelectDateProps> = ({ renderChildren, single = fa
                           closeModal();
                         }}
                       >
-                        Save
+                        {t("common.saveAction")}
                       </ButtonPrimary>
                     </div>
                   </>

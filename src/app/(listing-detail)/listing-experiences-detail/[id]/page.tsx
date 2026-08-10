@@ -173,7 +173,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
           {/* Host Information removed as requested */}
 
           {ITINERARIES[shortId] && (
-            <TourItinerary stops={ITINERARIES[shortId].stops} />
+            <TourItinerary tourKey={shortId} stops={ITINERARIES[shortId].stops} />
           )}
           <SectionClientSay />
 
