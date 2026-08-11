@@ -9,6 +9,7 @@ export type Locale = 'en' | 'pt' | 'de' | 'fr' | 'es' | 'it';
 
 export const LOCALE_STORAGE_KEY = "locale";
 export const defaultLocale: Locale = "pt";
+export const fallbackLocale: Locale = "en";
 export const SUPPORTED: Locale[] = ["pt", "it", "de", "fr", "es", "en"];
 
 export const LOCALES: Record<Locale, any> = {
@@ -73,7 +74,7 @@ export function translate(
 ) {
   const normalized = normalizeLocale(locale) || defaultLocale;
   const value = getNestedValue(normalized, key);
-  const fallbackValue = normalized === defaultLocale ? undefined : getNestedValue(defaultLocale, key);
+  const fallbackValue = normalized === fallbackLocale ? undefined : getNestedValue(fallbackLocale, key);
   return formatTranslation(value ?? fallbackValue ?? fallback ?? key, params);
 }
 

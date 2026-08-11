@@ -33,7 +33,13 @@ const ModalSelectGuests: FC<ModalSelectGuestsProps> = ({ renderChildren, value, 
     guestInfants: 0,
   });
   useEffect(() => {
-    if (value) setCurrentGuests(value);
+    if (value) {
+      setCurrentGuests({
+        guestAdults: value.guestAdults || 0,
+        guestChildren: value.guestChildren || 0,
+        guestInfants: value.guestInfants || 0,
+      });
+    }
   }, [value]);
 
   const renderButtonOpenModal = () => {

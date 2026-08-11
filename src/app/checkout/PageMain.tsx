@@ -58,12 +58,20 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
   const [paymentError, setPaymentError] = useState<string | null>(null);
   const [paidOrderId, setPaidOrderId] = useState<string | null>(null);
   const [time, setTime] = useState<string | null>(initialTime || "09:00");
-  const [dateInput, setDateInput] = useState<string>(converSelectedDateToString([startDate, endDate]));
+  const dateLocale = locale === "pt" ? "pt-PT" : locale === "es" ? "es-ES" : locale === "fr" ? "fr-FR" : locale === "de" ? "de-DE" : locale === "it" ? "it-IT" : "en-GB";
+  const [dateInput, setDateInput] = useState<string>(converSelectedDateToString([startDate, endDate], dateLocale));
   const [hours, setHours] = useState<number>(2);
   const paypalClientId = typeof process !== 'undefined' ? process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || (process.env.NODE_ENV !== 'production' ? 'sb' : '') : '';
   const isPaypalClientIdValid = typeof paypalClientId === 'string' && paypalClientId.trim().length > 0;
   const [isReadOnly, setIsReadOnly] = useState<boolean>(false);
   const listingIdParam = (searchParams && (searchParams.get("listingId") || searchParams.get("listing"))) || "";
+  const listingTourKey = listingIdParam.replace(/^(?:stay|experiences)Listing_(\d+)_$/, (_match, index) => {
+    const keys = ["id1", "id_2", "id_3", "id_4", "id_5", "id_6", "id_7", "id_8"];
+    return keys[Number(index)] || listingIdParam;
+  }).split("-")[0];
+  const localizedListingTitle = listingTourKey
+    ? String(t(`tourCards.${listingTourKey}.title`, undefined, listingTitle || String(t("common.tour"))))
+    : listingTitle || String(t("common.tour"));
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -91,7 +99,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
     }
 
     // sync visible date input when start/end date change
-    setDateInput(converSelectedDateToString([startDate, endDate]));
+    setDateInput(converSelectedDateToString([startDate, endDate], dateLocale));
 
     if (initialGuests) {
       setGuests(initialGuests);
@@ -147,7 +155,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
       const hasPrefill = Boolean(listingId || dateParam || timeParam || adultsParam || initialDate || initialGuests);
       setIsReadOnly(hasPrefill);
     }
-  }, [initialDate, initialGuests, initialHours, searchParams]);
+  }, [initialDate, initialGuests, initialHours, searchParams, dateLocale]);
 
   // compute amount from listing when possible
   const computeAmount = () => {
@@ -159,6 +167,8 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
   };
 
   const totalPayableGuests = (guests.guestAdults || 0) + (guests.guestChildren || 0);
+  const localizedPeopleCount = (count: number) =>
+    `${count} ${t(count === 1 ? "common.person" : "common.persons")}`;
 
   const getErrorMessage = (error: unknown, fallback: string) => {
     if (error instanceof Error && error.message) return error.message;
@@ -177,7 +187,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
           <div className="flex-shrink-0 w-full sm:w-40">
             <div className="aspect-w-4 aspect-h-3 sm:aspect-h-4 rounded-2xl overflow-hidden">
               <Image
-                alt={listingTitle || ""}
+                alt={localizedListingTitle}
                 fill
                 sizes="200px"
                 src={listingImage || "https://images.pexels.com/photos/6373478/pexels-photo-6373478.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"}
@@ -190,7 +200,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                 {listingSubtitle || ""}
               </span>
               <span className="text-base font-medium mt-1 block">
-                {listingTitle || "Listing"}
+                {localizedListingTitle}
               </span>
             </div>
             <div className="w-10 border-b border-neutral-200 dark:border-neutral-700"></div>
@@ -201,11 +211,11 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
           <h3 className="text-2xl font-semibold">{t("checkout.yourReservationDetails")}</h3>
           <div className="flex justify-between text-neutral-6000 dark:text-neutral-300">
             <span>{t("common.date")}:</span>
-            <span>{converSelectedDateToString([startDate, endDate])}</span>
+            <span>{converSelectedDateToString([startDate, endDate], dateLocale)}</span>
           </div>
           <div className="flex justify-between text-neutral-6000 dark:text-neutral-300">
             <span>{t("common.people")}:</span>
-            <span>{`${(guests.guestAdults || 0) + (guests.guestChildren || 0)} ${t("common.persons")}`}</span>
+            <span>{localizedPeopleCount((guests.guestAdults || 0) + (guests.guestChildren || 0))}</span>
           </div>
 
           <div className="border-b border-neutral-200 dark:border-neutral-700"></div>
@@ -263,7 +273,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                     <div className="flex flex-col">
                       <span className="text-sm text-neutral-400">{t("common.date")}</span>
                       <span className="mt-1.5 text-lg font-semibold text-neutral-600">
-                        {converSelectedDateToString([startDate, endDate])}
+                        {converSelectedDateToString([startDate, endDate], dateLocale)}
                       </span>
                     </div>
                     <PencilSquareIcon className="w-6 h-6 text-neutral-300" />
@@ -277,7 +287,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                     <div className="flex flex-col">
                       <span className="text-sm text-neutral-400">{t("common.date")}</span>
                       <span className="mt-1.5 text-lg font-semibold">
-                        {converSelectedDateToString([startDate, endDate])}
+                        {converSelectedDateToString([startDate, endDate], dateLocale)}
                       </span>
                     </div>
                     <PencilSquareIcon className="w-6 h-6 text-neutral-6000 dark:text-neutral-400" />
@@ -305,7 +315,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                       <span className="text-sm text-neutral-400">{t("common.guests")}</span>
                       <span className="mt-1.5 text-lg font-semibold">
                         <span className="line-clamp-1 text-neutral-600 dark:text-neutral-300">
-                          {totalPayableGuests > 0 ? `${totalPayableGuests} ${t("common.guests")}` : t("common.noGuestsSelected")}
+                          {totalPayableGuests > 0 ? localizedPeopleCount(totalPayableGuests) : t("common.noGuestsSelected")}
                         </span>
                       </span>
                     </div>
@@ -321,7 +331,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                       <span className="text-sm text-neutral-400">{t("common.guests")}</span>
                       <span className="mt-1.5 text-lg font-semibold">
                         <span className="line-clamp-1">
-                          {totalPayableGuests > 0 ? `${totalPayableGuests} ${t("common.guests")}` : t("common.selectGuests")}
+                          {totalPayableGuests > 0 ? localizedPeopleCount(totalPayableGuests) : t("common.selectGuests")}
                         </span>
                       </span>
                     </div>
@@ -490,7 +500,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                             body: JSON.stringify({
                               bookingData: {
                                 listingId: listingIdParam,
-                                tourTitle: listingTitle || String(t("common.tour")),
+                                tourTitle: localizedListingTitle,
                                 adults: guests.guestAdults || 0,
                                 children: guests.guestChildren || 0,
                                 infants: guests.guestInfants || 0,
@@ -587,7 +597,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
             <div className="space-y-2 rounded-xl bg-neutral-50 p-4 text-left text-sm dark:bg-neutral-900">
               <div className="flex justify-between gap-4">
                 <span className="text-neutral-500">{t("common.tour")}</span>
-                <span className="font-medium text-right">{listingTitle || t("common.tour")}</span>
+                <span className="font-medium text-right">{localizedListingTitle}</span>
               </div>
               <div className="flex justify-between gap-4">
                 <span className="text-neutral-500">{t("common.date")}</span>
