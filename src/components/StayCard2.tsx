@@ -111,6 +111,9 @@ const StayCard2: FC<StayCard2Props> = ({
             <StartRating reviewCount={reviewCount} point={reviewStart} />
           )}
         </div>
+        <span className="flex w-full items-center justify-center rounded-lg bg-primary-6000 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-700">
+          {t("hero.button")}
+        </span>
       </div>
     );
   };
