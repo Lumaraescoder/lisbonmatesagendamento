@@ -75,6 +75,9 @@
     "historical": "Lugares históricos y religiosos",
     "food": "Experiencias gastronómicas"
   },
+  "mobileApp": {
+    "title": "Aplicaciones móviles"
+  },
   "subscribe": {
     "title": "Únete a nuestro boletín",
     "description": "Lee y comparte nuevas perspectivas sobre casi cualquier tema. Todos son bienvenidos.",
@@ -222,6 +225,8 @@
   },
   "itinerary": {
     "title": "Itinerario",
+    "unavailableStop": "Parada del itinerario",
+    "unavailableStopDescription": "Los detalles de esta parada no están disponibles.",
     "tours": {
       "id1": {
         "stops": [
@@ -274,7 +279,7 @@
             "description": "Lo recogemos directamente en su hotel o alojamiento en la región central de Lisboa. Si te alojas fuera del centro, podemos concertar un punto de encuentro cercano."
           },
           {
-            "title": "Convento do Carmo",
+            "title": "Convento del Carmo",
             "description": "Ruinas góticas de un convento del siglo XIV, parcialmente destruido por el terremoto de 1755. Desde entonces ha estado sin techo, creando una atmósfera al aire libre única."
           },
           {
@@ -434,7 +439,7 @@
             "description": "Disfrute de la gran iluminación de la plaza más grande de Lisboa y de su tradicional, gigante y brillante árbol de Navidad."
           },
           {
-            "title": "Rua Augusta y Baixa Iluminada",
+            "title": "Rua Augusta y Baixa iluminada",
             "description": "Pasee bajo los techos de luces parpadeantes y decoraciones temáticas de las calles comerciales más concurridas de la ciudad."
           },
           {

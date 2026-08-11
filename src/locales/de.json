@@ -75,6 +75,9 @@
     "historical": "Historische und religiöse Orte",
     "food": "Kulinarische Erlebnisse"
   },
+  "mobileApp": {
+    "title": "Mobile Apps"
+  },
   "subscribe": {
     "title": "Newsletter abonnieren",
     "description": "Lesen und teilen Sie neue Perspektiven zu fast jedem Thema. Alle sind willkommen.",
@@ -129,7 +132,7 @@
     },
     "id_8": {
       "title": "Fátima, Nazaré, Batalha und Óbidos",
-      "description": "Eine private Ganztagestour zu den religiösen, landschaftlichen und mittelalterlichen Höhepunkten Zentralportugals.",
+      "description": "Eine private Ganztagestour zu den religiösen, küstennahen und mittelalterlichen Höhepunkten Zentralportugals.",
       "address": "Lissabon, Portugal"
     }
   },
@@ -222,6 +225,8 @@
   },
   "itinerary": {
     "title": "Reiseplan",
+    "unavailableStop": "Reiseplan-Station",
+    "unavailableStopDescription": "Details zu dieser Station sind nicht verfügbar.",
     "tours": {
       "id1": {
         "stops": [
@@ -366,7 +371,7 @@
             "description": "Führung durch dieses prächtige Meisterwerk manuelinischer Architektur aus dem 16. Jahrhundert."
           },
           {
-            "title": "Baixa Pombalina und Praça do Comércio",
+            "title": "Baixa Pombalina und Handelsplatz (Praça do Comércio)",
             "description": "Durchgang durch den monumentalen Bereich, der nach dem Erdbeben von 1755 wieder aufgebaut wurde und die großen Plätze mit dem Fluss Tejo verbindet."
           },
           {
@@ -430,7 +435,7 @@
             "description": "Wir holen Sie am späten Nachmittag in Ihrem Hotel mit dem Tuk-Tuk ab, das vollständig dekoriert und für den Weihnachtszauber vorbereitet ist."
           },
           {
-            "title": "Praça do Comércio und großer Weihnachtsbaum",
+            "title": "Handelsplatz (Praça do Comércio) und großer Weihnachtsbaum",
             "description": "Genießen Sie die großartige Beleuchtung von Lissabons größtem Platz und seinem traditionellen, riesigen, glänzenden Weihnachtsbaum."
           },
           {
@@ -446,7 +451,7 @@
             "description": "Parade entlang der luxuriösesten Allee Lissabons, komplett geschmückt mit Tausenden von LED-Lichtern an ihren jahrhundertealten Bäumen."
           },
           {
-            "title": "Chiado und Praça Luís de Camões",
+            "title": "Chiado und Luís-de-Camões-Platz",
             "description": "Tauchen Sie ein in die magische und künstlerische Atmosphäre des Chiado mit seinen berühmten hellen Fassaden, die Kinder und Erwachsene gleichermaßen verzaubern."
           },
           {
@@ -519,7 +524,7 @@
   },
   "testimonials": {
     "title": "Unsere Google-Bewertungen",
-    "description": "Lesen Sie, was Gäste über Lisbon Mates sagen",
+    "description": "Lesen Sie, was über Lisbon Mates gesagt wird",
     "reviews": [
       "Ausgezeichnete Alfama-Tour! Der Guide kannte jede Geschichte und jeden versteckten Winkel. Sehr empfehlenswert für alle, die die Stadt erleben und authentischen Fado hören möchten. (Google-Bewertung)",
       "Wunderbare Belém-Tour — Klöster, Gebäck und Denkmäler. Sehr gut organisiert und ausführlich erklärt. Fünf Sterne bei Google!",

@@ -75,6 +75,9 @@
     "historical": "Historical & Religious Sites",
     "food": "Food Experiences"
   },
+  "mobileApp": {
+    "title": "Mobile apps"
+  },
   "subscribe": {
     "title": "Join our newsletter",
     "description": "Read and share new perspectives on just about any topic. Everyone's welcome.",
@@ -157,7 +160,7 @@
     "whatToBring": "What to bring",
     "whatToBringList": [
       "Appropriate clothing for religious sites",
-      "Be ready before the scheduled pickup time",
+      "Be ready before the agreed time",
       "Transport and lunch as indicated"
     ],
     "tourTitle": "The Old Town Tour - Alfama",
@@ -222,6 +225,8 @@
   },
   "itinerary": {
     "title": "Itinerary",
+    "unavailableStop": "Itinerary stop",
+    "unavailableStopDescription": "Details for this stop are unavailable.",
     "tours": {
       "id1": {
         "stops": [
@@ -366,7 +371,7 @@
             "description": "Guided tour outside this magnificent masterpiece of Manueline architecture from the 16th century."
           },
           {
-            "title": "Baixa Pombalina and Praça do Comércio",
+            "title": "Baixa Pombalina and Commerce Square (Praça do Comércio)",
             "description": "Passage through the monumental area rebuilt after the 1755 earthquake, connecting the large squares to the Tagus River."
           },
           {
@@ -430,7 +435,7 @@
             "description": "We pick you up in the late afternoon at your hotel with the Tuk-Tuk fully decorated and prepared for the magic of Christmas."
           },
           {
-            "title": "Praça do Comércio and Giant Christmas Tree",
+            "title": "Commerce Square (Praça do Comércio) and Giant Christmas Tree",
             "description": "Enjoy the grand lighting of Lisbon's largest square and its traditional, giant, shiny Christmas tree."
           },
           {
@@ -446,7 +451,7 @@
             "description": "Parade along Lisbon's most luxurious avenue, completely decorated with thousands of LED lights on its centuries-old trees."
           },
           {
-            "title": "Chiado and Praça Luís de Camões",
+            "title": "Chiado and Luís de Camões Square",
             "description": "Immerse yourself in the magical and artistic atmosphere of Chiado with its famous bright facades that enchant children and adults alike."
           },
           {

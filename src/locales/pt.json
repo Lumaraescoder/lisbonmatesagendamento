@@ -75,6 +75,9 @@
     "historical": "Locais históricos e religiosos",
     "food": "Experiências gastronómicas"
   },
+  "mobileApp": {
+    "title": "Aplicações móveis"
+  },
   "subscribe": {
     "title": "Participe da nossa newsletter",
     "description": "Leia e partilhe novas perspetivas sobre praticamente qualquer assunto. Todos são bem-vindos.",
@@ -190,18 +193,18 @@
     "pleaseSelectPeople": "Por favor selecione o número de pessoas",
     "yourReservationDetails": "Detalhes da sua reserva",
     "confirmAndPayment": "Confirmar e pagar",
-    "yourTrip": "Sua viagem",
+    "yourTrip": "A sua viagem",
     "viewBookingDetails": "Ver detalhes da reserva",
     "fillTourInformation": "Preencha as informações do passeio",
-    "yourDetailsComplete": "Seus dados estão completos. Continue com o PayPal para confirmar a reserva.",
-    "yourName": "Seu nome",
+    "yourDetailsComplete": "Os seus dados estão completos. Continue com o PayPal para confirmar a reserva.",
+    "yourName": "O seu nome",
     "phoneNumber": "Número de telefone",
-    "writeYourCountry": "Escreva seu país",
-    "writeYourCity": "Escreva sua cidade",
+    "writeYourCountry": "Introduza o seu país",
+    "writeYourCity": "Introduza a sua cidade",
     "pickupPointLabel": "Hotel ou ponto de recolha (pode escolher mais tarde)",
     "pickupPointPlaceholder": "Endereço ou nome do hotel",
     "tripDetailsLabel": "Detalhes da viagem",
-    "tripDetailsPlaceholder": "Algum detalhe ou pedido especial para sua viagem?",
+    "tripDetailsPlaceholder": "Algum detalhe ou pedido especial para a sua viagem?",
     "paypalCreateOrderError": "Não foi possível criar o pedido no PayPal.",
     "paypalOrderIdMissing": "O ID do pedido não foi recebido na aprovação do PayPal.",
     "paypalPaymentIncomplete": "O pagamento PayPal não foi concluído.",
@@ -222,6 +225,8 @@
   },
   "itinerary": {
     "title": "Roteiro",
+    "unavailableStop": "Paragem do roteiro",
+    "unavailableStopDescription": "Os detalhes desta paragem não estão disponíveis.",
     "tours": {
       "id1": {
         "stops": [

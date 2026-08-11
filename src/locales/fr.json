@@ -75,6 +75,9 @@
     "historical": "Sites historiques et religieux",
     "food": "Expériences gastronomiques"
   },
+  "mobileApp": {
+    "title": "Applications mobiles"
+  },
   "subscribe": {
     "title": "Rejoignez notre newsletter",
     "description": "Lisez et partagez de nouvelles perspectives sur presque tous les sujets. Tout le monde est bienvenu.",
@@ -157,7 +160,7 @@
     "whatToBring": "À apporter",
     "whatToBringList": [
       "Vêtements adaptés aux sites religieux",
-      "Soyez prêt avant l'heure de prise en charge convenue",
+      "Soyez prêt avant l'heure convenue",
       "Transport et déjeuner selon les indications"
     ],
     "tourTitle": "Visite de la vieille ville - Alfama",
@@ -222,6 +225,8 @@
   },
   "itinerary": {
     "title": "Itinéraire",
+    "unavailableStop": "Étape de l'itinéraire",
+    "unavailableStopDescription": "Les détails de cette étape ne sont pas disponibles.",
     "tours": {
       "id1": {
         "stops": [
@@ -274,7 +279,7 @@
             "description": "Nous venons vous chercher directement à votre hôtel ou hébergement dans la région centrale de Lisbonne. Si vous séjournez en dehors du centre, nous pouvons organiser un point de rendez-vous à proximité."
           },
           {
-            "title": "Convento do Carmo",
+            "title": "Couvent des Carmes",
             "description": "Ruines gothiques d'un couvent du XIVe siècle, partiellement détruit par le tremblement de terre de 1755. Depuis, il n’y a plus de toit, créant une atmosphère unique en plein air."
           },
           {
@@ -366,7 +371,7 @@
             "description": "Visite guidée des extérieurs de ce magnifique chef-d'œuvre de l'architecture manuéline du XVIe siècle."
           },
           {
-            "title": "Baixa Pombalina et Praça do Comércio",
+            "title": "Baixa Pombalina et place du Commerce (Praça do Comércio)",
             "description": "Passage par la zone monumentale reconstruite après le tremblement de terre de 1755, reliant les grandes places au Tage."
           },
           {
@@ -434,7 +439,7 @@
             "description": "Profitez du grand éclairage de la plus grande place de Lisbonne et de son sapin de Noël traditionnel, géant et brillant."
           },
           {
-            "title": "Rue Augusta et Baixa Iluminada",
+            "title": "Rua Augusta et Baixa illuminée",
             "description": "Promenez-vous sous les plafonds aux lumières scintillantes et les décorations thématiques des rues commerçantes les plus fréquentées de la ville."
           },
           {
@@ -446,7 +451,7 @@
             "description": "Défilez le long de l'avenue la plus luxueuse de Lisbonne, entièrement décorée de milliers de lumières LED sur ses arbres centenaires."
           },
           {
-            "title": "Chiado et Praça Luís de Camões",
+            "title": "Chiado et place Luís de Camões",
             "description": "Plongez dans l'atmosphère magique et artistique du Chiado avec ses célèbres façades lumineuses qui enchantent petits et grands."
           },
           {
@@ -519,7 +524,7 @@
   },
   "testimonials": {
     "title": "Nos avis Google",
-    "description": "Découvrez ce que les visiteurs pensent de Lisbon Mates",
+    "description": "Découvrez ce que l'on dit de Lisbon Mates",
     "reviews": [
       "Excellente visite d'Alfama ! Le guide connaissait chaque histoire et chaque recoin caché. Vivement recommandé pour découvrir la ville et écouter un fado authentique. (Avis Google)",
       "Magnifique visite de Belém — monastères, pâtisseries et monuments. Très bien organisée, avec des explications détaillées. Cinq étoiles sur Google !",

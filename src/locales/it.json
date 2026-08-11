@@ -75,6 +75,9 @@
     "historical": "Luoghi storici e religiosi",
     "food": "Esperienze gastronomiche"
   },
+  "mobileApp": {
+    "title": "App mobili"
+  },
   "subscribe": {
     "title": "Iscriviti alla nostra newsletter",
     "description": "Leggi e condividi nuove prospettive su quasi qualsiasi argomento. Tutti sono i benvenuti.",
@@ -161,7 +164,7 @@
       "Trasporto e pranzo come indicato"
     ],
     "tourTitle": "Tour della città vecchia - Alfama",
-    "longDescription": "TOUR PRIVATO IN TUK-TUK - su misura per te.\n\nLa nostra guida ti incontrerà al punto di ritrovo concordato e darà inizio al tour a bordo di un tuk-tuk comodo e 100% elettrico. Il percorso comprende belvedere, strade storiche e soste locali adattate al tuo ritmo e ai tuoi interessi.\n\nSono previste brevi pause dove indicato. Al termine del tour torneremo al punto di partenza o in un altro luogo centrale concordato.\n\nGli orari sono indicativi e possono essere modificati su richiesta.",
+    "longDescription": "TOUR PRIVATO IN TUK-TUK - su misura per te.\n\nLa nostra guida ti incontrerà al punto di ritrovo concordato e darà inizio al tour a bordo di un tuk-tuk comodo e 100% elettrico. Il percorso comprende belvedere, strade storiche e soste locali adattate al tuo ritmo e ai tuoi interessi.\n\nSono previste brevi pause dove indicato. Al termine del tour torneremo al punto di ritrovo iniziale o in un altro luogo centrale concordato.\n\nGli orari sono indicativi e possono essere modificati su richiesta.",
     "availability": "Disponibilità",
     "availabilityDescription": "I prezzi possono aumentare nei fine settimana o nei giorni festivi",
     "time": "Orario",
@@ -189,7 +192,7 @@
   "checkout": {
     "pleaseSelectPeople": "Seleziona il numero di persone",
     "yourReservationDetails": "Dettagli della tua prenotazione",
-    "confirmAndPayment": "Conferma e pagamento",
+    "confirmAndPayment": "Conferma e paga",
     "yourTrip": "Il tuo viaggio",
     "viewBookingDetails": "Vedi dettagli prenotazione",
     "fillTourInformation": "Compila le informazioni del tour",
@@ -222,6 +225,8 @@
   },
   "itinerary": {
     "title": "Itinerario",
+    "unavailableStop": "Tappa dell'itinerario",
+    "unavailableStopDescription": "I dettagli di questa tappa non sono disponibili.",
     "tours": {
       "id1": {
         "stops": [
@@ -274,7 +279,7 @@
             "description": "Ti veniamo a prendere direttamente dal tuo hotel o alloggio nel centro di Lisbona. Se soggiorni fuori dal centro, concordiamo un punto di incontro nelle vicinanze."
           },
           {
-            "title": "Convento do Carmo",
+            "title": "Convento del Carmo",
             "description": "Rovine gotiche di un convento del XIV secolo, parzialmente distrutto dal terremoto del 1755. Da allora è rimasto senza tetto, creando un'atmosfera unica a cielo aperto."
           },
           {
@@ -366,7 +371,7 @@
             "description": "Visita guidata all'aperto di questo magnifico capolavoro dell'architettura manuelina del XVI secolo."
           },
           {
-            "title": "Baixa Pombalina e Praça do Comércio",
+            "title": "Baixa Pombalina e Piazza del Commercio (Praça do Comércio)",
             "description": "Passaggio attraverso l'area monumentale ricostruita dopo il terremoto del 1755, che collega le grandi piazze al fiume Tago."
           },
           {
@@ -382,7 +387,7 @@
             "description": "Passeggiata guidata attraverso i più antichi vicoli medievali di Lisbona, immergendoti nell'anima e nella storia del Fado."
           },
           {
-            "title": "Sé Catedral e Santo António",
+            "title": "Cattedrale di Lisbona e Sant'Antonio",
             "description": "Visita alla Cattedrale di Lisbona e alla storica chiesa costruita nel luogo di nascita di Santo António."
           },
           {
@@ -402,19 +407,19 @@
             "description": "Una vista classica e monumentale della Baixa Pombalina, della collina di Graça e dell'imponente Castello di São Jorge."
           },
           {
-            "title": "Miradouro de Santa Catarina (Adamastor)",
+            "title": "Belvedere di Santa Catarina (Adamastor)",
             "description": "Rilassata atmosfera collinare con ampia vista sul porto di Lisbona, sul ponte e sul Cristo Rei."
           },
           {
-            "title": "Miradouro da Senhora do Monte",
+            "title": "Belvedere di Senhora do Monte",
             "description": "Il top assoluto di Lisbona. La vista panoramica più spettacolare, dove possiamo vedere quasi tutta la lunghezza della città antica."
           },
           {
-            "title": "Miradouro da Graça",
+            "title": "Belvedere di Graça",
             "description": "Situata accanto all'iconica chiesa, è una delle tappe preferite dagli abitanti di Lisbona per osservare l'antica città all'ombra dei pini."
           },
           {
-            "title": "Miradouro das Portas do Sol",
+            "title": "Belvedere di Portas do Sol",
             "description": "Un autentico balcone medievale sospeso sui tradizionali tetti dell'Alfama e sulla perfetta curvatura del fiume Tago."
           },
           {
@@ -430,11 +435,11 @@
             "description": "Ti veniamo a prendere nel tardo pomeriggio al tuo hotel con il Tuk-Tuk completamente decorato e preparato per la magia del Natale."
           },
           {
-            "title": "Piazza del Commercio e Albero Gigante",
+            "title": "Piazza del Commercio (Praça do Comércio) e albero di Natale gigante",
             "description": "Goditi la grande illuminazione della piazza più grande di Lisbona e il suo tradizionale albero di Natale gigante e luminoso."
           },
           {
-            "title": "Rua Augusta e Baixa Iluminada",
+            "title": "Rua Augusta e Baixa illuminata",
             "description": "Cavalca sotto i soffitti luminosi scintillanti e le decorazioni a tema delle vie dello shopping più trafficate della città."
           },
           {
@@ -446,7 +451,7 @@
             "description": "Attraversa il viale più lussuoso di Lisbona, completamente decorato con migliaia di luci a LED sui suoi alberi secolari."
           },
           {
-            "title": "Chiado e Praça Luís de Camões",
+            "title": "Chiado e Piazza Luís de Camões",
             "description": "Immergiti nella magica e artistica atmosfera del Chiado con le sue famose facciate luminose che deliziano grandi e piccini."
           },
           {
@@ -502,7 +507,7 @@
             "description": "Un imponente gioiello dell'architettura gotica e manuelina portoghese, classificato Patrimonio dell'Umanità dall'UNESCO."
           },
           {
-            "title": "Nazaré e Sítio das Ondas Gigantes",
+            "title": "Nazaré e belvedere delle onde giganti",
             "description": "Sali a Sítio da Nazaré per una vista panoramica mozzafiato sulla spiaggia e sulle iconiche onde giganti del Canhão da Nazaré."
           },
           {
