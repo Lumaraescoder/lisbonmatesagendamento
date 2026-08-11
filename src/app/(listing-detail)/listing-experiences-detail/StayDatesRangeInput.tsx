@@ -57,7 +57,7 @@ const StayDatesRangeInput: FC<StayDatesRangeInputProps> = ({
 
   return (
     <Popover className={`StayDatesRangeInput z-10 relative flex ${className}`}>
-      {({ open }) => (
+      {({ open, close }) => (
         <>
           <Popover.Button
             className={`flex-1 flex relative p-3 items-center space-x-3 focus:outline-none ${
@@ -83,7 +83,13 @@ const StayDatesRangeInput: FC<StayDatesRangeInputProps> = ({
               <div className="overflow-hidden rounded-3xl shadow-lg ring-1 ring-black ring-opacity-5 bg-white dark:bg-neutral-800 p-8">
                 <DatePicker
                   selected={startDate}
-                  onChange={onChangeDate}
+                  onChange={(dates) => {
+                    onChangeDate(dates);
+                    const rangeComplete = Array.isArray(dates) && Boolean(dates[1]);
+                    if ((isSingle && dates) || rangeComplete) {
+                      close();
+                    }
+                  }}
                   startDate={startDate}
                   endDate={endDate}
                   selectsRange={!isSingle}
