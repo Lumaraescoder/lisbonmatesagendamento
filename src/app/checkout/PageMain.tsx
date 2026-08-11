@@ -503,9 +503,9 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                           });
                           const data = await res.json();
                           if (!res.ok) {
-                            const message = data?.details || data?.error || 'PayPal could not create the order.';
-                            setPaymentError(typeof message === 'string' ? message : 'PayPal could not create the order.');
-                            throw new Error(data?.error || 'create order failed');
+                            const message = data?.details || data?.error || t("checkout.paypalCreateOrderError");
+                            setPaymentError(typeof message === 'string' ? message : String(t("checkout.paypalCreateOrderError")));
+                            throw new Error(data?.error || String(t("checkout.paypalCreateOrderError")));
                           }
                           const orderId = data.orderId || data.id;
                           if (!orderId) throw new Error('No order ID returned from server');
@@ -515,7 +515,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                           setPaymentProcessing(true);
                           try {
                             const orderID = (data as any)?.orderID;
-                            if (!orderID) throw new Error('Missing orderID from PayPal approval');
+                            if (!orderID) throw new Error(String(t("checkout.paypalOrderIdMissing")));
                             const captureRes = await fetch('/api/paypal/capture-order', {
                               method: 'POST',
                               headers: { 'Content-Type': 'application/json' },
@@ -523,21 +523,21 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                             });
                             const captureData = await captureRes.json();
                             if (!captureRes.ok || captureData?.status !== 'COMPLETED') {
-                              const details = captureData?.details || captureData?.error || 'PayPal payment was not completed.';
+                              const details = captureData?.details || captureData?.error || t("checkout.paypalPaymentIncomplete");
                               throw new Error(typeof details === 'string' ? details : JSON.stringify(details));
                             }
                             setPaidOrderId(orderID);
                             setSuccessModalOpen(true);
                           } catch (err) {
                             console.error('PayPal capture error', err);
-                            setPaymentError(err instanceof Error ? err.message : 'PayPal capture failed.');
+                            setPaymentError(err instanceof Error ? err.message : String(t("checkout.paypalCaptureFailed")));
                           } finally {
                             setPaymentProcessing(false);
                           }
                         }}
                         onError={(err) => {
                           console.error("PayPal error", err);
-                          setPaymentError(getErrorMessage(err, "PayPal payment could not be completed. Please try again."));
+                          setPaymentError(getErrorMessage(err, String(t("checkout.paypalPaymentFailed"))));
                         }}
                       />
                     </div>

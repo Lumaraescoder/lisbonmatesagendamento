@@ -201,7 +201,12 @@
     "pickupPointLabel": "Hotel o punto di ritiro (puoi sceglierlo più tardi)",
     "pickupPointPlaceholder": "Indirizzo o nome dell'hotel",
     "tripDetailsLabel": "Dettagli del viaggio",
-    "tripDetailsPlaceholder": "Hai dettagli o richieste speciali per il tuo viaggio?"
+    "tripDetailsPlaceholder": "Hai dettagli o richieste speciali per il tuo viaggio?",
+    "paypalCreateOrderError": "PayPal non ha potuto creare l'ordine.",
+    "paypalOrderIdMissing": "Manca l'ID dell'ordine dopo l'approvazione PayPal.",
+    "paypalPaymentIncomplete": "Il pagamento PayPal non è stato completato.",
+    "paypalCaptureFailed": "Acquisizione del pagamento PayPal non riuscita.",
+    "paypalPaymentFailed": "Non è stato possibile completare il pagamento PayPal. Riprova."
   },
   "contactPage": {
     "addressTitle": "🗺 INDIRIZZO",

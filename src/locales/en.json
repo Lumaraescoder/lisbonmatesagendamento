@@ -201,7 +201,12 @@
     "pickupPointLabel": "Hotel or pickup point (you can choose later)",
     "pickupPointPlaceholder": "Address or hotel name",
     "tripDetailsLabel": "Trip details",
-    "tripDetailsPlaceholder": "Any details or special requests for your trip?"
+    "tripDetailsPlaceholder": "Any details or special requests for your trip?",
+    "paypalCreateOrderError": "PayPal could not create the order.",
+    "paypalOrderIdMissing": "Missing order ID from PayPal approval.",
+    "paypalPaymentIncomplete": "PayPal payment was not completed.",
+    "paypalCaptureFailed": "PayPal capture failed.",
+    "paypalPaymentFailed": "PayPal payment could not be completed. Please try again."
   },
   "contactPage": {
     "addressTitle": "🗺 ADDRESS",
