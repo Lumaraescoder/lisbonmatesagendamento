@@ -97,42 +97,42 @@
   "tourCards": {
     "id1": {
       "title": "Tour por el casco antiguo - Alfama",
-      "description": "Un tour privado por Alfama adaptado a tu tiempo, intereses y ritmo, con guía local y tuk-tuk 100% eléctrico.",
+      "description": "Lisboa no es solo una ciudad para ver — está hecha para sentirla. En este tour privado por Alfama, todo se adapta a ti: tu tiempo, tus intereses y tu ritmo. Con un guía local, vas más allá de las rutas turísticas y descubres la verdadera Lisboa — callejuelas sinuosas, rincones con el alma del fado y miradores sobre el Tajo. Todo a bordo de tuk-tuks 100% eléctricos, silenciosos y cómodos, perfectos para las colinas de Lisboa. ¿Quieres parar a tomar una ginjinha o visitar un lugar escondido? Solo tienes que decirlo. El tour es tuyo.",
       "address": "Lisboa"
     },
     "id_2": {
       "title": "Tour Chiado y Bairro Alto",
-      "description": "Explora cafés literarios, boutiques, calles bohemias y miradores sobre el Tajo a tu ritmo.",
+      "description": "Lisboa está hecha para sentirla, y Chiado y Bairro Alto se disfrutan mejor a tu manera. En este tour privado, todo se adapta a ti: tu ritmo, tus intereses, tu tiempo. Con un guía local, te adentras en cafés literarios, boutiques y calles bohemias, y después haces una pausa en miradores sobre el Tajo. Todo a bordo de tuk-tuks 100% eléctricos, silenciosos y cómodos. ¿Quieres más tiempo para hacer fotos o parar en un mirador? Solo tienes que decirlo. El tour es tuyo.",
       "address": "Lisboa"
     },
     "id_3": {
       "title": "Tour por Belém",
-      "description": "Visita el Monasterio de los Jerónimos, la Torre de Belém y el Monumento a los Descubrimientos, con tiempo para hacer fotos y tomar un pastel fresco.",
+      "description": "Belém es más que monumentos — es una historia, y te la contamos a tu ritmo. En este tour privado, todo se adapta a ti: tu tiempo, tus intereses y tu ritmo. Con un guía local, visitas el Monasterio de los Jerónimos, la Torre de Belém y el Monumento a los Descubrimientos, con tiempo para hacer fotos junto al Tajo y tomar un pastel recién hecho. Viaja en un tuk-tuk silencioso, 100% eléctrico y diseñado para ofrecer comodidad. ¿Quieres detenerte más tiempo o explorar un rincón escondido? Solo tienes que decirlo.",
       "address": "Lisboa, Portugal"
     },
     "id_4": {
-      "title": "Lisboa día completo",
-      "description": "Una experiencia de día completo por Alfama, Belém, el centro y tus miradores favoritos.",
+      "title": "Lisboa - Día completo",
+      "description": "Esta experiencia de día completo en Lisboa está diseñada a tu medida. Con un guía local y un tuk-tuk privado 100% eléctrico, adaptamos la ruta a tu ritmo mientras recorremos los barrios imprescindibles de la ciudad — Alfama, Belém y el centro — además de los miradores que más te gustan. ¿Tienes poco tiempo o prefieres un ritmo más pausado? Nos adaptamos sobre la marcha. ¿Quieres más paradas para hacer fotos o más tiempo en los miradores? Solo tienes que decirlo. El tour es tuyo.",
       "address": "Lisboa, Portugal"
     },
     "id_5": {
       "title": "Tour de miradores de Lisboa",
-      "description": "Descubre miradores icónicos y panoramas tranquilos sobre el Tajo en un tuk-tuk eléctrico silencioso.",
+      "description": "Los miradores de Lisboa están hechos para sentirlos, no para recorrerlos con prisa. En este tour privado por los miradores, todo se adapta a ti: tu ritmo, tu luz y tus vistas favoritas. Con un guía local, descubres miradores emblemáticos y lugares más tranquilos sobre el Tajo, viajando en un tuk-tuk silencioso y 100% eléctrico. ¿Quieres más tiempo para hacer fotos o descubrir un panorama escondido? Solo tienes que decirlo. El tour es tuyo.",
       "address": "Lisboa, Portugal"
     },
     "id_6": {
       "title": "Tour mágico de luces navideñas en Lisboa",
-      "description": "Recorre Baixa, Chiado y Praça do Comércio para ver las mejores luces navideñas y hacer paradas fotográficas.",
+      "description": "Las luces festivas de Lisboa muestran todo su esplendor cuando tú marcas el ritmo. En este tour privado de Navidad, todo se adapta a ti: tu tiempo, tus intereses y tu ritmo. Con un guía local, te deslizas por Baixa, Chiado y Praça do Comércio en un tuk-tuk silencioso y 100% eléctrico, haciendo paradas para sacar fotos y disfrutar de la mejor iluminación. ¿Quieres quedarte más tiempo en un mercado o encontrar el brillo perfecto? Solo tienes que decirlo.",
       "address": "Lisboa, Portugal"
     },
     "id_7": {
       "title": "Sintra y Cascais desde Lisboa",
-      "description": "Explora palacios, jardines, miradores costeros y paradas personalizadas entre Sintra y Cascais.",
+      "description": "Sintra y Cascais son un día para sentir, no para recorrer con prisa. En este tour privado, todo se adapta a ti: tu tiempo, tus intereses y tu ritmo. Con un guía local, exploras palacios, jardines y miradores costeros, con tiempo para hacer fotos y disfrutar de momentos tranquilos. Viaja cómodamente en un tuk-tuk 100% eléctrico y disfruta de paradas personalizadas durante el recorrido. ¿Quieres quedarte más tiempo o cambiar la ruta? Solo tienes que decirlo. El tour es tuyo.",
       "address": "Lisboa, Portugal"
     },
     "id_8": {
       "title": "Fátima, Nazaré, Batalha y Óbidos",
-      "description": "Una ruta privada de día completo por los destacados religiosos, costeros y medievales del centro de Portugal.",
+      "description": "Este viaje por Fátima, Batalha, Nazaré y Óbidos está diseñado a tu medida. En un tour privado con un guía local, todo se adapta a tu ritmo y a tus intereses — tiempo para reflexionar en el santuario, paradas más largas junto al océano o un paseo tranquilo por calles medievales. Viaja cómodamente en un tuk-tuk silencioso y 100% eléctrico y da forma al día sobre la marcha. ¿Quieres hacer una pausa o explorar un lugar escondido? Solo tienes que decirlo.",
       "address": "Lisboa, Portugal"
     }
   },
