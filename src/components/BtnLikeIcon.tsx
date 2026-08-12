@@ -1,6 +1,7 @@
 "use client";
 
 import React, { FC, useState } from "react";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export interface BtnLikeIconProps {
   className?: string;
@@ -13,6 +14,7 @@ const BtnLikeIcon: FC<BtnLikeIconProps> = ({
   colorClass = "text-white bg-black bg-opacity-30 hover:bg-opacity-50",
   isLiked = false,
 }) => {
+  const { t } = useI18n();
   const [likedState, setLikedState] = useState(isLiked);
 
   return (
@@ -21,7 +23,7 @@ const BtnLikeIcon: FC<BtnLikeIconProps> = ({
         likedState ? "nc-BtnLikeIcon--liked" : ""
       }  ${colorClass} ${className}`}
       data-nc-id="BtnLikeIcon"
-      title="Save"
+      title={t("common.save")}
       onClick={() => setLikedState(!likedState)}
     >
       <svg

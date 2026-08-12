@@ -2,8 +2,10 @@ import React, { FC, Fragment, useState } from "react";
 import DatePicker from "react-datepicker";
 import DatePickerCustomHeaderTwoMonth from "@/components/DatePickerCustomHeaderTwoMonth";
 import DatePickerCustomDay from "@/components/DatePickerCustomDay";
+import { useI18n } from "@/i18n/I18nProvider";
 
 const SectionDateRange = () => {
+  const { t } = useI18n();
   const [startDate, setStartDate] = useState<Date | null>(
     new Date("2023/02/06")
   );
@@ -19,9 +21,9 @@ const SectionDateRange = () => {
       <div className="listingSection__wrap overflow-hidden">
         {/* HEADING */}
         <div>
-          <h2 className="text-2xl font-semibold">Availability</h2>
+          <h2 className="text-2xl font-semibold">{t("experiences.availability")}</h2>
           <span className="block mt-2 text-neutral-500 dark:text-neutral-400">
-            Prices may increase on weekends or holidays
+            {t("experiences.availabilityDescription")}
           </span>
         </div>
         <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>

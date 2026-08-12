@@ -3,13 +3,16 @@
 import React, { FC, useState } from "react";
 import { MapPinIcon, FlagIcon } from "@heroicons/react/24/solid";
 import { TourStop } from "@/data/itineraries";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export interface TourItineraryProps {
   stops: TourStop[];
+  tourKey: string;
   title?: string;
 }
 
-const TourItinerary: FC<TourItineraryProps> = ({ stops, title = "Roteiro" }) => {
+const TourItinerary: FC<TourItineraryProps> = ({ stops, tourKey, title }) => {
+  const { t } = useI18n();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   if (!stops || stops.length === 0) return null;
@@ -20,7 +23,7 @@ const TourItinerary: FC<TourItineraryProps> = ({ stops, title = "Roteiro" }) => 
 
   return (
     <div className="listingSection__wrap">
-      <h2 className="text-2xl font-semibold">{title}</h2>
+      <h2 className="text-2xl font-semibold">{title || t("itinerary.title")}</h2>
       <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
       <div className="relative">
         {stops.map((stop, index) => {
@@ -48,7 +51,7 @@ const TourItinerary: FC<TourItineraryProps> = ({ stops, title = "Roteiro" }) => 
                   onClick={() => handleToggle(index)}
                   className="font-semibold text-neutral-900 dark:text-neutral-100 text-left hover:text-primary-6000 transition-colors cursor-pointer"
                 >
-                  {stop.title}
+                  {t(`itinerary.tours.${tourKey}.stops.${index}.title`, undefined, stop.title)}
                 </button>
                 {stop.description && (
                   <div
@@ -56,7 +59,9 @@ const TourItinerary: FC<TourItineraryProps> = ({ stops, title = "Roteiro" }) => 
                     style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
                   >
                     <div className="overflow-hidden">
-                      <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">{stop.description}</p>
+                      <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
+                        {t(`itinerary.tours.${tourKey}.stops.${index}.description`, undefined, stop.description)}
+                      </p>
                     </div>
                   </div>
                 )}

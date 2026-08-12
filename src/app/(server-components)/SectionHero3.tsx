@@ -1,7 +1,10 @@
+"use client";
+
 import React, { FC } from "react";
 import capadesktopJpeg from "@/images/capa.jpeg";
 import capamobileJpeg from "@/images/capa.jpeg";
 import Image from "next/image";
+import ButtonPrimary from "@/shared/ButtonPrimary";
 import { useI18n } from "@/i18n/I18nProvider";
 
 export interface SectionHero3Props {
@@ -14,10 +17,13 @@ const SectionHero3: FC<SectionHero3Props> = ({
   className = "",
   title,
   subtitle,
+  buttonLabel,
 }) => {
   const { t } = useI18n();
   const resolvedTitle = title || t("hero.title");
   const resolvedSubtitle = subtitle || t("hero.subtitle");
+  const resolvedButtonLabel = buttonLabel || t("hero.button");
+
   return (
     <div
       className={`nc-SectionHero3 relative ${className}`}
@@ -30,6 +36,13 @@ const SectionHero3: FC<SectionHero3Props> = ({
         <h2 className="font-bold text-primary-6000 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl !leading-[115%] ">
           {resolvedTitle}
         </h2>
+        <ButtonPrimary
+          sizeClass="px-6 py-3 lg:px-8 lg:py-4 rounded-xl"
+          fontSize="text-sm sm:text-base lg:text-lg font-medium"
+          href="#tours"
+        >
+          {resolvedButtonLabel}
+        </ButtonPrimary>
       </div>
       <div className="relative h-[800px] sm:h-auto aspect-w-1 aspect-h-1 sm:aspect-w-4 sm:aspect-h-3 lg:aspect-w-16 lg:aspect-h-9 xl:aspect-h-8 ">
         <picture>

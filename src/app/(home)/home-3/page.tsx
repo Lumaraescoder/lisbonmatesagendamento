@@ -1,5 +1,5 @@
 import React from "react";
-import { t, defaultLocale } from "@/i18n";
+import { t, defaultLocale, normalizeLocale, pickLocaleFromAcceptLanguage } from "@/i18n";
 import { cookies, headers } from "next/headers";
 import BackgroundSection from "@/components/BackgroundSection";
 import BgGlassmorphism from "@/components/BgGlassmorphism";
@@ -18,29 +18,13 @@ import comida from "@/images/guides/diferente/comida.jpeg";
 import SectionGridFeaturePlaces from "@/components/SectionGridFeaturePlaces";
 import SectionClientSay from "@/components/SectionClientSay";
 
-// determine locale on server from cookie, then Accept-Language header, else default
-function pickLocaleFromAccept(acceptLangHeader?: string) {
-  if (!acceptLangHeader) return undefined;
-  const parts = acceptLangHeader.split(',').map(p => p.trim());
-  for (const p of parts) {
-    const code = p.split(';')[0].toLowerCase();
-    if (code.startsWith('pt')) return 'pt';
-    if (code.startsWith('it')) return 'it';
-    if (code.startsWith('de')) return 'de';
-    if (code.startsWith('fr')) return 'fr';
-    if (code.startsWith('es')) return 'es';
-    if (code.startsWith('en')) return 'en';
-  }
-  return undefined;
-}
-
 export default async function PageHome3() {
   // determine locale on server from cookie, Accept-Language header, else default
   const cookieStore = await cookies();
-  const cookieLocale = cookieStore.get('locale')?.value as any;
+  const cookieLocale = normalizeLocale(cookieStore.get('locale')?.value);
   const headersStore = await headers();
   const acceptLang = headersStore.get('accept-language') || undefined;
-  const headerLocale = pickLocaleFromAccept(acceptLang) as any;
+  const headerLocale = pickLocaleFromAcceptLanguage(acceptLang);
   const serverLocale = cookieLocale || headerLocale || defaultLocale;
 
   const L = {
@@ -104,7 +88,7 @@ export default async function PageHome3() {
         </div> */}
 
         <div id="tours">
-          <SectionGridFeaturePlaces unit="/person" />
+          <SectionGridFeaturePlaces unit={String(t(serverLocale, "common.perPerson"))} />
         </div>
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 sm:col-span-6 lg:col-span-4 flex">

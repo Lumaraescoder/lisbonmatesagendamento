@@ -16,40 +16,45 @@ import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import Image from "next/image";
 import { useSwipeable } from "react-swipeable";
 import { variants } from "@/utils/animationVariants";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export interface SectionClientSayProps {
   className?: string;
-  data?: typeof DEMO_DATA;
+  data?: Array<{
+    id: number;
+    clientName: string;
+    clientAddress: string;
+    content: string;
+  }>;
 }
 
-const DEMO_DATA = [
+const REVIEWERS = [
   {
     id: 1,
     clientName: "John Silva",
     clientAddress: "Lisbon, PT",
-    content:
-      "Excellent Alfama tour! The guide knew every story and hidden corner. Highly recommend for anyone who wants to experience the city and hear authentic fado. (Google Review)",
   },
   {
     id: 2,
     clientName: "Anna Costa",
     clientAddress: "Lisbon, PT",
-    content:
-      "Wonderful Belém tour — monasteries, pastries, and monuments. Very well organized with detailed explanations. 5 stars on Google!",
   },
   {
     id: 3,
     clientName: "Carlos Mendes",
     clientAddress: "Portugal",
-    content:
-      "Comprehensive Lisbon tour (Alfama and Belém). Professional itinerary, great time management, and excellent restaurant recommendations. Great experience (Google).",
   },
 ];
 
 const SectionClientSay: FC<SectionClientSayProps> = ({
   className = "",
-  data = DEMO_DATA,
+  data,
 }) => {
+  const { t } = useI18n();
+  const localizedData = data || REVIEWERS.map((reviewer, reviewIndex) => ({
+    ...reviewer,
+    content: t(`testimonials.reviews.${reviewIndex}`),
+  }));
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -64,7 +69,7 @@ const SectionClientSay: FC<SectionClientSayProps> = ({
 
   const handlers = useSwipeable({
     onSwipedLeft: () => {
-      if (index < data?.length - 1) {
+      if (index < localizedData.length - 1) {
         changeItemId(index + 1);
       }
     },
@@ -76,7 +81,7 @@ const SectionClientSay: FC<SectionClientSayProps> = ({
     trackMouse: true,
   });
 
-  let currentItem = data[index];
+  let currentItem = localizedData[index];
 
   const renderBg = () => {
     return (
@@ -117,8 +122,8 @@ const SectionClientSay: FC<SectionClientSayProps> = ({
 
   return (
     <div className={`nc-SectionClientSay relative ${className} `}>
-      <Heading desc="Let's see what people think of Lisbon mates" isCenter>
-        Our Google Reviews
+      <Heading desc={t("testimonials.description")} isCenter>
+        {t("testimonials.title")}
       </Heading>
       <div className="relative md:mb-16 max-w-2xl mx-auto">
         {renderBg()}
@@ -171,7 +176,7 @@ const SectionClientSay: FC<SectionClientSayProps> = ({
               </AnimatePresence>
 
               <div className="mt-10 flex items-center justify-center space-x-2">
-                {data.map((item, i) => (
+                {localizedData.map((item, i) => (
                   <button
                     className={`w-2 h-2 rounded-full ${i === index ? "bg-black/70" : "bg-black/10 "
                       }`}

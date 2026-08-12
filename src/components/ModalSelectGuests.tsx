@@ -5,6 +5,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import ButtonPrimary from "@/shared/ButtonPrimary";
 import GuestsInput from "@/app/(client-components)/(HeroSearchForm2Mobile)/GuestsInput";
+import { useI18n } from "@/i18n/I18nProvider";
 
 interface ModalSelectGuestsProps {
   renderChildren?: (p: { openModal: () => void }) => React.ReactNode;
@@ -13,6 +14,7 @@ interface ModalSelectGuestsProps {
 }
 
 const ModalSelectGuests: FC<ModalSelectGuestsProps> = ({ renderChildren, value, onSave }) => {
+  const { t } = useI18n();
   const [showModal, setShowModal] = useState(false);
 
   // FOR RESET ALL DATA WHEN CLICK CLEAR BUTTON
@@ -31,14 +33,20 @@ const ModalSelectGuests: FC<ModalSelectGuestsProps> = ({ renderChildren, value, 
     guestInfants: 0,
   });
   useEffect(() => {
-    if (value) setCurrentGuests(value);
+    if (value) {
+      setCurrentGuests({
+        guestAdults: value.guestAdults || 0,
+        guestChildren: value.guestChildren || 0,
+        guestInfants: value.guestInfants || 0,
+      });
+    }
   }, [value]);
 
   const renderButtonOpenModal = () => {
     return renderChildren ? (
       renderChildren({ openModal })
     ) : (
-      <button onClick={openModal}>Select Date</button>
+      <button onClick={openModal}>{t("common.selectGuests")}</button>
     );
   };
 
@@ -99,7 +107,7 @@ const ModalSelectGuests: FC<ModalSelectGuestsProps> = ({ renderChildren, value, 
                           });
                         }}
                       >
-                        Clear data
+                        {t("common.clearData")}
                       </button>
                       <ButtonPrimary
                         sizeClass="px-6 py-3 !rounded-xl"
@@ -108,7 +116,7 @@ const ModalSelectGuests: FC<ModalSelectGuestsProps> = ({ renderChildren, value, 
                           onSave && onSave(currentGuests);
                         }}
                       >
-                        Save
+                        {t("common.saveAction")}
                       </ButtonPrimary>
                     </div>
                   </>

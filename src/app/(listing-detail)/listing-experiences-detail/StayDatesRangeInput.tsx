@@ -8,6 +8,7 @@ import DatePickerCustomDay from "@/components/DatePickerCustomDay";
 import DatePicker from "react-datepicker";
 import ClearDataButton from "@/app/(client-components)/(HeroSearchForm)/ClearDataButton";
 import converSelectedDateToString from "@/utils/converSelectedDateToString";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export interface StayDatesRangeInputProps {
   className?: string;
@@ -18,6 +19,7 @@ const StayDatesRangeInput: FC<StayDatesRangeInputProps> = ({
   className = "flex-1",
   single = false,
 }) => {
+  const { t } = useI18n();
   const today = new Date();
   const startOfToday = new Date(today.setHours(0, 0, 0, 0));
   const [startDate, setStartDate] = useState<Date | null>(startOfToday);
@@ -45,10 +47,10 @@ const StayDatesRangeInput: FC<StayDatesRangeInputProps> = ({
         </div>
         <div className="flex-grow text-left">
           <span className="block xl:text-lg font-semibold">
-            {converSelectedDateToString(isSingle ? startDate : [startDate, endDate]) || "Add dates"}
+            {converSelectedDateToString(isSingle ? startDate : [startDate, endDate]) || t("experiences.addDates")}
           </span>
           <span className="block mt-1 text-sm text-neutral-400 leading-none font-light">
-            {isSingle ? "" : "Check in - Check out"}
+            {isSingle ? "" : t("experiences.checkInOut")}
           </span>
         </div>
       </>

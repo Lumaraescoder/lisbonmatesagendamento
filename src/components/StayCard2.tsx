@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC } from "react";
 import GallerySlider from "@/components/GallerySlider";
 import { DEMO_STAY_LISTINGS } from "@/data/listings";
@@ -7,6 +9,8 @@ import BtnLikeIcon from "@/components/BtnLikeIcon";
 import SaleOffBadge from "@/components/SaleOffBadge";
 // Badge removed for ADS display
 import Link from "next/link";
+import { useI18n } from "@/i18n/I18nProvider";
+import { localizeTourPrice } from "@/utils/localizeTourPrice";
 
 export interface StayCard2Props {
   className?: string;
@@ -23,6 +27,7 @@ const StayCard2: FC<StayCard2Props> = ({
   data = DEMO_DATA,
   unit = "/night",
 }) => {
+  const { t } = useI18n();
   const {
     listingCategory,
     address,
@@ -37,6 +42,13 @@ const StayCard2: FC<StayCard2Props> = ({
     reviewCount,
     id,
   } = data;
+  const sourceId = String(id || "").replace(/^stayListing_(\d+)_$/, (_match, index) => {
+    const keys = ["id1", "id_2", "id_3", "id_4", "id_5", "id_6", "id_7", "id_8"];
+    return keys[Number(index)] || String(id);
+  });
+  const localizedTitle = t(`tourCards.${sourceId}.title`, undefined, title);
+  const localizedAddress = t(`tourCards.${sourceId}.address`, undefined, address);
+  const localizedPrice = localizeTourPrice(price, t);
   const { gallery } = data;
 
   const renderSliderGallery = () => {
@@ -68,7 +80,7 @@ const StayCard2: FC<StayCard2Props> = ({
               className={`font-semibold capitalize text-neutral-900 dark:text-white ${size === "default" ? "text-base" : "text-base"
                 }`}
             >
-              <span className="line-clamp-1">{title}</span>
+              <span className="line-clamp-1">{localizedTitle}</span>
             </h2>
           </div>
           <div className="flex items-center text-neutral-500 dark:text-neutral-400 text-sm space-x-1.5">
@@ -93,13 +105,13 @@ const StayCard2: FC<StayCard2Props> = ({
                 />
               </svg>
             )}
-            <span className="">{address}</span>
+            <span className="">{localizedAddress}</span>
           </div>
         </div>
         <div className="w-14 border-b border-neutral-100 dark:border-neutral-800"></div>
         <div className="flex justify-between items-center">
           <span className="text-base font-semibold">
-            {price}
+            {localizedPrice}
             {` `}
             {size === "default" && (
               <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal">

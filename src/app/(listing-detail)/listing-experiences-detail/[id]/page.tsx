@@ -23,8 +23,11 @@ import { DEMO_EXPERIENCES_LISTINGS, DEMO_STAY_LISTINGS } from "@/data/listings";
 import { ITINERARIES } from "@/data/itineraries";
 import TourItinerary from "@/components/TourItinerary";
 import { calculateTourAmount } from "@/utils/bookingPricing";
+import { useI18n } from "@/i18n/I18nProvider";
+import { localizeTourPrice } from "@/utils/localizeTourPrice";
 
 const ListingExperiencesDetailPageDynamic: FC = () => {
+  const { locale, t } = useI18n();
   const params = useParams();
   const id = params?.id;
   const thisPathname = usePathname();
@@ -48,7 +51,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
   };
 
   if (!item) {
-    return <div className="container py-20">Listing not found: {id}</div>;
+    return <div className="container py-20">{t("experiences.listingNotFound", { id: String(id || "") })}</div>;
   }
 
   const shortId = typeof id === "string" ? id.split("-")[0] : "";
@@ -71,8 +74,14 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
     ? priceNum
     : calculateTourAmount({ adults, children, hours });
 
-  const formatEUR = (v: number) => new Intl.NumberFormat("pt-PT", { style: "currency", currency: "EUR" }).format(v);
+  const formatEUR = (v: number) => new Intl.NumberFormat(locale === "en" ? "en-GB" : locale, { style: "currency", currency: "EUR" }).format(v);
   const unitPricePerPerson = Math.max(0, Number((total / Math.max(1, payableGuests)).toFixed(2)));
+  const tourKey = shortId || "id1";
+  const sourceCopy = item as typeof item & { description?: string; content?: string };
+  const localizedTitle = t(`tourCards.${tourKey}.title`, undefined, item.title);
+  const localizedDescription = t(`tourCards.${tourKey}.description`, undefined, sourceCopy.description || sourceCopy.content || t("experiences.noDescription"));
+  const localizedAddress = t(`tourCards.${tourKey}.address`, undefined, item.address);
+  const localizedPrice = localizeTourPrice(item.price, t);
 
   return (
     <div className={` nc-ListingExperiencesDetailPage `}>
@@ -84,7 +93,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
             onClick={handleOpenModalImageGallery}
           >
             <Image
-              alt={item.title}
+              alt={localizedTitle}
               fill
               className="object-cover  rounded-md sm:rounded-xl"
               src={gallery[0]?.src || item.featuredImage || ""}
@@ -100,7 +109,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
             >
               <div className="aspect-w-4 aspect-h-3">
                 <Image
-                  alt={p?.alt || `photo ${index + 2}`}
+                  alt={p?.alt || t("experiences.showAllPhotos")}
                   fill
                   className="object-cover w-full h-full rounded-md sm:rounded-xl "
                   src={p?.src || item.featuredImage || ""}
@@ -120,7 +129,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
             onClick={handleOpenModalImageGallery}
           >
             <Squares2X2Icon className="h-5 w-5" />
-            <span className="ml-2 text-neutral-800 text-sm font-medium">Show all photos</span>
+            <span className="ml-2 text-neutral-800 text-sm font-medium">{t("experiences.showAllPhotos")}</span>
           </div>
         </div>
       </header>
@@ -129,33 +138,33 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
         <div className="w-full lg:w-3/5 xl:w-2/3 space-y-8 lg:pr-10 lg:space-y-10">
           <div className="listingSection__wrap !space-y-6">
             <div className="flex justify-between items-center">
-              <Badge color="pink" name={item.listingCategory?.name || "Tour"} />
+              <Badge color="pink" name={t("experiences.specificTour")} />
               <LikeSaveBtns />
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold">{item.title}</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold">{localizedTitle}</h2>
 
             <div className="flex items-center space-x-4">
               <StartRating />
               <span>·</span>
               <span>
                 <i className="las la-map-marker-alt"></i>
-                <span className="ml-1"> {item.address}</span>
+                <span className="ml-1"> {localizedAddress}</span>
               </span>
             </div>
 
             <div className="flex items-center">
               <span className="text-neutral-500 dark:text-neutral-400">
-                Hosted by <span className="text-neutral-900 dark:text-neutral-200 font-medium">{item.author?.displayName || item.author?.name || "Host"}</span>
+                {t("experiences.hostedBy")} <span className="text-neutral-900 dark:text-neutral-200 font-medium">{item.author?.displayName || "Host"}</span>
               </span>
             </div>
           </div>
 
           <div className="listingSection__wrap">
-            <h2 className="text-2xl font-semibold">Experiences descriptions</h2>
+            <h2 className="text-2xl font-semibold">{t("experiences.experiencesDescriptions")}</h2>
             <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
             <div className="text-neutral-6000 dark:text-neutral-300">
-              <p>{item.description || item.content || "No description provided."}</p>
+              <p>{localizedDescription}</p>
             </div>
           </div>
 
@@ -164,7 +173,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
           {/* Host Information removed as requested */}
 
           {ITINERARIES[shortId] && (
-            <TourItinerary stops={ITINERARIES[shortId].stops} />
+            <TourItinerary tourKey={shortId} stops={ITINERARIES[shortId].stops} />
           )}
           <SectionClientSay />
 
@@ -173,8 +182,8 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
             <div className="listingSectionSidebar__wrap shadow-xl">
               <div className="flex justify-between">
                 <span className="text-3xl font-semibold">
-                  {item.price || "$0"}
-                  <span className="ml-1 text-base font-normal text-neutral-500 dark:text-neutral-400">/person</span>
+                  {localizedPrice}
+                  <span className="ml-1 text-base font-normal text-neutral-500 dark:text-neutral-400">{t("common.perPerson")}</span>
                 </span>
                 <StartRating />
               </div>
@@ -194,7 +203,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
                 />
 
                 <div className="p-4">
-                  <label className="block text-sm text-neutral-500">Time</label>
+                  <label className="block text-sm text-neutral-500">{t("experiences.time")}</label>
                   <select
                     className="w-full mt-2 px-4 py-3 border rounded-md"
                     value={time}
@@ -212,7 +221,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
                     })}
                   </select>
 
-                  <label className="block text-sm text-neutral-500 mt-3">Hours</label>
+                  <label className="block text-sm text-neutral-500 mt-3">{t("experiences.duration")}</label>
                   <select
                     className="w-full mt-2 px-4 py-3 border rounded-md"
                     value={String(hours)}
@@ -222,7 +231,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
                       const val = i + 1;
                       return (
                         <option key={val} value={String(val)}>
-                          {val} {val === 1 ? "hour" : "hours"}
+                          {val} {val === 1 ? t("common.hour") : t("common.hours")}
                         </option>
                       );
                     })}
@@ -232,19 +241,19 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
 
               <div className="flex flex-col space-y-4 mt-4">
                 <div className="flex justify-between text-neutral-6000 dark:text-neutral-300">
-                  <span>{formatEUR(unitPricePerPerson)} x {payableGuests} persons × {hours}h</span>
+                  <span>{formatEUR(unitPricePerPerson)} x {payableGuests} {t("common.persons")} × {hours}h</span>
                   <span>{formatEUR(total)}</span>
                 </div>
                 <div className="border-b border-neutral-200 dark:border-neutral-700"></div>
                 <div className="flex justify-between font-semibold">
-                  <span>Total</span>
+                  <span>{t("common.total")}</span>
                   <span>{formatEUR(total)}</span>
                 </div>
               </div>
 
               <div className="mt-4">
                 <ButtonPrimary href={`/checkout?listingId=${encodeURIComponent(item.id || '')}&adults=${adults}&children=${children}&infants=${infants}&hours=${hours}&time=${encodeURIComponent(time)}`}>
-                  Reserve
+                  {t("common.reserve")}
                 </ButtonPrimary>
               </div>
             </div>
@@ -256,8 +265,8 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
             <div className="listingSectionSidebar__wrap shadow-xl">
               <div className="flex justify-between">
                 <span className="text-3xl font-semibold">
-                  {item.price || "$0"}
-                  <span className="ml-1 text-base font-normal text-neutral-500 dark:text-neutral-400">/person</span>
+                  {localizedPrice}
+                  <span className="ml-1 text-base font-normal text-neutral-500 dark:text-neutral-400">{t("common.perPerson")}</span>
                 </span>
                 <StartRating />
               </div>
@@ -277,7 +286,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
                 />
 
                 <div className="p-4">
-                  <label className="block text-sm text-neutral-500">Time</label>
+                  <label className="block text-sm text-neutral-500">{t("experiences.time")}</label>
                   <select
                     className="w-full mt-2 px-4 py-3 border rounded-md"
                     value={time}
@@ -295,7 +304,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
                     })}
                   </select>
 
-                  <label className="block text-sm text-neutral-500 mt-3">Hours</label>
+                  <label className="block text-sm text-neutral-500 mt-3">{t("experiences.duration")}</label>
                   <select
                     className="w-full mt-2 px-4 py-3 border rounded-md"
                     value={String(hours)}
@@ -305,7 +314,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
                       const val = i + 1;
                       return (
                         <option key={val} value={String(val)}>
-                          {val} {val === 1 ? "hour" : "hours"}
+                          {val} {val === 1 ? t("common.hour") : t("common.hours")}
                         </option>
                       );
                     })}
@@ -315,18 +324,18 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
 
               <div className="flex flex-col space-y-4">
                 <div className="flex justify-between text-neutral-6000 dark:text-neutral-300">
-                  <span>{formatEUR(unitPricePerPerson)} x {payableGuests} persons × {hours}h</span>
+                  <span>{formatEUR(unitPricePerPerson)} x {payableGuests} {t("common.persons")} × {hours}h</span>
                   <span>{formatEUR(total)}</span>
                 </div>
                 <div className="border-b border-neutral-200 dark:border-neutral-700"></div>
                 <div className="flex justify-between font-semibold">
-                  <span>Total</span>
+                  <span>{t("common.total")}</span>
                   <span>{formatEUR(total)}</span>
                 </div>
               </div>
 
               <ButtonPrimary href={`/checkout?listingId=${encodeURIComponent(item.id || '')}&adults=${adults}&children=${children}&infants=${infants}&hours=${hours}&time=${encodeURIComponent(time)}`}>
-                Reserve
+                {t("common.reserve")}
               </ButtonPrimary>
             </div>
           </div>
