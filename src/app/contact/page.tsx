@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC } from "react";
 import SectionSubscribe2 from "@/components/SectionSubscribe2";
 import SocialsList from "@/shared/SocialsList";
@@ -5,30 +7,22 @@ import Label from "@/components/Label";
 import Input from "@/shared/Input";
 import Textarea from "@/shared/Textarea";
 import ButtonPrimary from "@/shared/ButtonPrimary";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export interface PageContactProps { }
 
-const info = [
-  {
-    title: "🗺 ADDRESS",
-    desc: "Photo booth tattooed prism, portland taiyaki hoodie neutra typewriter",
-  },
-  {
-    title: "💌 EMAIL",
-    desc: "nc.example@example.com",
-  },
-  {
-    title: "☎ PHONE",
-    desc: "000-123-456-7890",
-  },
-];
-
 const PageContact: FC<PageContactProps> = ({ }) => {
+  const { t } = useI18n();
+  const info = [
+    { title: t("contactPage.addressTitle"), desc: t("contactPage.addressDesc") },
+    { title: t("contactPage.emailTitle"), desc: t("contactPage.emailDesc") },
+    { title: t("contactPage.phoneTitle"), desc: t("contactPage.phoneDesc") },
+  ];
   return (
     <div className={`nc-PageContact overflow-hidden`}>
       <div className="mb-24 lg:mb-32">
         <h2 className="my-16 sm:my-20 flex items-center text-3xl leading-[115%] md:text-5xl md:leading-[115%] font-semibold text-neutral-900 dark:text-neutral-100 justify-center">
-          Contact
+          {t("common.contactTitle")}
         </h2>
         <div className="container max-w-7xl mx-auto">
           <div className="flex-shrink-0 grid grid-cols-1 sm:grid-cols-2 gap-12 ">
@@ -45,7 +39,7 @@ const PageContact: FC<PageContactProps> = ({ }) => {
               ))}
               <div>
                 <h3 className="uppercase font-semibold text-sm dark:text-neutral-200 tracking-wider">
-                  🌏 SOCIALS
+                  🌏 {t("common.socials")}
                 </h3>
                 <SocialsList className="mt-2" />
               </div>
@@ -53,30 +47,30 @@ const PageContact: FC<PageContactProps> = ({ }) => {
             <div>
               <form className="grid grid-cols-1 gap-6" action="#" method="post">
                 <label className="block">
-                  <Label>Full name</Label>
+                  <Label>{t("common.fullName")}</Label>
 
                   <Input
-                    placeholder="Example Doe"
+                    placeholder={String(t("contactPage.fullNamePlaceholder"))}
                     type="text"
                     className="mt-1"
                   />
                 </label>
                 <label className="block">
-                  <Label>Email address</Label>
+                  <Label>{t("common.email")}</Label>
 
                   <Input
                     type="email"
-                    placeholder="example@example.com"
+                    placeholder={String(t("contactPage.emailPlaceholder"))}
                     className="mt-1"
                   />
                 </label>
                 <label className="block">
-                  <Label>Message</Label>
+                  <Label>{t("contactPage.message")}</Label>
 
                   <Textarea className="mt-1" rows={6} />
                 </label>
                 <div>
-                  <ButtonPrimary type="submit">Send Message</ButtonPrimary>
+                  <ButtonPrimary type="submit">{t("contactPage.sendMessage")}</ButtonPrimary>
                 </div>
               </form>
             </div>

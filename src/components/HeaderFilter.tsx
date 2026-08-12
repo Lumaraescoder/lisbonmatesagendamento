@@ -6,6 +6,7 @@ import Nav from "@/shared/Nav";
 import NavItem from "@/shared/NavItem";
 import ButtonSecondary from "@/shared/ButtonSecondary";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export interface HeaderFilterProps {
   tabActive: string;
@@ -24,6 +25,7 @@ const HeaderFilter: FC<HeaderFilterProps> = ({
   showViewAll = true,
   onClickTab = () => {},
 }) => {
+  const { t } = useI18n();
   const [tabActiveState, setTabActiveState] = useState(tabActive);
 
   useEffect(() => {
@@ -57,7 +59,7 @@ const HeaderFilter: FC<HeaderFilterProps> = ({
           <span className="hidden sm:block flex-shrink-0">
             <ButtonSecondary href="/listing-stay" className="!leading-none">
               <div className="flex items-center justify-center">
-                <span>View all</span>
+                <span>{t("common.viewAll")}</span>
                 <ArrowRightIcon className="w-5 h-5 ml-3" />
               </div>
             </ButtonSecondary>

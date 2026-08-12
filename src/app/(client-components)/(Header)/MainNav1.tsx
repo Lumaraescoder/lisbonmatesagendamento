@@ -6,12 +6,14 @@ import ButtonPrimary from "@/shared/ButtonPrimary";
 import MenuBar from "@/shared/MenuBar";
 import SwitchDarkMode from "@/shared/SwitchDarkMode";
 import LangDropdown from "./LangDropdown";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export interface MainNav1Props {
   className?: string;
 }
 
 const MainNav1: FC<MainNav1Props> = ({ className = "" }) => {
+  const { t } = useI18n();
   return (
     <div className={`nc-MainNav1 relative z-10 ${className}`}>
       <div className="px-4 lg:container h-20 relative flex justify-between">
@@ -32,7 +34,7 @@ const MainNav1: FC<MainNav1Props> = ({ className = "" }) => {
             <SearchDropdown className="flex items-center" />
             <div className="px-1" />
             <ButtonPrimary className="self-center" href="/login">
-              Sign up
+              {t("common.signUp")}
             </ButtonPrimary>
           </div>
 

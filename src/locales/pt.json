@@ -1,54 +1,534 @@
 {
+  "common": {
+    "home": "Início",
+    "tours": "Passeios",
+    "testimonials": "Testemunhos",
+    "contact": "Contacto",
+    "links": "Links",
+    "language": "Idioma",
+    "currency": "Moeda",
+    "openMenu": "Abrir menu",
+    "signUp": "Criar conta",
+    "viewAll": "Ver tudo",
+    "save": "Guardar",
+    "share": "Partilhar",
+    "showAllPhotos": "Ver todas as fotos",
+    "reserve": "Reservar",
+    "total": "Total",
+    "serviceCharge": "Taxa de serviço",
+    "perPerson": "/pessoa",
+    "persons": "pessoas",
+    "person": "pessoa",
+    "hour": "hora",
+    "hours": "horas",
+    "fromPrice": "A partir de €30",
+    "fixedFullDayPrice": "Preço fixo €320",
+    "saleToday": "-{discount}% hoje",
+    "whatsAppMessage": "Olá! Tenho uma pergunta sobre os passeios",
+    "whatsAppLabel": "Contactar pelo WhatsApp",
+    "date": "Data",
+    "time": "Hora",
+    "guests": "Hóspedes",
+    "people": "Pessoas",
+    "breakdown": "Detalhes",
+    "next": "Próximo",
+    "payment": "Pagamento",
+    "cancel": "Cancelar",
+    "saveAction": "Guardar",
+    "clearData": "Limpar dados",
+    "continueToPayment": "Continuar para o pagamento",
+    "done": "Concluído",
+    "email": "Email",
+    "phone": "Telefone",
+    "country": "País",
+    "city": "Cidade",
+    "fullName": "Nome completo",
+    "selectDate": "Selecionar data",
+    "selectGuests": "Selecionar hóspedes",
+    "noGuestsSelected": "Nenhum hóspede selecionado",
+    "bookingDetails": "Detalhes da reserva",
+    "hoursLabel": "Horas",
+    "tour": "Passeio",
+    "paypalOrder": "Pedido PayPal",
+    "payPalConfigMissing": "O PayPal não está configurado para este ambiente. Defina `NEXT_PUBLIC_PAYPAL_CLIENT_ID` nas variáveis de ambiente e faça novo build/deploy. (O Client ID público deve ser fornecido em tempo de build como `NEXT_PUBLIC_PAYPAL_CLIENT_ID`).",
+    "confirmingPaypal": "Confirmando pagamento PayPal...",
+    "paymentConfirmed": "Pagamento confirmado",
+    "bookingPaymentSuccessful": "Pagamento da reserva efetuado com sucesso",
+    "bookingPaymentConfirmedText": "O PayPal confirmou o pagamento da sua reserva.",
+    "returnHomePage": "Voltar para a página inicial",
+    "pageNotFound": "A PÁGINA QUE PROCURA NÃO EXISTE.",
+    "contactTitle": "Contacto",
+    "socials": "REDES SOCIAIS"
+  },
+  "hero": {
+    "subtitle": "Descubra os melhores passeios e experiências em Lisboa",
+    "title": "Lisbon Mates",
+    "button": "Reservar agora",
+    "imageAlt": "Passeio da Lisbon Mates em Lisboa"
+  },
   "section": {
     "featuredTours": "Passeios em destaque"
-  },
-  "subscribe": {
-    "title": "Participe da nossa newsletter 🎉",
-    "description": "Leia e compartilhe novas perspectivas sobre praticamente qualquer assunto. Todos são bem-vindos.",
-    "benefit1": "Obtenha mais desconto",
-    "benefit2": "Receba revistas premium",
-    "placeholder": "Digite seu e-mail",
-    "button": "Inscrever-se"
   },
   "categories": {
     "scenic": "Passeios panorâmicos de Tuk-Tuk",
     "fado": "Fado e experiências culturais",
     "historical": "Locais históricos e religiosos",
-    "food": "Experiências gastronômicas"
+    "food": "Experiências gastronómicas"
   },
-  "hero": {
-    "subtitle": "Descubra os melhores passeios e experiências em Lisboa",
-    "title": "Lisbon Mates",
-    "button": "Reservar agora"
+  "mobileApp": {
+    "title": "Aplicações móveis"
+  },
+  "subscribe": {
+    "title": "Participe da nossa newsletter",
+    "description": "Leia e partilhe novas perspetivas sobre praticamente qualquer assunto. Todos são bem-vindos.",
+    "benefit1": "Obtenha um desconto maior",
+    "benefit2": "Receba revistas premium",
+    "placeholder": "Introduza o seu e-mail",
+    "button": "Inscrever-se"
+  },
+  "languageNames": {
+    "en": "Inglês",
+    "pt": "Português",
+    "es": "Espanhol",
+    "fr": "Francês",
+    "de": "Alemão",
+    "it": "Italiano"
+  },
+  "tourCards": {
+    "id1": {
+      "title": "Tour pela Cidade Velha - Alfama",
+      "description": "Lisboa não é apenas uma cidade para ser vista — foi feita para ser sentida. Neste tour privado por Alfama, tudo é adaptado a si: o seu tempo, os seus interesses e o seu ritmo. Com um guia local, vai além das rotas turísticas e descobre a verdadeira Lisboa — ruelas sinuosas, recantos de Fado cheios de alma e miradouros sobre o Tejo. Tudo a bordo de tuk-tuks 100% elétricos, silenciosos e confortáveis, perfeitos para as colinas de Lisboa. Quer parar para uma ginjinha ou num lugar escondido? Basta dizer. O tour é seu.",
+      "address": "Lisboa"
+    },
+    "id_2": {
+      "title": "Tour Chiado e Bairro Alto",
+      "description": "Lisboa foi feita para ser sentida, e o Chiado e o Bairro Alto são melhor explorados à sua maneira. Neste tour privado, tudo se adapta a si: o seu ritmo, os seus interesses, o seu tempo. Com um guia local, mergulha em cafés literários, boutiques e ruas boémias, e depois faz uma pausa em miradouros sobre o Tejo. Tudo a bordo de tuk-tuks 100% elétricos, silenciosos e confortáveis. Quer mais tempo para fotografias ou uma paragem num miradouro? Basta dizer. O tour é seu.",
+      "address": "Lisboa"
+    },
+    "id_3": {
+      "title": "Tour de Belém",
+      "description": "Belém é mais do que monumentos — é uma história, e nós contamo-la ao seu ritmo. Neste tour privado, tudo é adaptado a si: o seu tempo, os seus interesses e o seu ritmo. Com um guia local, visita o Mosteiro dos Jerónimos, a Torre de Belém e o Padrão dos Descobrimentos, com tempo para fotografias junto ao Tejo e um pastel fresco. Viaje num tuk-tuk silencioso, 100% elétrico e construído para o conforto. Quer parar mais tempo ou explorar um recanto escondido? Basta dizer.",
+      "address": "Lisboa, Portugal"
+    },
+    "id_4": {
+      "title": "Lisboa Dia Inteiro",
+      "description": "Esta experiência de dia inteiro em Lisboa foi concebida à sua volta. Com um guia local e um tuk-tuk privado, 100% elétrico, adaptamos a rota ao seu ritmo enquanto percorremos os bairros essenciais da cidade — Alfama, Belém e o centro — além dos miradouros de que mais gosta. Tem pouco tempo ou quer um ritmo mais lento? Ajustamo-nos à medida que avançamos. Quer paragens adicionais para fotografias ou mais tempo nos miradouros? Basta dizer. O tour é seu.",
+      "address": "Lisboa, Portugal"
+    },
+    "id_5": {
+      "title": "Miradouros de Lisboa - Tour dos Miradouros",
+      "description": "Os miradouros de Lisboa foram feitos para ser sentidos, não visitados à pressa. Neste tour privado pelos miradouros, tudo se adapta a si: o seu ritmo, a sua luz e as suas vistas favoritas. Com um guia local, descobre miradouros icónicos e lugares mais tranquilos sobre o Tejo, viajando num tuk-tuk silencioso e 100% elétrico. Quer mais tempo para fotografias ou um panorama escondido? Basta dizer. O tour é seu.",
+      "address": "Lisboa, Portugal"
+    },
+    "id_6": {
+      "title": "Tour Mágico das Luzes de Natal em Lisboa",
+      "description": "As luzes festivas de Lisboa estão no seu melhor quando é você a definir o ritmo. Neste tour privado de Natal, tudo é adaptado a si: o seu tempo, os seus interesses e o seu ritmo. Com um guia local, desliza pela Baixa, pelo Chiado e pela Praça do Comércio num tuk-tuk silencioso e 100% elétrico, parando para fotografias e para apreciar a melhor luz. Quer demorar-se num mercado ou encontrar o brilho perfeito? Basta dizer.",
+      "address": "Lisboa, Portugal"
+    },
+    "id_7": {
+      "title": "Sintra e Cascais a partir de Lisboa",
+      "description": "Sintra e Cascais são um dia para ser sentido, não vivido à pressa. Neste tour privado, tudo se adapta a si: o seu tempo, os seus interesses e o seu ritmo. Com um guia local, explora palácios, jardins e miradouros costeiros, com espaço para fotografias e momentos tranquilos. Viaje com conforto num tuk-tuk 100% elétrico e com paragens personalizadas ao longo do caminho. Quer demorar-se ou alterar a rota? Basta dizer. O tour é seu.",
+      "address": "Lisboa, Portugal"
+    },
+    "id_8": {
+      "title": "Fátima, Nazaré, Batalha e Óbidos",
+      "description": "Esta viagem por Fátima, Batalha, Nazaré e Óbidos foi concebida à sua volta. Num tour privado com um guia local, tudo se adapta ao seu ritmo e aos seus interesses — tempo para reflexão no santuário, paragens mais longas junto ao oceano ou uma caminhada lenta pelas ruas medievais. Viaje confortavelmente num tuk-tuk silencioso e 100% elétrico e molde o dia à medida que avança. Quer parar ou explorar um lugar escondido? Basta dizer.",
+      "address": "Lisboa, Portugal"
+    }
   },
   "experiences": {
     "specificTour": "Passeio específico",
     "showAllPhotos": "Ver todas as fotos",
     "experiencesDescriptions": "Descrição da experiência",
-    "include": "Inclui",
+    "include": "Incluído",
     "includedInPrice": "Incluído no preço",
     "reviews": "Avaliações",
-    "sharePlaceholder": "Compartilhe seus pensamentos ...",
+    "sharePlaceholder": "Partilhe os seus pensamentos...",
     "viewMoreReviews": "Ver mais {count} avaliações",
     "hostedBy": "Organizado por",
     "hoursLabel": "horas",
     "upToLabel": "Até {count} pessoas",
     "languagesLabel": "Idiomas",
+    "languagesValue": "Inglês, Português, Espanhol",
     "location": "Localização",
+    "locationSample": "Lisboa, Portugal",
     "thingsToKnow": "Coisas a saber",
     "cancellationPolicy": "Política de cancelamento",
     "cancellationPolicyDesc": "Qualquer experiência pode ser cancelada e totalmente reembolsada dentro de 24 horas após a compra, ou pelo menos 7 dias antes do início da experiência.",
-    "personRequirements": "Requisitos de pessoas",
+    "personRequirements": "Requisitos dos participantes",
     "personRequirementsDesc": "Até 10 pessoas com 4 anos ou mais podem participar. Pais também podem trazer crianças menores de 2 anos.",
     "whatToBring": "O que levar",
     "whatToBringList": [
-      "Roupa apropriada para visitar locais religiosos",
-      "Esteja pronto antes das 7:30",
+      "Roupa apropriada para locais religiosos",
+      "Esteja pronto antes do horário combinado",
       "Transporte e almoço conforme indicado"
     ],
-    "tourTitle": "Passeio pelo Centro Antigo — Alfama",
-    "locationSample": "Lisboa, Portugal",
-    "longDescription": "TOUR PRIVADO DE TUK-TUK — adaptado a você.\n\n07:30 – Nosso guia encontrará você no ponto de encontro combinado e começará o passeio em um tuk-tuk 100% elétrico. O percurso inclui santuários, mirantes costeiros e ruas medievais — paradas e horários adaptados ao seu ritmo e interesses.\n\nAlmoço e pequenas pausas estão incluídos onde indicado. Ao final do dia retornamos ao ponto de encontro original.\n\nEste é um passeio de dia inteiro; os horários são indicativos e podem ser ajustados mediante pedido.",
-    "reserve": "Reservar"
+    "tourTitle": "Passeio pelo Centro Antigo - Alfama",
+    "longDescription": "TOUR PRIVADO DE TUK-TUK - adaptado a si.\n\nO nosso guia irá encontrá-lo no ponto de encontro combinado e dará início ao passeio num tuk-tuk confortável e 100% elétrico. O percurso inclui miradouros, ruas históricas e paragens locais adaptadas ao seu ritmo e aos seus interesses.\n\nEstão incluídas pequenas pausas quando indicado. No final do passeio, regressaremos ao ponto de encontro original ou a outro local central acordado.\n\nOs horários são indicativos e podem ser ajustados mediante pedido.",
+    "availability": "Disponibilidade",
+    "availabilityDescription": "Os preços podem aumentar nos fins de semana ou feriados",
+    "time": "Horário",
+    "duration": "Horas",
+    "listingNotFound": "Passeio não encontrado: {id}",
+    "noDescription": "Nenhuma descrição disponível.",
+    "selectGuests": "Selecione o número de pessoas",
+    "selectGuestsDescription": "Por favor selecione o número de pessoas",
+    "adults": "Adultos",
+    "adultsDesc": "13 anos ou mais",
+    "children": "Crianças",
+    "childrenDesc": "2 a 12 anos",
+    "addDates": "Adicionar datas",
+    "checkInOut": "Entrada - Saída",
+    "priceGuests": "€{price} x {count} pessoas",
+    "whosComing": "Quem vem?",
+    "includes": [
+      "Passeio privado em tuk-tuk elétrico",
+      "Guia local",
+      "Recolha no centro de Lisboa quando disponível",
+      "Paradas flexíveis para fotos",
+      "Rota adaptada ao seu ritmo"
+    ]
+  },
+  "checkout": {
+    "pleaseSelectPeople": "Por favor selecione o número de pessoas",
+    "yourReservationDetails": "Detalhes da sua reserva",
+    "confirmAndPayment": "Confirmar e pagar",
+    "yourTrip": "A sua viagem",
+    "viewBookingDetails": "Ver detalhes da reserva",
+    "fillTourInformation": "Preencha as informações do passeio",
+    "yourDetailsComplete": "Os seus dados estão completos. Continue com o PayPal para confirmar a reserva.",
+    "yourName": "O seu nome",
+    "phoneNumber": "Número de telefone",
+    "writeYourCountry": "Introduza o seu país",
+    "writeYourCity": "Introduza a sua cidade",
+    "pickupPointLabel": "Hotel ou ponto de recolha (pode escolher mais tarde)",
+    "pickupPointPlaceholder": "Endereço ou nome do hotel",
+    "tripDetailsLabel": "Detalhes da viagem",
+    "tripDetailsPlaceholder": "Algum detalhe ou pedido especial para a sua viagem?",
+    "paypalCreateOrderError": "Não foi possível criar o pedido no PayPal.",
+    "paypalOrderIdMissing": "O ID do pedido não foi recebido na aprovação do PayPal.",
+    "paypalPaymentIncomplete": "O pagamento PayPal não foi concluído.",
+    "paypalCaptureFailed": "Falha ao capturar o pagamento PayPal.",
+    "paypalPaymentFailed": "Não foi possível concluir o pagamento PayPal. Tente novamente."
+  },
+  "contactPage": {
+    "addressTitle": "🗺 ENDEREÇO",
+    "addressDesc": "Photo booth tattooed prism, portland taiyaki hoodie neutra typewriter",
+    "emailTitle": "💌 EMAIL",
+    "emailDesc": "nc.example@example.com",
+    "phoneTitle": "☎ TELEFONE",
+    "phoneDesc": "000-123-456-7890",
+    "fullNamePlaceholder": "Exemplo Doe",
+    "emailPlaceholder": "example@example.com",
+    "message": "Mensagem",
+    "sendMessage": "Enviar mensagem"
+  },
+  "itinerary": {
+    "title": "Roteiro",
+    "unavailableStop": "Paragem do roteiro",
+    "unavailableStopDescription": "Os detalhes desta paragem não estão disponíveis.",
+    "tours": {
+      "id1": {
+        "stops": [
+          {
+            "title": "Escolha seu ponto de embarque",
+            "description": "A Lisbon Mates oferece um serviço de recolha conveniente diretamente em hotéis e alojamentos locais (Airbnb) situados no centro de Lisboa."
+          },
+          {
+            "title": "Santa Luzia",
+            "description": "Um dos miradouros mais românticos da cidade, com uma vista deslumbrante sobre os telhados de Alfama e o Rio Tejo."
+          },
+          {
+            "title": "Sé de Lisboa (Catedral)",
+            "description": "A igreja mais antiga da cidade, imponente com a sua arquitetura românica e séculos de história."
+          },
+          {
+            "title": "Senhora do Monte",
+            "description": "O ponto mais alto da cidade, oferecendo uma das vistas panorâmicas mais espetaculares e completas de Lisboa."
+          },
+          {
+            "title": "Panteão Nacional",
+            "description": "Originalmente a Igreja de Santa Engrácia, é um dos monumentos mais emblemáticos de Lisboa, servindo hoje como local de repouso para importantes figuras históricas de Portugal."
+          },
+          {
+            "title": "Alfama",
+            "description": "O bairro mais antigo de Lisboa e um dos mais autênticos. Famoso pelas suas ruas estreitas, casas coloridas e cultura tradicional do Fado."
+          },
+          {
+            "title": "Santo António",
+            "description": "A pitoresca igreja construída no local exato onde nasceu Santo António, o padroeiro mais querido de Lisboa."
+          },
+          {
+            "title": "Portas do Sol",
+            "description": "Um dos miradouros mais famosos de Lisboa, localizado no coração de Alfama, com vistas espetaculares sobre o rio Tejo e os telhados históricos."
+          },
+          {
+            "title": "Graça",
+            "description": "Um bairro vibrante e histórico com uma atmosfera artística, famosa pelas suas esplanadas e miradouros icónicos."
+          },
+          {
+            "title": "Escolha seu ponto de desembarque",
+            "description": "Ao final da sua experiência, podemos deixá-lo no seu hotel, Airbnb no centro de Lisboa ou no nosso ponto de encontro na Avenida da Liberdade, nº 3."
+          }
+        ]
+      },
+      "id_2": {
+        "stops": [
+          {
+            "title": "Escolha seu ponto de embarque",
+            "description": "Buscamos você diretamente no seu hotel ou alojamento na região central de Lisboa. Se estiver hospedado fora do centro, combinamos um ponto de encontro próximo."
+          },
+          {
+            "title": "Convento do Carmo",
+            "description": "Ruínas góticas de um convento do século XIV, parcialmente destruído pelo terramoto de 1755. Ficou sem teto desde então, criando uma atmosfera única a céu aberto."
+          },
+          {
+            "title": "Livraria Bertrand",
+            "description": "Fundada em 1732, é reconhecida oficialmente como a livraria mais antiga do mundo ainda em funcionamento. Fica no coração do Chiado."
+          },
+          {
+            "title": "Elevador de Santa Justa",
+            "description": "Inaugurado em 1902 para ligar a Baixa ao Chiado. Estrutura de ferro com inspiração na arquitetura industrial francesa, com vista panorâmica do topo."
+          },
+          {
+            "title": "Igreja de São Roque",
+            "description": "Igreja jesuíta do século XVI, famosa pelo interior barroco ricamente decorado e por suas capelas. Um dos monumentos religiosos mais importantes de Lisboa."
+          },
+          {
+            "title": "Miradouro de São Pedro de Alcântara",
+            "description": "Um dos miradouros mais populares da cidade, com vista sobre a Baixa e o Castelo de São Jorge. Combina jardins, terraços e vista panorâmica."
+          },
+          {
+            "title": "Bairro Alto",
+            "description": "Um de bairros mais tradicionais e vibrantes de Lisboa. De dia preserva o charme histórico, e à noite se transforma em um dos points mais animados da cidade."
+          },
+          {
+            "title": "Praça Luís de Camões",
+            "description": "Praça importante que liga o Chiado ao Bairro Alto. Recebe o nome do maior poeta português e é ponto de encontro tradicional de artistas e visitantes."
+          },
+          {
+            "title": "Escolha seu ponto de desembarque",
+            "description": "Ao final do passeio, retornamos você ao seu hotel ou alojamento em Lisboa, ou a um ponto de encontro combinado previamente."
+          }
+        ]
+      },
+      "id_3": {
+        "stops": [
+          {
+            "title": "Escolha seu ponto de embarque",
+            "description": "Buscamos você diretamente no seu hotel ou alojamento na região central de Lisboa. Se estiver hospedado fora do centro, combinamos um ponto de encontro próximo."
+          },
+          {
+            "title": "Torre de Belém",
+            "description": "Erguida no século XVI às margens do Tejo, é Património Mundial da UNESCO e símbolo da Era dos Descobrimentos. Sua arquitetura manuelina é um dos cartões-postais mais fotografados de Lisboa."
+          },
+          {
+            "title": "Pastéis de Belém",
+            "description": "Parada na confeitaria onde a receita original do pastel de nata é preservada há gerações. Crocante por fora e cremoso por dentro, é uma tradição gastronómica essencial."
+          },
+          {
+            "title": "Mosteiro dos Jerónimos",
+            "description": "Obra-prima da arquitetura manuelina, construída para celebrar a viagem de Vasco da Gama à Índia. Abriga o túmulo do navegador em seu interior."
+          },
+          {
+            "title": "Padrão dos Descobrimentos",
+            "description": "Monumento em forma de caravela voltado para o Tejo, que homenageia os navegadores portugueses. Traz a figura do Infante Dom Henrique entre outras personalidades históricas."
+          },
+          {
+            "title": "Pink Street",
+            "description": "Antiga rua ligada à vida noturna portuária, hoje uma das áreas mais badaladas de Lisboa. O pavimento rosa e os bares animados marcam a cena social moderna da cidade."
+          },
+          {
+            "title": "Ponte 25 de Abril",
+            "description": "Frequentemente comparada à Golden Gate por sua aparência, liga Lisboa à margem sul do Tejo. Seu nome atual homenageia a Revolução de 25 de abril de 1974."
+          },
+          {
+            "title": "Time Out Market",
+            "description": "Instalado no histórico Mercado da Ribeira, reúne algumas das melhores experiências gastronómicas de Lisboa em um só lugar, do tradicional ao contemporâneo."
+          },
+          {
+            "title": "Palácio de Belém",
+            "description": "Residência oficial do Presidente da República Portuguesa. Edifício histórico cercado de jardins, símbolo do poder político do país."
+          },
+          {
+            "title": "Escolha seu ponto de desembarque",
+            "description": "Ao final do passeio, garantimos um retorno confortável ao seu hotel ou alojamento, ou a um ponto combinado previamente."
+          }
+        ]
+      },
+      "id_4": {
+        "stops": [
+          {
+            "title": "Escolha seu ponto de embarque",
+            "description": "Serviço de recolha personalizado diretamente no seu hotel ou alojamento para iniciar o seu dia completo por Lisboa."
+          },
+          {
+            "title": "Belém e monumentos históricos",
+            "description": "Explore a Torre de Belém, o Padrão dos Descobrimentos e faça uma paragem deliciosa nos famosos e originais Pastéis de Belém."
+          },
+          {
+            "title": "Mosteiro dos Jerónimos",
+            "description": "Visita guiada exterior a esta magnífica obra-prima da arquitetura manuelina do século XVI."
+          },
+          {
+            "title": "Baixa Pombalina e Praça do Comércio",
+            "description": "Passagem pela zona monumental reconstruída após o sismo de 1755, conectando as grandes praças ao rio Tejo."
+          },
+          {
+            "title": "Chiado e Almoço Tradicional",
+            "description": "Pausa no elegante e boémio bairro do Chiado com tempo livre para saborear um almoço tradicional português."
+          },
+          {
+            "title": "Miradouros e Colinas Históricas",
+            "description": "Subida de Tuk-Tuk até aos pontos mais altos da cidade, incluindo a Senhora do Monte e São Pedro de Alcântara, para vistas de cortar o fôlego."
+          },
+          {
+            "title": "Alfama Antiga",
+            "description": "Caminhada guiada pelas ruelas medievais mais antigas de Lisboa, mergulhando na alma e na história do Fado."
+          },
+          {
+            "title": "Sé Catedral e Santo António",
+            "description": "Visita à Sé de Lisboa e à histórica igreja construída no local de nascimento de Santo António."
+          },
+          {
+            "title": "Escolha seu ponto de desembarque",
+            "description": "Termine o seu passeio de dia inteiro com retorno direto e confortável ao seu hotel ou ponto central de sua escolha."
+          }
+        ]
+      },
+      "id_5": {
+        "stops": [
+          {
+            "title": "Escolha seu ponto de embarque",
+            "description": "Recolha direta no seu alojamento para começar uma rota panorâmica pelas colinas mais famosas de Lisboa."
+          },
+          {
+            "title": "Miradouro de São Pedro de Alcântara",
+            "description": "Uma vista clássica e monumental sobre a Baixa pombalina, a colina da Graça e o imponente Castelo de São Jorge."
+          },
+          {
+            "title": "Miradouro de Santa Catarina (Adamastor)",
+            "description": "Ambiente descontraído à beira da colina com uma vista ampla sobre o porto de Lisboa, a ponte e o Cristo Rei."
+          },
+          {
+            "title": "Miradouro da Senhora do Monte",
+            "description": "O topo absoluto de Lisboa. A vista panorâmica mais espetacular, onde conseguimos avistar quase toda a extensão da cidade antiga."
+          },
+          {
+            "title": "Miradouro da Graça",
+            "description": "Localizado junto à icónica igreja, é um dos pontos de paragem favoritos dos lisboetas para observar a cidade antiga sob a sombra dos pinheiros."
+          },
+          {
+            "title": "Miradouro das Portas do Sol",
+            "description": "Uma autêntica varanda medieval suspensa sobre os telhados tradicionais de Alfama e a curvatura perfeita do Rio Tejo."
+          },
+          {
+            "title": "Escolha seu ponto de desembarque",
+            "description": "Desembarque confortável no seu hotel ou num miradouro de sua preferência para desfrutar do fim de tarde."
+          }
+        ]
+      },
+      "id_6": {
+        "stops": [
+          {
+            "title": "Escolha seu ponto de embarque",
+            "description": "Buscamos você ao final da tarde no seu hotel com o Tuk-Tuk totalmente decorado e preparado para a magia do Natal."
+          },
+          {
+            "title": "Praça do Comércio e Árvore Gigante",
+            "description": "Aprecie a grandiosa iluminação da maior praça de Lisboa e a sua tradicional árvore de Natal gigante e brilhante."
+          },
+          {
+            "title": "Rua Augusta e Baixa Iluminada",
+            "description": "Passeio sob os tetos de luzes cintilantes e decorações temáticas das ruas comerciais mais movimentadas da cidade."
+          },
+          {
+            "title": "Rossio e Mercado de Natal",
+            "description": "Passagem pelo Rossio e paragem opcional para explorar as pequenas cabanas de madeira com artesanato, doces típicos e vinho quente."
+          },
+          {
+            "title": "Avenida da Liberdade",
+            "description": "Desfile pela avenida mais luxuosa de Lisboa, completamente ornamentada com milhares de luzes LED nas suas árvores centenárias."
+          },
+          {
+            "title": "Chiado e Praça Luís de Camões",
+            "description": "Mergulhe na atmosfera mágica e artística do Chiado com as suas famosas fachadas luminosas que encantam miúdos e graúdos."
+          },
+          {
+            "title": "Escolha seu ponto de desembarque",
+            "description": "Retorno confortável ao seu hotel ou num restaurante de sua escolha para desfrutar do jantar de Natal."
+          }
+        ]
+      },
+      "id_7": {
+        "stops": [
+          {
+            "title": "Escolha seu ponto de embarque",
+            "description": "Recolha privada de manhã no seu hotel para iniciarmos uma viagem inesquecível rumo à deslumbrante Serra de Sintra."
+          },
+          {
+            "title": "Palácio Nacional da Pena",
+            "description": "Explore o palácio mais colorido e romântico da Europa, erguido no topo da serra como um verdadeiro castelo de conto de fadas."
+          },
+          {
+            "title": "Vila Histórica de Sintra",
+            "description": "Tempo livre para explorar as ruelas medievais, visitar as lojas locais e saborear as famosas queijadas e travesseiros de Sintra."
+          },
+          {
+            "title": "Cabo da Roca",
+            "description": "Visita ao ponto mais ocidental da Europa continental, onde o mar se encontra com as impressionantes falésias rochosas."
+          },
+          {
+            "title": "Boca do Inferno",
+            "description": "Contemple a força dramática do oceano Atlântico esculpindo as cavernas e formações rochosas na costa de Cascais."
+          },
+          {
+            "title": "Cascais e Costa do Estoril",
+            "description": "Passeio pela charmosa vila costeira de Cascais, antiga residência de veraneio da realeza, retornando pela cénica estrada marginal."
+          },
+          {
+            "title": "Escolha seu ponto de desembarque",
+            "description": "Retorno com total conforto e segurança diretamente ao seu alojamento em Lisboa."
+          }
+        ]
+      },
+      "id_8": {
+        "stops": [
+          {
+            "title": "Escolha seu ponto de embarque",
+            "description": "Partida privada do seu hotel em Lisboa em direção ao coração histórico, religioso e cultural do centro de Portugal."
+          },
+          {
+            "title": "Santuário de Fátima",
+            "description": "Visita ao local das aparições marianas de 1917, conhecendo a Basílica de Nossa Senhora do Rosário, a Capelinha das Aparições e a Basílica da Santíssima Trindade."
+          },
+          {
+            "title": "Mosteiro da Batalha",
+            "description": "Uma imponente joia da arquitetura gótica e manuelina portuguesa, classificado como Património Mundial pela UNESCO."
+          },
+          {
+            "title": "Nazaré e Sítio das Ondas Gigantes",
+            "description": "Subida ao Sítio da Nazaré para uma vista panorâmica de cortar o fôlego sobre a praia e as icónicas ondas gigantes do Canhão da Nazaré."
+          },
+          {
+            "title": "Vila Medieval de Óbidos",
+            "description": "Viagem no tempo ao caminhar pelas muralhas e ruas de Óbidos, finalizando com a clássica Ginjinha servida em copo de chocolate."
+          },
+          {
+            "title": "Escolha seu ponto de desembarque",
+            "description": "Retorno confortável e relaxante com desembarque final no seu hotel ou ponto de alojamento em Lisboa."
+          }
+        ]
+      }
+    }
+  },
+  "testimonials": {
+    "title": "As nossas avaliações no Google",
+    "description": "Veja o que dizem sobre a Lisbon Mates",
+    "reviews": [
+      "Excelente passeio por Alfama! O guia conhecia todas as histórias e recantos escondidos. Recomendo muito a quem quer conhecer a cidade e ouvir fado autêntico. (Avaliação do Google)",
+      "Passeio maravilhoso por Belém — mosteiros, pastéis e monumentos. Muito bem organizado, com explicações detalhadas. Cinco estrelas no Google!",
+      "Passeio completo por Lisboa, passando por Alfama e Belém. Roteiro profissional, excelente gestão do tempo e ótimas recomendações de restaurantes. Uma grande experiência. (Avaliação do Google)"
+    ]
   }
 }
