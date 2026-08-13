@@ -13,11 +13,13 @@ import { useI18n } from "@/i18n/I18nProvider";
 export interface StayDatesRangeInputProps {
   className?: string;
   single?: boolean;
+  onChange?: (date: Date | null) => void;
 }
 
 const StayDatesRangeInput: FC<StayDatesRangeInputProps> = ({
   className = "flex-1",
   single = false,
+  onChange,
 }) => {
   const { t } = useI18n();
   const today = new Date();
@@ -32,6 +34,7 @@ const StayDatesRangeInput: FC<StayDatesRangeInputProps> = ({
       const d = dates as Date | null;
       setStartDate(d);
       setEndDate(d);
+      onChange?.(d);
       return;
     }
     const [start, end] = dates as [Date | null, Date | null];

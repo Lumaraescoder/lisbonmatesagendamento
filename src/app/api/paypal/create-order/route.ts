@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { calculateTourAmount } from '@/utils/bookingPricing';
+import { calculateBookingAmount } from '@/utils/bookingPricing';
+import { DEMO_EXPERIENCES_LISTINGS, DEMO_STAY_LISTINGS } from '@/data/listings';
 
 const getBase = () =>
  process.env.PAYPAL_ENV === 'live'
@@ -42,7 +43,32 @@ function calculateAmount(bookingData: any) {
   throw new Error('At least one adult or child is required');
  }
 
- return calculateTourAmount({ adults, children, hours });
+ const bookingDate = String(bookingData?.date || '');
+ if (!/^\d{4}-\d{2}-\d{2}$/.test(bookingDate)) {
+  throw new Error('A valid reservation date is required');
+ }
+ const [year, month, day] = bookingDate.split('-').map(Number);
+ const selectedDate = new Date(year, month - 1, day);
+ const today = new Date();
+ today.setHours(0, 0, 0, 0);
+ if (
+  selectedDate.getFullYear() !== year ||
+  selectedDate.getMonth() !== month - 1 ||
+  selectedDate.getDate() !== day ||
+  selectedDate < today
+ ) {
+  throw new Error('The reservation date must be today or later');
+ }
+
+ const listingId = String(bookingData?.listingId || '');
+ const listing = [...DEMO_EXPERIENCES_LISTINGS, ...DEMO_STAY_LISTINGS]
+  .find((item) => item.id === listingId || item.href?.endsWith(`/${listingId}`));
+
+ if (!listing) {
+  throw new Error('A valid tour is required to calculate the booking total');
+ }
+
+ return calculateBookingAmount({ price: listing.price, adults, children, hours });
 }
 
 function limitText(value: string, max: number) {

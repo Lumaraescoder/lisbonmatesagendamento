@@ -16,7 +16,7 @@ import Image from "next/image";
 import { GuestsObject } from "../(client-components)/type";
 import { DEMO_EXPERIENCES_LISTINGS, DEMO_STAY_LISTINGS } from "@/data/listings";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { calculateTourAmount } from "@/utils/bookingPricing";
+import { calculateBookingAmount } from "@/utils/bookingPricing";
 import { useI18n } from "@/i18n/I18nProvider";
 
 export interface CheckOutPagePageMainProps {
@@ -37,10 +37,16 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
   const { t, locale } = useI18n();
   const searchParams = useSearchParams();
 
-  const [startDate, setStartDate] = useState<Date | null>(
-    new Date("2026/07/24")
-  );
-  const [endDate, setEndDate] = useState<Date | null>(new Date("2026/07/24"));
+  const [startDate, setStartDate] = useState<Date | null>(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return today;
+  });
+  const [endDate, setEndDate] = useState<Date | null>(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return today;
+  });
 
   const [guests, setGuests] = useState<GuestsObject>({
     guestAdults: 0,
@@ -72,6 +78,11 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
   const localizedListingTitle = listingTourKey
     ? String(t(`tourCards.${listingTourKey}.title`, undefined, listingTitle || String(t("common.tour"))))
     : listingTitle || String(t("common.tour"));
+  const allListings = [...DEMO_EXPERIENCES_LISTINGS, ...DEMO_STAY_LISTINGS];
+  const selectedListing = allListings.find((item) => item.id === listingIdParam || item.href?.endsWith(`/${listingIdParam}`));
+  const bookingDate = startDate
+    ? `${startDate.getFullYear()}-${String(startDate.getMonth() + 1).padStart(2, "0")}-${String(startDate.getDate()).padStart(2, "0")}`
+    : "";
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -97,9 +108,6 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
         setEndDate(d);
       }
     }
-
-    // sync visible date input when start/end date change
-    setDateInput(converSelectedDateToString([startDate, endDate], dateLocale));
 
     if (initialGuests) {
       setGuests(initialGuests);
@@ -157,9 +165,14 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
     }
   }, [initialDate, initialGuests, initialHours, searchParams, dateLocale]);
 
+  useEffect(() => {
+    setDateInput(converSelectedDateToString([startDate, endDate], dateLocale));
+  }, [startDate, endDate, dateLocale]);
+
   // compute amount from listing when possible
   const computeAmount = () => {
-    return calculateTourAmount({
+    return calculateBookingAmount({
+      price: selectedListing?.price,
       adults: guests.guestAdults || 0,
       children: guests.guestChildren || 0,
       hours,
@@ -505,7 +518,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                                 children: guests.guestChildren || 0,
                                 infants: guests.guestInfants || 0,
                                 persons: totalPayableGuests,
-                                date: dateInput,
+                                date: bookingDate,
                                 hours,
                                 time: time || '',
                               },
