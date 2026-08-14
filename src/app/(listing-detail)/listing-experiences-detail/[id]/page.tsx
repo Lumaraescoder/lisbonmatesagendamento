@@ -62,6 +62,11 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
   const [infants, setInfants] = React.useState<number>(0);
   const [hours, setHours] = React.useState<number>(1);
   const [time, setTime] = React.useState<string>("09:00");
+  const [selectedDate, setSelectedDate] = React.useState<Date | null>(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return today;
+  });
 
   // parse numeric price from item.price string like "From€30" or "Fixed Price€320"
   const rawPrice = (item.price || '').toString();
@@ -82,6 +87,10 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
   const localizedDescription = t(`tourCards.${tourKey}.description`, undefined, sourceCopy.description || sourceCopy.content || t("experiences.noDescription"));
   const localizedAddress = t(`tourCards.${tourKey}.address`, undefined, item.address);
   const localizedPrice = localizeTourPrice(item.price, t);
+  const checkoutDate = selectedDate
+    ? `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, "0")}-${String(selectedDate.getDate()).padStart(2, "0")}`
+    : "";
+  const checkoutHref = `/checkout?listingId=${encodeURIComponent(item.id || '')}&adults=${adults}&children=${children}&infants=${infants}&hours=${hours}&time=${encodeURIComponent(time)}&date=${encodeURIComponent(checkoutDate)}` as Route;
 
   return (
     <div className={` nc-ListingExperiencesDetailPage `}>
@@ -189,7 +198,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
               </div>
 
               <form className="flex flex-col border border-neutral-200 dark:border-neutral-700 rounded-3xl mt-4">
-                <StayDatesRangeInput className="flex-1 z-[11]" single />
+                <StayDatesRangeInput className="flex-1 z-[11]" single onChange={setSelectedDate} />
                 <div className="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
                 <GuestsInput
                   className="flex-1"
@@ -252,7 +261,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
               </div>
 
               <div className="mt-4">
-                <ButtonPrimary href={`/checkout?listingId=${encodeURIComponent(item.id || '')}&adults=${adults}&children=${children}&infants=${infants}&hours=${hours}&time=${encodeURIComponent(time)}`}>
+                <ButtonPrimary href={checkoutHref}>
                   {t("common.reserve")}
                 </ButtonPrimary>
               </div>
@@ -272,7 +281,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
               </div>
 
               <form className="flex flex-col border border-neutral-200 dark:border-neutral-700 rounded-3xl ">
-                <StayDatesRangeInput className="flex-1 z-[11]" single />
+                <StayDatesRangeInput className="flex-1 z-[11]" single onChange={setSelectedDate} />
                 <div className="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
                 <GuestsInput
                   className="flex-1"
@@ -334,7 +343,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
                 </div>
               </div>
 
-              <ButtonPrimary href={`/checkout?listingId=${encodeURIComponent(item.id || '')}&adults=${adults}&children=${children}&infants=${infants}&hours=${hours}&time=${encodeURIComponent(time)}`}>
+              <ButtonPrimary href={checkoutHref}>
                 {t("common.reserve")}
               </ButtonPrimary>
             </div>

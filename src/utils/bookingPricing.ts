@@ -22,3 +22,24 @@ export function calculateTourAmount({
 
   return Number(price.toFixed(2));
 }
+
+export function calculateBookingAmount({
+  price,
+  adults = 0,
+  children = 0,
+  hours = 1,
+}: {
+  price?: string | null;
+  adults?: number;
+  children?: number;
+  hours?: number;
+}) {
+  const rawPrice = String(price || "");
+  const fixedPrice = Number((rawPrice.match(/[0-9]+(?:\.[0-9]+)?/) || ["0"])[0]);
+
+  if (/fixed/i.test(rawPrice)) {
+    return Number(fixedPrice.toFixed(2));
+  }
+
+  return calculateTourAmount({ adults, children, hours });
+}
