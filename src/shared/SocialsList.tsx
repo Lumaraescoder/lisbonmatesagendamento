@@ -5,19 +5,18 @@ export interface SocialsListProps {
   className?: string;
   itemClass?: string;
   socials?: SocialType[];
+  showLabels?: boolean;
 }
 
 const socialsDemo: SocialType[] = [
-  { name: "Facebook", icon: "lab la-facebook-square", href: "#" },
-  { name: "Twitter", icon: "lab la-twitter", href: "#" },
-  { name: "Youtube", icon: "lab la-youtube", href: "#" },
-  { name: "Instagram", icon: "lab la-instagram", href: "#" },
+  { name: "Instagram", icon: "lab la-instagram", href: "https://www.instagram.com/lisbonmates?igsh=cXA1Y3lxd241bTh0" },
 ];
 
 const SocialsList: FC<SocialsListProps> = ({
   className = "",
   itemClass = "block",
   socials = socialsDemo,
+  showLabels = false,
 }) => {
   return (
     <nav
@@ -27,13 +26,16 @@ const SocialsList: FC<SocialsListProps> = ({
       {socials.map((item, i) => (
         <a
           key={i}
-          className={`${itemClass}`}
+          className={`${itemClass} ${showLabels ? "inline-flex items-center" : ""}`}
           href={item.href}
           target="_blank"
           rel="noopener noreferrer"
           title={item.name}
         >
           <i className={item.icon}></i>
+          {showLabels && item.name === "Instagram" && (
+            <span className="ml-1 text-sm">lisbonmates</span>
+          )}
         </a>
       ))}
     </nav>
