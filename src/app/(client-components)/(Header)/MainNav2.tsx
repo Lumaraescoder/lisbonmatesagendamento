@@ -15,6 +15,11 @@ export interface MainNav2Props {
 const MainNav2: FC<MainNav2Props> = ({ className = "" }) => {
   const pathname = usePathname();
   const { t } = useI18n();
+  const scrollToTours = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname !== "/") return;
+    event.preventDefault();
+    document.getElementById("tours")?.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <div className={`MainNav2 relative z-10 ${className}`}>
       <div className="px-4 h-20 lg:container flex justify-between items-center">
@@ -22,9 +27,9 @@ const MainNav2: FC<MainNav2Props> = ({ className = "" }) => {
           <Logo className="w-32 self-center" />
           <nav className="hidden lg:flex space-x-6 text-neutral-700 dark:text-neutral-100">
             <Link href="/#hero" className="hover:text-black">{t("common.home")}</Link>
-            <Link href="/#tours" className="hover:text-black">{t("common.tours")}</Link>
+            <a href="/#tours" onClick={scrollToTours} className="hover:text-black">{t("common.tours")}</a>
             {/* <Link href="/#testimonials" className="hover:text-black">Testimonials</Link> */}
-            <Link href="/#contact" className="hover:text-black">{t("common.contact")}</Link>
+            <a href="/contact" className="hover:text-black">{t("common.contact")}</a>
           </nav>
         </div>
 

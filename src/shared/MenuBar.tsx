@@ -25,6 +25,12 @@ const MenuBar: React.FC<MenuBarProps> = ({
 
   const handleOpenMenu = () => setIsVisable(true);
   const handleCloseMenu = () => setIsVisable(false);
+  const scrollToTours = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname !== "/") return;
+    event.preventDefault();
+    setIsVisable(false);
+    document.getElementById("tours")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
     function onDocumentClick(e: MouseEvent) {
@@ -51,10 +57,10 @@ const MenuBar: React.FC<MenuBarProps> = ({
               <Link href="/#hero" className="block px-3 py-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700">{t("common.home")}</Link>
             </li>
             <li>
-              <Link href="/#tours" className="block px-3 py-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700">{t("common.tours")}</Link>
+              <a href="/#tours" onClick={scrollToTours} className="block px-3 py-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700">{t("common.tours")}</a>
             </li>
             <li>
-              <Link href="/#contact" className="block px-3 py-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700">{t("common.contact")}</Link>
+              <a href="/contact" className="block px-3 py-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700">{t("common.contact")}</a>
             </li>
             <li className="pt-2 border-t border-neutral-100 dark:border-neutral-700">
               <div className="px-3 py-2">
