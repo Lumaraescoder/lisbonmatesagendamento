@@ -3,6 +3,10 @@ import { NextResponse } from 'next/server';
 const getBase = () => process.env.PAYPAL_ENV === 'live' ? 'https://api.paypal.com' : 'https://api.sandbox.paypal.com';
 
 export async function GET() {
+ if (process.env.NODE_ENV === 'production') {
+  return NextResponse.json({ error: 'Not found' }, { status: 404 });
+ }
+
  try {
   const id = process.env.PAYPAL_CLIENT_ID || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
   const secret = process.env.PAYPAL_CLIENT_SECRET;
@@ -20,15 +24,14 @@ export async function GET() {
    body: 'grant_type=client_credentials',
   });
 
-  const text = await res.text();
-  let body: any = text;
-  try { body = JSON.parse(text); } catch (e) { }
-
   if (!res.ok) {
-   return NextResponse.json({ ok: false, status: res.status, body }, { status: 500 });
+   return NextResponse.json(
+    { ok: false, status: res.status, error: 'PayPal authentication failed' },
+    { status: 500 }
+   );
   }
 
-  return NextResponse.json({ ok: true, status: res.status, body });
+  return NextResponse.json({ ok: true, status: res.status });
  } catch (err: any) {
   return NextResponse.json({ ok: false, error: err.message || String(err) }, { status: 500 });
  }

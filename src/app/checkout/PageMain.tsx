@@ -65,6 +65,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
   const [paidOrderId, setPaidOrderId] = useState<string | null>(null);
   const [time, setTime] = useState<string | null>(initialTime || "09:00");
   const dateLocale = locale === "pt" ? "pt-PT" : locale === "es" ? "es-ES" : locale === "fr" ? "fr-FR" : locale === "de" ? "de-DE" : locale === "it" ? "it-IT" : "en-GB";
+  const paypalLocale = locale === "pt" ? "pt_PT" : locale === "es" ? "es_ES" : locale === "fr" ? "fr_FR" : locale === "de" ? "de_DE" : locale === "it" ? "it_IT" : "en_US";
   const [dateInput, setDateInput] = useState<string>(converSelectedDateToString([startDate, endDate], dateLocale));
   const [hours, setHours] = useState<number>(2);
   const paypalClientId = typeof process !== 'undefined' ? process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || (process.env.NODE_ENV !== 'production' ? 'sb' : '') : '';
@@ -498,7 +499,7 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                     options={{
                       "client-id": paypalClientId,
                       currency: "EUR",
-                      locale: locale === "pt" ? "pt-PT" : locale === "es" ? "es-ES" : locale === "fr" ? "fr-FR" : locale === "de" ? "de-DE" : locale === "it" ? "it-IT" : "en-US",
+                      locale: paypalLocale,
                       intent: "capture",
                     }}
                   >
