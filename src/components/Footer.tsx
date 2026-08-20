@@ -13,7 +13,6 @@ const Footer: React.FC = () => {
   const headerLinks: CustomLink[] = [
     { href: "/#hero", label: t("common.home") },
     { href: "/#tours", label: t("common.tours") },
-    { href: "/testimonials", label: t("common.testimonials") },
     { href: "/contact", label: t("common.contact") },
   ];
 
