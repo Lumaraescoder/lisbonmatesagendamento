@@ -1,8 +1,8 @@
 "use client";
 
 import React, { FC } from "react";
-import capadesktopJpeg from "@/images/capa.jpeg";
-import capamobileJpeg from "@/images/capa.jpeg";
+import capadesktopImage from "@/images/capa-upscale.png";
+import capamobileImage from "@/images/capa-upscale.png";
 import Image from "next/image";
 import { useI18n } from "@/i18n/I18nProvider";
 
@@ -45,14 +45,15 @@ const SectionHero3: FC<SectionHero3Props> = ({
       </div>
       <div className="relative h-[800px] sm:h-auto aspect-w-1 aspect-h-1 sm:aspect-w-4 sm:aspect-h-3 lg:aspect-w-16 lg:aspect-h-9 xl:aspect-h-8 ">
         <picture>
-          <source media="(max-width: 768px)" srcSet={capamobileJpeg.src} />
+          <source media="(max-width: 768px)" srcSet={capamobileImage.src} />
           <Image
             className="absolute inset-0 object-cover rounded-xl"
-            src={capadesktopJpeg}
+            src={capadesktopImage}
             alt={t("hero.imageAlt")}
             priority
             fill
-            sizes="(max-width: 768px) 100vw, 50vw"
+            quality={100}
+            sizes="100vw"
           />
         </picture>
       </div>
