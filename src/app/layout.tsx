@@ -1,4 +1,5 @@
 import { Poppins } from "next/font/google";
+import type { Metadata } from "next";
 import SiteHeader from "./(client-components)/(Header)/SiteHeader";
 import ClientCommons from "./ClientCommons";
 import "./globals.css";
@@ -9,6 +10,27 @@ import Footer from "@/components/Footer";
 import { I18nProvider } from "@/i18n/I18nProvider";
 import { defaultLocale, normalizeLocale, pickLocaleFromAcceptLanguage } from "@/i18n";
 import { cookies, headers } from "next/headers";
+
+export const metadata: Metadata = {
+  title: "Tuk Tuk Tour in Lisbon | Lisbon Mates",
+  description:
+    "Discover Lisbon on a private electric tuk tuk tour with local guides. Explore Alfama, Belém, viewpoints, and more with Lisbon Mates.",
+  keywords: [
+    "tuk tuk tour in Lisbon",
+    "Lisbon tuk tuk tour",
+    "tuk tuk tours Lisbon",
+    "private tuk tuk tour Lisbon",
+    "electric tuk tuk Lisbon",
+    "Lisbon sightseeing tour",
+    "Alfama tuk tuk tour",
+    "Belém tuk tuk tour",
+    "Lisbon Mates",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 const poppins = Poppins({
   subsets: ["latin"],
