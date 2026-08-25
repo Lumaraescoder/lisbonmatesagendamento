@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import { I18nProvider } from "@/i18n/I18nProvider";
 import { defaultLocale, normalizeLocale, pickLocaleFromAcceptLanguage } from "@/i18n";
 import { cookies, headers } from "next/headers";
+import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/seo";
 
 const lisbonMatesStructuredData = {
   "@context": "https://schema.org",
@@ -70,7 +71,11 @@ const lisbonMatesStructuredData = {
 };
 
 export const metadata: Metadata = {
-  title: "Tuk Tuk Tour in Lisbon | Lisbon Mates",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Tuk Tuk Tour in Lisbon | Lisbon Mates",
+    template: "%s | Lisbon Mates",
+  },
   description:
     "Discover Lisbon on a private electric tuk tuk tour with local guides. Explore Alfama, Belém, viewpoints, and more with Lisbon Mates.",
   keywords: [
@@ -110,11 +115,33 @@ export const metadata: Metadata = {
   creator: "Lisbon Mates",
   publisher: "Lisbon Mates",
   category: "Travel & Tourism",
+  icons: {
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
   referrer: "origin-when-cross-origin",
   formatDetection: {
     telephone: false,
     email: false,
     address: false,
+  },
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "en_GB",
+    siteName: "Lisbon Mates",
+    title: "Tuk Tuk Tour in Lisbon | Lisbon Mates",
+    description:
+      "Discover Lisbon on a private electric tuk tuk tour with local guides. Explore Alfama, Belém, viewpoints, and more.",
+    url: "/",
+    images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: "Lisbon Mates tuk tuk tours in Lisbon" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tuk Tuk Tour in Lisbon | Lisbon Mates",
+    description: "Private electric tuk tuk tours through Lisbon with friendly local guides.",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 
